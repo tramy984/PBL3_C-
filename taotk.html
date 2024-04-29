@@ -31,7 +31,7 @@
       <img src="https://www.hasfarmgreens.com/wp-content/uploads/2021/09/12-icon-HFG_FA-09.png" alt=" "width="105px" height="99px" />
       </div>
       <div class="together"> Together </div>
-      <a href="gioithieu.html" class="trang_chu">Trang chủ</a>
+      <a href="trangchu.html" class="trang_chu">Trang chủ</a>
       <a href="gioithieu.html" class="gioi_thieu">Giới thiệu</a>
       <a href="dangnhap.html" class="dang_nhap">Đăng nhập</a>
       <div class="dang_ky">Đăng ký</div>
@@ -42,18 +42,12 @@
         <option value="Tochuc">Tổ chức</option>
         <option value="QTV">Quản trị viên</option>
     </select>
-    <div class="rtgTDN"></div>
-    <div class="TDN"> Nhập tên đăng nhập </div>
-    <div class="rtgMK"></div>
-    <div class="MK"> Nhập mật khẩu </div>
-    <div class="rtgNLMK"></div>
-    <div class="NLMK"> Nhập lại mật khẩu </div>
-    <div class="rtgTen"></div>
-    <div class="Ten"> Nhập đầy đủ tên </div>
-    <div class="rtgSDT"></div>
-    <div class="SDT"> Nhập số điện thoại </div>
-    <div class="rtgEmail"></div>
-    <div class="Email"> Nhập địa chỉ Email </div>
+    <input type="text" class="TDN" name="TDN" placeholder="Nhập tên đăng nhập">
+    <input type="text" class="MK" name="MK" placeholder="Nhập mật khẩu">
+    <input type="text" class="NLMK" name="NLMK" placeholder="Nhập lại mật khẩu">
+    <input type="text" class="Ten" name="Ten" placeholder="Nhập đầy đủ tên">
+    <input type="text" class="SDT" name="SDT" placeholder="Nhập số điện thoại">
+    <input type="text" class="Email" name="Email" placeholder="Nhập địa chỉ email">
     <div class="Dangky">Đăng ký</div>
     <div class="DCTK">Bạn đã có tài khoản >> Đăng nhập</div>
   </body>
@@ -128,58 +122,41 @@
       font-size: 25px;
       font-family: Barlow;
     }
-    .rtgTDN{
+    .TDN{
       position: absolute;
         left: 255px;
         top:407px;
-        width: 413px;
-        height: 50px;
-        border-radius: 20px;
-        border: 2px solid #03571F;
-    }
-    .TDN{
-      position: absolute;
-        left: 357px;
-        top:418px;
         font-size: 20px;
       font-family: Barlow; 
-      filter: opacity(50%);
-    }
-    .rtgMK{
-      position: absolute;
-        left: 255px;
-        top:523px;
-        width: 413px;
-        height: 50px;
-        border-radius: 20px;
-        border: 2px solid #03571F;
+      width: 413px;
+      height: 50px;
+      border-radius: 20px;
+      border: 2px solid #03571F;
+
     }
     .MK{
       position: absolute;
-        left: 386px;
-        top:536px;
+        left: 255px;
+        top:523px;
         font-size: 20px;
       font-family: Barlow; 
-      filter: opacity(50%);
-    }
-    .rtgNLMK{
-      position: absolute;
-        left: 255px;
-        top:636px;
-        width: 413px;
+      width: 413px;
         height: 50px;
         border-radius: 20px;
         border: 2px solid #03571F;
     }
     .NLMK{
       position: absolute;
-        left: 372px;
-        top:646Px;
+      left: 255px;
+        top:636px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
         font-size: 20px;
       font-family: Barlow; 
-      filter: opacity(50%);
     }
-    .rtgTen{
+    .Ten{
       position: absolute;
         left: 742px;
         top:407px;
@@ -187,16 +164,10 @@
         height: 50px;
         border-radius: 20px;
         border: 2px solid #03571F;
-    }
-    .Ten{
-      position: absolute;
-        left: 850px;
-        top:420px;
         font-size: 20px;
       font-family: Barlow; 
-      filter: opacity(50%);
     }
-    .rtgSDT{
+    .SDT{
       position: absolute;
         left: 742px;
         top:523px;
@@ -204,16 +175,10 @@
         height: 50px;
         border-radius: 20px;
         border: 2px solid #03571F;
-    }
-    .SDT{
-      position: absolute;
-        left: 850px;
-        top:537px;
         font-size: 20px;
       font-family: Barlow; 
-      filter: opacity(50%);
     }
-    .rtgEmail{
+    .Email{
       position: absolute;
         left: 742px;
         top:638px;
@@ -221,11 +186,6 @@
         height: 50px;
         border-radius: 20px;
         border: 2px solid #03571F;
-    }
-    .Email{
-      position: absolute;
-        left: 865px;
-        top:647px;
         font-size: 20px;
       font-family: Barlow; 
       filter: opacity(50%);
