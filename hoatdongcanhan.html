@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Trang chủ cá nhân</title>
+        <meta charset="utf-8" />
+        <base href="http://127.0.0.1:5500/">
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo 2:wght@400&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap"
+        />
+        <link
+          rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400&display=swap"
+        />
+      </head>
+      <body>
+        <div class="image_logo">
+            <img src="https://www.hasfarmgreens.com/wp-content/uploads/2021/09/12-icon-HFG_FA-09.png" alt=" "width="105px" height="99px" />
+        </div>
+        <div class="together"> Together </div>
+        <div class="HDcanhan"> Hoạt động cá nhân</div>
+        <a class="trang_chu" href="trangchucanhan.html"> Trang chủ</a>
+        <div class="imgTK">
+            <img src="https://i.pinimg.com/564x/55/85/8d/55858d6becd90d6742682cb76077c8ef.jpg" alt=" " width="29px" height="33px"/>
+          </div>
+          <div class="TK">Nhập thông tin tìm kiếm</div>
+          <select asp-for="Selected" class="Taikhoan">
+            <option></option>
+            <option value="XTT"> Xem thông tin</option>
+            <option value="CSTT"> Chỉnh sửa thông tin</option>
+            <option value="DMK">Đổi mật khẩu</option>
+            <option value="DX">Đăng xuất</option>
+        </select>
+        <div class="imgTaikhoan">
+            <img src="https://i.pinimg.com/564x/fe/94/01/fe9401b82ec1a52d876b76774da990ac.jpg" alt=" " width="48px" height="40px"/>
+        </div>
+        <div class="retangle"></div>
+        <select asp-for="Selected" class="Tinhtrang">
+            <option>Tình trạng</option>
+            <option value="XTT"> Đã đăng ký</option>
+            <option value="CSTT"> Đã được duyệt</option>
+            <option value="DMK">Đã tham gia</option>
+            <option value="DX">Đã huỷ</option>
+        </select>
+        <select asp-for="Selected" class="Linhvuc">
+            <option>Lĩnh vực</option>
+            <option value="GD"> Giáo dục</option>
+            <option value="YT"> Y tế</option>
+            <option value="MT">Môi trường</option>
+        </select>
+        <select asp-for="Selected" class="Mocthoigian">
+            <option>Mốc thời gian</option>
+            <option value="T1"> Tháng 1</option>
+            <option value="T2"> Tháng 2</option>
+            <option value="T3">Tháng 3</option>
+            <option value="T4">Tháng 4</option>
+            <option value="T5">Tháng 5</option>
+            <option value="T6">Tháng 6</option>
+            <option value="T7">Tháng 7</option>
+            <option value="T8">Tháng 8</option>
+            <option value="T9">Tháng 9</option>
+            <option value="T10">Tháng 10</option>
+            <option value="T11">Tháng 11</option>
+            <option value="T12">Tháng 12</option>
+        </select>
+        <div class="Hienthi">Hiển thị</div>
+        <div class="NTHD">    Nhập tên hoạt động</div>
+        <div class="imgtimkiem">
+            <img src="https://i.pinimg.com/564x/55/85/8d/55858d6becd90d6742682cb76077c8ef.jpg" alt=" " width="30px" height="30px"/>
+        </div>
+        
+      </body>
+</html>
+
+<style>
+         .image_logo{
+        position: absolute;
+        top: 4px;
+        left: 61px;
+    }
+    .together{
+        position: absolute;
+        left: 75px;
+        top: 97px;
+        font-family:Baloo ;
+        color:#0F8730;
+        font-size: 25px;
+    }
+    .trang_chu{
+        position: absolute;
+        left: 319px;
+        top: 49px;
+        font-family:Baloo ;
+        color:#0F8730;
+        font-size: 30px;
+        text-decoration: none;
+    }
+    .HDcanhan{
+        position: absolute;
+        left: 556px;
+        top: 49px;
+        font-family:Baloo ;
+        color:#0F8730;
+        font-size: 30px;
+        text-decoration: underline;
+    }
+    .TK{
+      position: absolute;
+      top: 53px;
+      left: 850px;
+      width: 425px;
+      height: 45px;
+      font-size: 30px;
+      color: #000000;
+      font-family: Inter;
+      border-radius: 20px;
+      text-align: center;
+      filter: opacity(50%);
+      border: 2px solid #000000;
+    }
+    .imgTK{
+      position: absolute;
+        left: 860px;
+        top: 56px;
+    }
+    .Taikhoan{
+      position: absolute;
+        left: 1293px;
+        top:53px;
+        width: 85px;
+        height: 45px;
+        border-radius: 20px;
+      border: 2px solid #03571F;
+      font-size: 20px;
+      font-family: Barlow;
+    }
+    .imgTaikhoan{
+      position: absolute;
+        left: 1307px;
+        top: 55px;
+    }
+    .retangle{
+        position: absolute;
+        left: 0px;
+        top: 178px;
+        width: 100%;
+        height: 71px;
+        background-color:#E0FFE9;
+    }
+    .Tinhtrang{
+        position: absolute;
+        left: 56px;
+        top:195px;
+        width: 174px;
+        height: 39px;
+        background-color:#76EA96 ;
+      font-size: 16px;
+      font-family: Inter; 
+    }
+    .Linhvuc{
+        position: absolute;
+        left: 267px;
+        top:195px;
+        width: 174px;
+        height: 39px;
+        background-color:#76EA96 ;
+      font-size: 16px;
+      font-family: Inter;  
+    }
+    .Mocthoigian{
+        position: absolute;
+        left: 485px;
+        top:195px;
+        width: 174px;
+        height: 39px;
+        background-color:#76EA96 ;
+      font-size: 16px;
+      font-family: Inter; 
+    }
+    .Hienthi{
+        position: absolute;
+        left: 720px;
+        top:190px;
+        width: 138px;
+        height: 20px;
+      font-size: 30px;
+      font-family: Baloo; 
+      text-align: center;
+    }
+    .NTHD{
+        position: absolute;
+        left: 1080px;
+        top:190px;
+        width: 290px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #000000;
+      font-size: 25px;
+      font-family: Inter; 
+      filter: opacity(50%);
+    }
+    .imgtimkiem{
+        position: absolute;
+        left: 1320px;
+        top:200px; 
+    }
+
+</style>

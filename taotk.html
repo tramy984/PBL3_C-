@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Đăng ký tài khoản</title>
+    <meta charset="utf-8" />
+    <base href="http://127.0.0.1:5500/">
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Baloo 2:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400&display=swap"
+    />
+  </head>
+  <body>
+    <div class="image_logo">
+      <img src="https://www.hasfarmgreens.com/wp-content/uploads/2021/09/12-icon-HFG_FA-09.png" alt=" "width="105px" height="99px" />
+      </div>
+      <div class="together"> Together </div>
+      <a href="gioithieu.html" class="trang_chu">Trang chủ</a>
+      <a href="gioithieu.html" class="gioi_thieu">Giới thiệu</a>
+      <a href="dangnhap.html" class="dang_nhap">Đăng nhập</a>
+      <div class="dang_ky">Đăng ký</div>
+      <div class="DK"> Đăng ký tài khoản</div>
+      <select asp-for="Selected" class="VT">
+        <option value="">-- Chọn vai trò -- </option>
+        <option value="Canhan">Cá nhân</option>
+        <option value="Tochuc">Tổ chức</option>
+        <option value="QTV">Quản trị viên</option>
+    </select>
+    <div class="rtgTDN"></div>
+    <div class="TDN"> Nhập tên đăng nhập </div>
+    <div class="rtgMK"></div>
+    <div class="MK"> Nhập mật khẩu </div>
+    <div class="rtgNLMK"></div>
+    <div class="NLMK"> Nhập lại mật khẩu </div>
+    <div class="rtgTen"></div>
+    <div class="Ten"> Nhập đầy đủ tên </div>
+    <div class="rtgSDT"></div>
+    <div class="SDT"> Nhập số điện thoại </div>
+    <div class="rtgEmail"></div>
+    <div class="Email"> Nhập địa chỉ Email </div>
+    <div class="Dangky">Đăng ký</div>
+    <div class="DCTK">Bạn đã có tài khoản >> Đăng nhập</div>
+  </body>
+</html>
+
+<style>
+   .image_logo{
+        position: absolute;
+        top: 4px;
+        left: 61px;
+    }
+    .together{
+        position: absolute;
+        left: 75px;
+        top: 97px;
+        font-family:Baloo ;
+        color:#0F8730;
+        font-size: 25px;
+    }
+    .trang_chu{
+        position: absolute;
+        left: 603px;
+        top: 58px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 25px;
+        text-decoration: none;
+    }
+    .gioi_thieu{
+        position: absolute;
+        left: 817px;
+        top: 58px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size:25px;
+        text-decoration:none;
+    }
+    .dang_ky{
+        position: absolute;
+        left: 1005px;
+        top: 54px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 25px;
+        text-decoration:underline;
+    }
+    .dang_nhap{
+        position: absolute;
+        left: 1196px;
+        top: 54px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 25px;
+        text-decoration: none ;
+    }
+    .DK{
+      position: absolute;
+        left: 560px;
+        top: 171px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 36px;
+    }
+    .VT{
+      position: absolute;
+        left: 255px;
+        top:283px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+      border: 2px solid #03571F;
+      font-size: 25px;
+      font-family: Barlow;
+    }
+    .rtgTDN{
+      position: absolute;
+        left: 255px;
+        top:407px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+    }
+    .TDN{
+      position: absolute;
+        left: 357px;
+        top:418px;
+        font-size: 20px;
+      font-family: Barlow; 
+      filter: opacity(50%);
+    }
+    .rtgMK{
+      position: absolute;
+        left: 255px;
+        top:523px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+    }
+    .MK{
+      position: absolute;
+        left: 386px;
+        top:536px;
+        font-size: 20px;
+      font-family: Barlow; 
+      filter: opacity(50%);
+    }
+    .rtgNLMK{
+      position: absolute;
+        left: 255px;
+        top:636px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+    }
+    .NLMK{
+      position: absolute;
+        left: 372px;
+        top:646Px;
+        font-size: 20px;
+      font-family: Barlow; 
+      filter: opacity(50%);
+    }
+    .rtgTen{
+      position: absolute;
+        left: 742px;
+        top:407px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+    }
+    .Ten{
+      position: absolute;
+        left: 850px;
+        top:420px;
+        font-size: 20px;
+      font-family: Barlow; 
+      filter: opacity(50%);
+    }
+    .rtgSDT{
+      position: absolute;
+        left: 742px;
+        top:523px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+    }
+    .SDT{
+      position: absolute;
+        left: 850px;
+        top:537px;
+        font-size: 20px;
+      font-family: Barlow; 
+      filter: opacity(50%);
+    }
+    .rtgEmail{
+      position: absolute;
+        left: 742px;
+        top:638px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+    }
+    .Email{
+      position: absolute;
+        left: 865px;
+        top:647px;
+        font-size: 20px;
+      font-family: Barlow; 
+      filter: opacity(50%);
+    }
+  .Dangky{
+      position: absolute;
+      top: 745px;
+      left: 961px;
+      width: 204px;
+      height: 51px;
+      font-size: 24px;
+      color: #000000;
+      font-family: Baloo;
+      border-radius: 20px;
+      background-color: #0F8730;
+      text-align: center;
+  }
+  .DCTK{
+    position: absolute;
+      top: 868px;
+      left: 868px;
+      font-size: 20px;
+      color: #000000;
+  }
+</style>

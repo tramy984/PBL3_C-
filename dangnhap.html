@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta name="viewport" content="width=device-width" />
+
+  <title>Đăng nhập</title>
+  <base href="http://127.0.0.1:5500/">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo Da:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo Da 2:wght@400&display=swap" />
+          <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter Da 2:wght@400&display=swap" />
+</head>
+
+<body>
+  <div class="image_logo">
+    <img src="https://www.hasfarmgreens.com/wp-content/uploads/2021/09/12-icon-HFG_FA-09.png",alt=" "width="105px"height="99px" />
+    </div>
+    <div class="together"> Together </div>
+    <a href="trangchu.html" class="trang_chu">Trang chủ</a>
+    <a href="gioithieu.html" class="gioi_thieu">Giới thiệu</a>
+    <div class="dang_nhap"> Đăng nhập</div>
+    <a href="taotk.html" class="dang_ky">Đăng ký</a>
+
+  <div class=" img">
+      <img src="https://www.kindpng.com/picc/m/235-2351000_login-icon-png-transparent-png.png" width="643px" height="604px" />
+  </div>
+  <div class="Dangnhap"> Đăng nhập </div>
+  <div class=" Vaitro">Vai trò</div>
+<select asp-for="Selected" class="VT">
+    <option value="">-- Chọn vai trò --</option>
+    <option value="Canhan">Cá nhân</option>
+    <option value="Tochuc">Tổ chức</option>
+    <option value="QTV">Quản trị viên</option>
+</select>
+  <div class="TDN"> 
+      Tên đăng nhập:    </div>
+  <input type="text" class="TDNh" name="TDN">
+  <div class="Matkhau">
+      Mật khẩu:
+  </div>
+  <input type="text" class="MK" name="MK">
+  <div class="QMK"> Quên mật khẩu</div>
+  <div class="DN"></div>
+  <div class="Dangnhap2">Đăng nhập</div>
+  <div class="Chuacotk"> Bạn chưa có tài khoản. Đăng ký ngay !!</div>
+</body>
+</html>
+<style>
+  .image_logo{
+        position: absolute;
+        top: 4px;
+        left: 61px;
+    }
+    .together{
+        position: absolute;
+        left: 75px;
+        top: 97px;
+        font-family:Baloo ;
+        color:#0F8730;
+        font-size: 25px;
+    }
+    .trang_chu{
+        position: absolute;
+        left: 603px;
+        top: 58px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 25px;
+        text-decoration: none;
+    }
+    .gioi_thieu{
+        position: absolute;
+        left: 817px;
+        top: 58px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size:25px;
+        text-decoration:none;
+    }
+    .dang_ky{
+        position: absolute;
+        left: 1005px;
+        top: 54px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 25px;
+        text-decoration:none;
+    }
+    .dang_nhap{
+        position: absolute;
+        left: 1196px;
+        top: 54px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 25px;
+        text-decoration: underline;
+    }
+  .Dangnhap{
+      position: absolute;
+      top: 190px;
+      left: 884px;
+      font-size: 48px;
+      color: #000000;
+      font-family: Baloo;
+  }
+  .Vaitro{
+      position: absolute;
+      top: 333px;
+      left: 739px;
+      font-size: 24px;
+      color: #000000;
+      font-family: Baloo;
+  }
+  .VT{
+      position: absolute;
+      top: 322px;
+      left: 946px;
+      width: 298px;
+      height: 50px;
+      font-size: 24px ;
+      color: #000000;
+      font-family: Baloo;
+  }
+  .TDN{
+      position: absolute;
+      top: 466px;
+      left: 731px;
+      font-size: 24px;
+      color: #000000;
+      font-family: Baloo;       
+  }
+  .TDNh{
+      position: absolute;
+      top: 461px;
+      left: 950px;
+      width:298px;
+      height:50px;
+      font-size:24px;
+      color: #000000;
+      font-family: Baloo;
+  }
+
+  .Matkhau {
+      position: absolute;
+      top: 607px;
+      left: 737px;
+      font-size: 24px;
+      color: #000000;
+      font-family: Baloo;
+  }
+
+  .MK {
+      position: absolute;
+      top: 593px;
+      left: 949px;
+      width: 298px;
+      height: 50px;
+      font-size: 24px ;
+      color: #000000;
+      font-family: Baloo;
+  }
+  .img{
+      position: absolute;
+      top: 208px;
+      left: 16px;
+  }
+  .QMK{
+      position: absolute;
+      top: 796px;
+      left: 1168px;
+      font-size: 20px;
+      color: #000000;
+      font-family: Baloo Bhaijaan;
+  }
+  .DN{
+      position: absolute;
+      top: 719px;
+      left: 1147px;
+      width: 159px;
+      height: 53px;
+      background-color: #0F8730;
+      border-radius: 20px;
+  }
+  .Dangnhap2{
+      position: absolute;
+      top: 729px;
+      left: 1168px;
+      font-size: 24px;
+      color: #000000;
+      font-family: Baloo;
+  }
+
+  .Chuacotk{
+      position: absolute;
+      top: 902px;
+      left: 955px;
+      font-size: 20px;
+      color: #000000;
+      font-family: Inter;
+  }
+</style>
