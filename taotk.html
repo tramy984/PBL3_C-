@@ -25,6 +25,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400&display=swap"
     />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
   </head>
   <body>
     <div class="image_logo">
@@ -35,6 +36,12 @@
       <a href="gioithieu.html" class="gioi_thieu">Giới thiệu</a>
       <a href="dangnhap.html" class="dang_nhap">Đăng nhập</a>
       <div class="dang_ky">Đăng ký</div>
+      <div >
+        <input type="text" class="TK" name="TK" placeholder="Nhập nội dung tìm kiếm">
+      </div>
+      <button class="btn-Timkiem" type="button">
+        <i class="fas fa-search"></i>
+      </button>
       <div class="DK"> Đăng ký tài khoản</div>
       <select asp-for="Selected" class="VT">
         <option value="">-- Chọn vai trò -- </option>
@@ -48,7 +55,7 @@
     <input type="text" class="Ten" name="Ten" placeholder="Nhập đầy đủ tên">
     <input type="text" class="SDT" name="SDT" placeholder="Nhập số điện thoại">
     <input type="text" class="Email" name="Email" placeholder="Nhập địa chỉ email">
-    <div class="Dangky">Đăng ký</div>
+    <button onclick="" class="Dangky" >Đăng ký</button>
     <div class="DCTK">Bạn đã có tài khoản >> Đăng nhập</div>
   </body>
 </html>
@@ -61,7 +68,7 @@
     }
     .together{
         position: absolute;
-        left: 75px;
+        left: 65px;
         top: 97px;
         font-family:Baloo ;
         color:#0F8730;
@@ -69,7 +76,7 @@
     }
     .trang_chu{
         position: absolute;
-        left: 603px;
+        left: 630px;
         top: 58px;
         font-family: Baloo;
         color: #0F8730;
@@ -78,7 +85,7 @@
     }
     .gioi_thieu{
         position: absolute;
-        left: 817px;
+        left: 827px;
         top: 58px;
         font-family: Baloo;
         color: #0F8730;
@@ -87,7 +94,7 @@
     }
     .dang_ky{
         position: absolute;
-        left: 1005px;
+        left: 1015px;
         top: 54px;
         font-family: Baloo;
         color: #0F8730;
@@ -96,7 +103,7 @@
     }
     .dang_nhap{
         position: absolute;
-        left: 1196px;
+        left: 1206px;
         top: 54px;
         font-family: Baloo;
         color: #0F8730;
@@ -210,4 +217,24 @@
       font-size: 20px;
       color: #000000;
   }
+  .TK{
+      position: absolute;
+      top:55px;
+      left: 190px;
+      width: 400px;
+      height: 45px;
+      font-size: 30px;
+      color: #000000;
+      font-family: Inter;
+      border-radius: 20px;
+      border: 2px solid #000000;
+    }
+    .btn-Timkiem{
+      position: absolute;
+        left: 530px;
+        top: 60px;
+        width: 50px;
+        height: 40px;
+      background-color: #fff;
+    }
 </style>
