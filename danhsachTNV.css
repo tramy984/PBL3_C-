@@ -1,0 +1,325 @@
+.DanhsachTNV {
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3px;
+    width: 1440px;
+    box-sizing: border-box;
+  }
+  .DanhsachTNV .logo {
+      background: url('images/logo.png') 50% / cover no-repeat;
+  
+      width: 105px;
+      height: 99px;
+    }
+    .DanhsachTNV .trangchu {
+      margin: 53px 0 11px 0;
+      display: inline-block;
+      overflow-wrap: break-word;
+      font-family: 'Baloo', 'Roboto Condensed';
+      font-weight: 400;
+      font-size: 30px;
+      color: #0F8730;
+    }
+    .DanhsachTNV .qlHD {
+      margin: 53px 0 11px 0;
+      display: inline-block;
+      overflow-wrap: break-word;
+      font-family: 'Baloo', 'Roboto Condensed';
+      font-weight: 400;
+      font-size: 30px;
+      color: #0F8730;
+    }
+    .Sub{
+      position: absolute;
+      width: 240px;
+      border: 1px solid #000000;
+      list-style-type: none; /* Ẩn kiểu đánh dấu */
+      padding: 0; /* Loại bỏ padding */
+      margin: 0;
+      display: none;
+    }
+    .qlHD:hover .Sub{
+      display: block;
+    }
+    .Sub li {
+      /* Định dạng cho từng mục trong ul */
+      padding: 8px 0; /* Padding phía trên và phía dưới */
+    }
+    
+    .Sub li a {
+      /* Định dạng cho các liên kết bên trong mục */
+      text-decoration: none; /* Loại bỏ gạch chân */
+      color: #000000; /* Màu chữ */
+      font-size: 20px;
+    }
+    
+    .Sub li a:hover {
+      /* Định dạng khi di chuột qua liên kết */
+      color: #0F8730; /* Màu chữ thay đổi khi hover */
+    }
+  
+    .btn-TimKiem{
+      background-color: #FFFFFF;
+      margin-right: 10px;
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-TimKiem i {
+      font-size: 20px;
+    }
+    .btn-TaiKhoan{
+      background-color: #FFFFFF;
+      margin-right: 40px;
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-TaiKhoan i {
+      font-size: 30px;
+    }
+
+    
+    .DanhsachTNV .search-input{
+      margin-top: 45px;
+      top: 50px;
+      width: 400px;
+      height: 32px;
+      padding: 5px;
+      border: 2px solid #000000;
+      border-radius: 20px;
+      font-size: 24px;
+      opacity: 0.5;
+  
+    }
+    .DanhsachTNV .container-head {
+      margin: 0 0 9px 4.2px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 1365px;
+      box-sizing: border-box;
+    }
+    .DanhsachTNV .together {
+      align-self: flex-start;
+      overflow-wrap: break-word;
+      font-family: 'Baloo', 'Roboto Condensed';
+      font-weight: 400;
+      font-size: 25px;
+      color: #0F8730;
+    }
+    .DanhsachTNV .dsTNV-1 {
+        margin: 0 0 73px 58px;
+        display: inline-block;
+        align-self: center;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 48px;
+        color: #000000;
+      }
+    /* dùng */
+  .DanhsachTNV .trng-thi-1 {
+    /* opacity: 0.5; */
+    margin: 10px 6px 4px 0;
+    display: inline-block;
+    width: 250px;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+  }
+  .DanhsachTNV .nhp-tn-hotng {
+    opacity: 0.5;
+    margin: 7px 5.7px 4px 0;
+    border-radius: 20px;
+    display: inline-block;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+  }
+  /* dùng */
+  .btn-TimKiem{
+    background-color: #FFFFFF;
+    margin-right: 10px;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-TimKiem i {
+    font-size: 20px;
+  }
+  .DanhsachTNV .hin-th {
+    overflow-wrap: break-word;
+    font-family: 'Baloo', 'Roboto Condensed';
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 32px;
+    color: #000000;
+  }
+  table{
+    width: 1000px; /* Chiều rộng bảng */
+    border-collapse: collapse; /* Gộp viền của các ô */
+}
+
+th, td {
+    border: 1px solid #dddddd; /* Đường viền của các ô */
+    padding: 8px; /* Khoảng cách nội dung với viền của ô */
+}
+th {
+  background-color: #f2f2f2; /* Màu nền của ô tiêu đề */
+  font-size: 14px;
+  font-family: 'Barlow';
+  color: #000000; /* Màu chữ của ô tiêu đề */
+  text-align: center; /* Căn giữa nội dung trong ô tiêu đề */
+}
+tr:nth-child(even) {
+background-color: #f2f2f2; /* Màu nền của các hàng chẵn */
+}
+tr:hover {
+background-color: #ddd; /* Màu nền khi di chuột qua */
+}
+td {
+font-size: 14px;
+  font-family: 'Barlow';
+text-align: center; /* Căn giữa nội dung trong ô dữ liệu */
+}
+.DanhsachTNV .chi-ti-tho-tng {
+    margin: 0 29px 0px 0;
+    display: inline-block;
+    align-self: center;
+    overflow-wrap: break-word;
+    font-family: 'Baloo', 'Roboto Condensed';
+    font-weight: 400;
+    font-size: 40px;
+    color: #000000;
+  }
+  .container-chitiet{
+    background: #FFFFFF;
+    position: relative;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 15px 42px 20px 51.6px;
+    width: 1061px;
+    box-sizing: border-box;
+  }
+    /* Định dạng cho bảng */
+.table1 {
+    display: block;
+    width: auto; /* hoặc chiều rộng cố định nếu cần */
+    margin: 0 auto 0 0;
+    border-collapse: collapse;
+  }
+  .table1 td:first-child {
+    width: 100px;
+  }
+  
+  
+  /* Định dạng cho các ô trong bảng */
+  .table1 td, .table1 th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+  
+  /* Định dạng cho hàng chẵn */
+  .table1 tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  
+  /* Định dạng khi di chuột vào hàng */
+  .table1 tr:hover {
+    background-color: #f2f2f2;
+  }
+.DanhsachTNV .duytng-k {
+    margin: 0 0 57px 528.9px;
+    display: inline-block;
+    overflow-wrap: break-word;
+    font-family: 'Barlow';
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+  }
+  .DanhsachTNV .nh-gi-tch-cc {
+    margin: 60px 78.1px 71px 0;
+    display: inline-block;
+    overflow-wrap: break-word;
+    font-family: 'Barlow';
+    font-weight: 400;
+    font-size: 30px;
+    color: #000000;
+  }
+  .DanhsachTNV .danhgia{
+    margin-top: 45px;
+      top: 50px;
+      width: 926px;
+      height: 203px;
+      padding: 5px;
+      border: 2px solid #000000;
+      border-radius: 20px;
+      font-size: 24px;
+      opacity: 0.5;
+  }
+  .DanhsachTNV .xac-nhan{
+    overflow-wrap: break-word;
+    font-family: 'Baloo';
+    border-radius: 20px;
+    width: 250px;
+    height: 50px;
+    background-color: #d0dbd3;
+    font-weight: 400;
+    margin-top: 30px;
+    font-size: 26px;
+    color: #000000;
+  }
+  .DanhsachTNV .container-10 {
+    margin: 0 0 76px 17px;
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    width: fit-content;
+    box-sizing: border-box;
+  }
+  .DanhsachTNV .container-8 {
+    margin: 53px 0 115px 0;
+    display: flex;
+    margin: auto;
+    flex-direction: column;
+    align-items: flex-end;
+    box-sizing: border-box;
+  }
+  .DanhsachTNV .container-7 {
+    margin: 0 5px 52px 23px;
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1033px;
+    box-sizing: border-box;
+  }
+  .DanhsachTNV .container-9 {
+    margin-top: 3px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+  }
+  .DanhsachTNV .container {
+    background: #FFFFFF;
+    position: relative;
+    margin: auto;
+    margin-bottom: 19px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 15px 42px 770px 51.6px;
+    width: 1061px;
+    box-sizing: border-box;
+  }
