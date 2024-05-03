@@ -1,0 +1,380 @@
+.DanhsachHD {
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3px;
+    width: 1440px;
+    box-sizing: border-box;
+  }
+  .DanhsachHD .logo {
+      background: url('images/logo.png') 50% / cover no-repeat;
+  
+      width: 105px;
+      height: 99px;
+    }
+    .DanhsachHD .trangchu {
+      margin: 53px 0 11px 0;
+      display: inline-block;
+      overflow-wrap: break-word;
+      font-family: 'Baloo', 'Roboto Condensed';
+      font-weight: 400;
+      font-size: 30px;
+      color: #0F8730;
+    }
+    .DanhsachHD .qlHD {
+      margin: 53px 0 11px 0;
+      display: inline-block;
+      overflow-wrap: break-word;
+      font-family: 'Baloo', 'Roboto Condensed';
+      font-weight: 400;
+      font-size: 30px;
+      color: #0F8730;
+    }
+    .Sub{
+      position: absolute;
+      width: 240px;
+      border: 1px solid #000000;
+      list-style-type: none; /* Ẩn kiểu đánh dấu */
+      padding: 0; /* Loại bỏ padding */
+      margin: 0;
+      display: none;
+    }
+    .qlHD:hover .Sub{
+      display: block;
+    }
+    .Sub li {
+      /* Định dạng cho từng mục trong ul */
+      padding: 8px 0; /* Padding phía trên và phía dưới */
+    }
+    
+    .Sub li a {
+      /* Định dạng cho các liên kết bên trong mục */
+      text-decoration: none; /* Loại bỏ gạch chân */
+      color: #000000; /* Màu chữ */
+      font-size: 20px;
+    }
+    
+    .Sub li a:hover {
+      /* Định dạng khi di chuột qua liên kết */
+      color: #0F8730; /* Màu chữ thay đổi khi hover */
+    }
+  
+    .btn-TimKiem{
+      background-color: #FFFFFF;
+      margin-right: 10px;
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-TimKiem i {
+      font-size: 20px;
+    }
+    .btn-TaiKhoan{
+      background-color: #FFFFFF;
+      margin-right: 40px;
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+    }
+    .btn-TaiKhoan i {
+      font-size: 30px;
+    }
+
+    
+    .DanhsachHD .search-input{
+      margin-top: 45px;
+      top: 50px;
+      width: 400px;
+      height: 32px;
+      padding: 5px;
+      border: 2px solid #000000;
+      border-radius: 20px;
+      font-size: 24px;
+      opacity: 0.5;
+  
+    }
+    .DanhsachHD .container-head {
+      margin: 0 0 9px 4.2px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 1365px;
+      box-sizing: border-box;
+    }
+    .DanhsachHD .together {
+      align-self: flex-start;
+      overflow-wrap: break-word;
+      font-family: 'Baloo', 'Roboto Condensed';
+      font-weight: 400;
+      font-size: 25px;
+      color: #0F8730;
+    }
+
+  /* dùng */
+  .DanhsachHD .dsHD-1 {
+    margin: 0 0 73px 58px;
+    display: inline-block;
+    align-self: center;
+    overflow-wrap: break-word;
+    font-family: 'Baloo', 'Roboto Condensed';
+    font-weight: 400;
+    font-size: 48px;
+    color: #000000;
+  }
+  /* dùng */
+  .DanhsachHD .trng-thi-1 {
+    /* opacity: 0.5; */
+    margin: 10px 6px 4px 0;
+    display: inline-block;
+    width: 250px;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+  }
+  /* dùng */
+  .DanhsachHD .lnh-vc-1 {
+    margin: 10px 6px 4px 0;
+    display: inline-block;
+    width: 150px;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+  }
+  /* dùng */
+  .DanhsachHD .chn-mc-thi-gian {
+    /* opacity: 0.5; */
+    /* position: absolute; */
+    margin: 10px 6px 4px 0;
+    
+    /* left: 650px; */
+    display: inline-block;
+    width: 100px;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+  }
+  /* dùng */
+  .DanhsachHD .nhp-tn-hotng {
+    opacity: 0.5;
+    margin: 7px 5.7px 4px 0;
+    border-radius: 20px;
+    display: inline-block;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 20px;
+    color: #000000;
+  }
+  /* dùng */
+  .btn-TimKiem{
+    background-color: #FFFFFF;
+    margin-right: 10px;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+  }
+  .btn-TimKiem i {
+    font-size: 20px;
+  }
+  /* dùng */
+  .DanhsachHD .container-9 {
+    margin-top: 3px;
+    display: flex;
+    flex-direction: row;
+    box-sizing: border-box;
+  }
+  /* dùng */
+  .DanhsachHD .hin-th {
+    overflow-wrap: break-word;
+    font-family: 'Baloo', 'Roboto Condensed';
+    border-radius: 20px;
+    font-weight: 400;
+    font-size: 32px;
+    color: #000000;
+  }
+  /* dùng */
+  table{
+      width: 1000px; /* Chiều rộng bảng */
+      border-collapse: collapse; /* Gộp viền của các ô */
+  }
+  
+  th, td {
+      border: 1px solid #dddddd; /* Đường viền của các ô */
+      padding: 8px; /* Khoảng cách nội dung với viền của ô */
+  }
+  th {
+    background-color: #f2f2f2; /* Màu nền của ô tiêu đề */
+    font-size: 14px;
+    font-family: 'Barlow';
+    color: #000000; /* Màu chữ của ô tiêu đề */
+    text-align: center; /* Căn giữa nội dung trong ô tiêu đề */
+}
+tr:nth-child(even) {
+  background-color: #f2f2f2; /* Màu nền của các hàng chẵn */
+}
+tr:hover {
+  background-color: #ddd; /* Màu nền khi di chuột qua */
+}
+td {
+  font-size: 14px;
+    font-family: 'Barlow';
+  text-align: center; /* Căn giữa nội dung trong ô dữ liệu */
+}
+/* dùng */
+  .DanhsachHD .container-7 {
+    margin: 0 5px 52px 23px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 1033px;
+    box-sizing: border-box;
+  }
+  /* dùng */
+  .DanhsachHD .container {
+    background: #FFFFFF;
+    position: relative;
+    margin-bottom: 19px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 15px 42px 770px 51.6px;
+    width: 1061px;
+    box-sizing: border-box;
+  }
+  /* dùng */
+  .DanhsachHD .nhp-vo-hotng-xem-chi-tit {
+    opacity: 0.5;
+    margin: 0 100px 0 100px;
+    display: inline-block;
+    overflow-wrap: break-word;
+    font-family: 'Inter';
+    font-weight: 400;
+    font-size: 20px;
+    color: rgba(27, 3, 147, 0.79);
+  }
+  /* dùng */
+  .DanhsachHD .chi-ti-tho-tng {
+    margin: 0 29px 0px 0;
+    display: inline-block;
+    align-self: center;
+    overflow-wrap: break-word;
+    font-family: 'Baloo', 'Roboto Condensed';
+    font-weight: 400;
+    font-size: 40px;
+    color: #000000;
+  }
+  /* dùng */
+  .container-chitiet{
+    background: #FFFFFF;
+    position: relative;
+    margin-bottom: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 15px 42px 20px 51.6px;
+    width: 1061px;
+    box-sizing: border-box;
+  }
+  /* Định dạng cho bảng */
+.table1 {
+  display: block;
+  width: auto; /* hoặc chiều rộng cố định nếu cần */
+  margin: 0 auto 0 0;
+  border-collapse: collapse;
+}
+.table1 td:first-child {
+  width: 100px;
+}
+
+
+/* Định dạng cho các ô trong bảng */
+.table1 td, .table1 th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+/* Định dạng cho hàng chẵn */
+.table1 tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* Định dạng khi di chuột vào hàng */
+.table1 tr:hover {
+  background-color: #f2f2f2;
+}
+  .DanhsachHD .chnh-sa {
+    overflow-wrap: break-word;
+    font-family: 'Baloo';
+    border-radius: 20px;
+    width: 200px;
+    height: 50px;
+    background-color: #0F8730;
+    font-weight: 400;
+    font-size: 26px;
+    color: #000000;
+  }
+  .DanhsachHD .container-19 {
+    border-radius: 70px;
+    background: rgba(15, 135, 48, 0.72);
+    position: relative;
+    display: flex;
+    padding: 15px 3.7px 28px 0;
+    width: 349px;
+    box-sizing: border-box;
+  }
+  /* dùng */
+  .DanhsachHD .hy-hotng {
+    overflow-wrap: break-word;
+    font-family: 'Baloo';
+    border-radius: 20px;
+    width: 200px;
+    height: 50px;
+    background-color: #0F8730;
+    font-weight: 400;
+    font-size: 26px;
+    color: #000000;
+  }
+  .DanhsachHD .container-13 {
+    border-radius: 70px;
+    background: rgba(15, 135, 48, 0.72);
+    position: relative;
+    display: flex;
+    padding: 15px 3.8px 28px 0;
+    width: 349px;
+    box-sizing: border-box;
+  }
+  /* dùng */
+  .DanhsachHD .container-5 {
+    margin: 0 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 847px;
+    box-sizing: border-box;
+  }
+  /* có dùng */
+  .DanhsachHD .container-8 {
+    margin: 53px 0 115px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    box-sizing: border-box;
+  }
+  .DanhsachHD .container {
+    margin: 0 7px;
+    align-self: flex-start;
+    overflow-wrap: break-word;
+    font-family: 'Barlow';
+    font-weight: 400;
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.5);
+  }
+  
