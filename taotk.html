@@ -1,222 +1,237 @@
-
-@{
-    Layout = null;
-}
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>Đăng ký tài khoản</title>
     <meta charset="utf-8" />
-    <base href="https://localhost:7029/">
+    <base href="http://127.0.0.1:5500/">
     <meta name="viewport" content="initial-scale=1, width=device-width" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Baloo 2:wght@400&display=swap" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" />
-    <link rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400&display=swap" />
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Baloo 2:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Open Sans:wght@400&display=swap"
+    />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  </head>
+  <body>
     <div class="image_logo">
-        <img src="https://www.hasfarmgreens.com/wp-content/uploads/2021/09/12-icon-HFG_FA-09.png" alt=" " width="105px" height="99px" />
-    </div>
-    <div class="together"> Together </div>
-    <a href="Home/Trangchu" class="trang_chu">Trang chủ</a>
-    <a href="Home/Gioithieu" class="gioi_thieu">Giới thiệu</a>
-    <a href="Dangnhap/Dangnhap" class="dang_nhap">Đăng nhập</a>
-    <div class="dang_ky">Đăng ký</div>
-    <div class="DK"> Đăng ký tài khoản</div>
-    <select class="CBB" id="myComboBox" name="myComboBox">
-            <option value="CN">Cá nhân</option>
-        <option value="TC">Tổ chức</option>
-    </select>
+      <img src="https://www.hasfarmgreens.com/wp-content/uploads/2021/09/12-icon-HFG_FA-09.png" alt=" "width="105px" height="99px" />
+      </div>
+      <div class="together"> Together </div>
+      <a href="trangchu.html" class="trang_chu">Trang chủ</a>
+      <a href="gioithieu.html" class="gioi_thieu">Giới thiệu</a>
+      <a href="dangnhap.html" class="dang_nhap">Đăng nhập</a>
+      <div class="dang_ky">Đăng ký</div>
+      <div >
+        <input type="text" class="TK" name="TK" placeholder="Nhập nội dung tìm kiếm">
+      </div>
+      <button class="btn-Timkiem" type="button">
+        <i class="fas fa-search"></i>
+      </button>
+      <div class="DK"> Đăng ký tài khoản</div>
+      <select class="CBB" id="myComboBox" name="myComboBox">
+        <option value="CN">Cá nhân</option>
+    <option value="TC">Tổ chức</option>
+</select>
     <input type="text" class="TDN" name="TDN" placeholder="Nhập tên đăng nhập">
     <input type="text" class="MK" name="MK" placeholder="Nhập mật khẩu">
     <input type="text" class="NLMK" name="NLMK" placeholder="Nhập lại mật khẩu">
     <input type="text" class="Ten" name="Ten" placeholder="Nhập đầy đủ tên">
     <input type="text" class="SDT" name="SDT" placeholder="Nhập số điện thoại">
     <input type="text" class="Email" name="Email" placeholder="Nhập địa chỉ email">
-    <div class="Dangky">
-        <asp:Button ID="btnDangky" Text="Đăng ký" OnClick="btnDangky_Click" runat="server" />
-    </div>
-    <div class="DCTK">
-        Bạn đã có tài khoản >> Đăng nhập
-    </div>
-</body>
+    <button onclick="" class="Dangky" >Đăng ký</button>
+    <button onclick="" class="DCTK" >Bạn đã có tài khoản >> Đăng nhập</button>
+  </body>
 </html>
 
 <style>
-    .image_logo {
+   .image_logo{
         position: absolute;
         top: 4px;
         left: 61px;
     }
-
-    .together {
+    .together{
         position: absolute;
-        left: 75px;
+        left: 65px;
         top: 97px;
-        font-family: Baloo;
-        color: #0F8730;
+        font-family:Baloo ;
+        color:#0F8730;
         font-size: 25px;
     }
-
-    .trang_chu {
+    .trang_chu{
         position: absolute;
-        left: 603px;
+        left: 630px;
         top: 58px;
         font-family: Baloo;
         color: #0F8730;
         font-size: 25px;
         text-decoration: none;
     }
-
-    .gioi_thieu {
+    .gioi_thieu{
         position: absolute;
-        left: 817px;
+        left: 827px;
         top: 58px;
         font-family: Baloo;
         color: #0F8730;
-        font-size: 25px;
-        text-decoration: none;
+        font-size:25px;
+        text-decoration:none;
     }
-
-    .dang_ky {
+    .dang_ky{
         position: absolute;
-        left: 1005px;
+        left: 1015px;
         top: 54px;
         font-family: Baloo;
         color: #0F8730;
         font-size: 25px;
-        text-decoration: underline;
+        text-decoration:underline;
     }
-
-    .dang_nhap {
+    .dang_nhap{
         position: absolute;
-        left: 1196px;
+        left: 1206px;
         top: 54px;
         font-family: Baloo;
         color: #0F8730;
         font-size: 25px;
-        text-decoration: none;
+        text-decoration: none ;
     }
-
-    .DK {
-        position: absolute;
+    .DK{
+      position: absolute;
         left: 560px;
         top: 171px;
         font-family: Baloo;
         color: #0F8730;
         font-size: 36px;
     }
-
     .CBB{
-        position: absolute;
+      position: absolute;
         left: 255px;
-        top: 283px;
+        top:283px;
         width: 413px;
         height: 50px;
         border-radius: 20px;
-        border: 2px solid #03571F;
-        font-size: 25px;
-        font-family: Barlow;
+      border: 2px solid #03571F;
+      font-size: 25px;
+      font-family: Barlow;
     }
-
-    .TDN {
-        position: absolute;
+    .TDN{
+      position: absolute;
         left: 255px;
-        top: 407px;
+        top:407px;
         font-size: 20px;
-        font-family: Barlow;
-        width: 413px;
-        height: 50px;
-        border-radius: 20px;
-        border: 2px solid #03571F;
-    }
+      font-family: Barlow; 
+      width: 413px;
+      height: 50px;
+      border-radius: 20px;
+      border: 2px solid #03571F;
 
-    .MK {
-        position: absolute;
+    }
+    .MK{
+      position: absolute;
         left: 255px;
-        top: 523px;
+        top:523px;
         font-size: 20px;
-        font-family: Barlow;
-        width: 413px;
+      font-family: Barlow; 
+      width: 413px;
         height: 50px;
         border-radius: 20px;
         border: 2px solid #03571F;
     }
-
-    .NLMK {
-        position: absolute;
-        left: 255px;
-        top: 636px;
+    .NLMK{
+      position: absolute;
+      left: 255px;
+        top:636px;
         width: 413px;
         height: 50px;
         border-radius: 20px;
         border: 2px solid #03571F;
         font-size: 20px;
-        font-family: Barlow;
+      font-family: Barlow; 
     }
-
-    .Ten {
-        position: absolute;
+    .Ten{
+      position: absolute;
         left: 742px;
-        top: 407px;
+        top:407px;
         width: 413px;
         height: 50px;
         border-radius: 20px;
         border: 2px solid #03571F;
         font-size: 20px;
-        font-family: Barlow;
+      font-family: Barlow; 
     }
-
-    .SDT {
-        position: absolute;
+    .SDT{
+      position: absolute;
         left: 742px;
-        top: 523px;
+        top:523px;
         width: 413px;
         height: 50px;
         border-radius: 20px;
         border: 2px solid #03571F;
         font-size: 20px;
-        font-family: Barlow;
+      font-family: Barlow; 
     }
-
-    .Email {
-        position: absolute;
+    .Email{
+      position: absolute;
         left: 742px;
-        top: 638px;
+        top:638px;
         width: 413px;
         height: 50px;
         border-radius: 20px;
         border: 2px solid #03571F;
         font-size: 20px;
-        font-family: Barlow;
+      font-family: Barlow; 
     }
-
-    .Dangky {
-        position: absolute;
-        top: 745px;
-        left: 961px;
-        width: 204px;
-        height: 51px;
-        font-size: 24px;
-        color: #000000;
-        font-family: Baloo;
-        border-radius: 20px;
-        background-color: #0F8730;
-        text-align: center;
+  .Dangky{
+      position: absolute;
+      top: 745px;
+      left: 961px;
+      width: 204px;
+      height: 51px;
+      font-size: 24px;
+      color: #000000;
+      font-family: Baloo;
+      border-radius: 20px;
+      background-color: #0F8730;
+      text-align: center;
+  }
+  .DCTK{
+    position: absolute;
+      top: 868px;
+      left: 868px;
+      font-size: 20px;
+      color: #000000;
+  }
+  .TK{
+      position: absolute;
+      top:55px;
+      left: 190px;
+      width: 400px;
+      height: 45px;
+      font-size: 30px;
+      color: #000000;
+      font-family: Inter;
+      border-radius: 20px;
+      border: 2px solid #000000;
     }
-
-    .DCTK {
-        position: absolute;
-        top: 868px;
-        left: 868px;
-        font-size: 20px;
-        color: #000000;
+    .btn-Timkiem{
+      position: absolute;
+        left: 530px;
+        top: 60px;
+        width: 50px;
+        height: 40px;
+      background-color: #fff;
     }
 </style>
