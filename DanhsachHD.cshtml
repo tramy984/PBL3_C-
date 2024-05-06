@@ -1,0 +1,681 @@
+﻿<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Danh sách hoạt động</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Dẫn đường link đến các font chữ sử dụng trong trang -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inder:wght@400&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="danhsachHD.css">
+    
+  </head>
+
+  <body>
+    <div class="DanhsachHD">
+        <div class="container-tong">
+            <div class="container-logo">
+                <div class="container-head">
+                    <div class="logo">
+                    </div>
+                    <div class="trangchu">
+                    Trang chủ
+                    </div>
+                    <div class="qlHD"> Quản lý hoạt động
+                    <ul class="Sub">
+                        <li><a href="">Tạo mới hoạt động</a></li>
+                        <li><a href="">Danh sách các hoạt động</a></li>
+                    </ul>
+                    </div>
+                    <div class="container-24">
+                    <!-- <div class="container-15"> -->
+                        <input type="text" class="search-input" placeholder="Nhập thông tin tìm kiếm">
+                        <button class="btn-TimKiem" type="button">
+                        <i class="fas fa-search"></i>
+                        </button>
+                    <!-- </div> -->
+                    <button class="btn-TaiKhoan" type="button">
+                        <i class="fas fa-user"></i>
+                    </button>
+                    </div>
+                </div>
+                    <span class="together">
+                    Together
+                    </span>
+            </div>
+        </div>
+
+        
+        <div class="container-8">
+          <div class="dsHD-1">
+          Danh sách hoạt động
+          </div>
+          <!-- xong -->
+          <div class="container-7">
+            <select class="trng-thi-1" id="cbTrangthai" name="cbTrangthai">
+              <option value="DDK">Hoạt động đã đăng ký</option>
+              <option value="DangTC">Hoạt động đang tổ chức</option>
+              <option value="DaTc">Hoạt động đã tổ chức</option>
+              <option value="DH">Hoạt động đã huỷ</option>
+            </select>
+            
+            <select class="lnh-vc-1" id="cbLinhvuc" name="cbLinhvuc">
+              <option value="GD">Giáo dục</option>
+              <option value="MT">Môi trường</option>
+            </select>
+            <select class="chn-mc-thi-gian" id="cbThoigian" name="cbThoigian">
+              <option value="1">Tháng 1</option>
+              <option value="2">Tháng 2</option>
+              <option value="3">Tháng 3</option>
+              <option value="4">Tháng 4</option>
+              <option value="5">Tháng 5</option>
+              <option value="6">Tháng 6</option>
+              <option value="7">Tháng 7</option>
+              <option value="8">Tháng 8</option>
+              <option value="9">Tháng 9</option>
+              <option value="10">Tháng 10</option>
+              <option value="11">Tháng 11</option>
+              <option value="12">Tháng 12</option>
+            </select>
+            <div class="container-9">
+              <input type="text" class="nhp-tn-hotng" placeholder="Nhập tên hoạt động">
+              </input>
+              <button class="btn-TimKiem" type="button">
+                <i class="fas fa-search"></i>
+              </button>
+            </div>
+            <button class="hin-th">
+            Hiển thị
+            </button>
+          </div>
+          <!-- xong -->
+          
+          <div class="nhp-vo-hotng-xem-chi-tit">
+            Nhấp vào hoạt động để xem chi tiết
+            </div>
+          <div class="container">
+            <table>
+              <thead>
+                <tr>
+                  <th>ID hoạt động</th>
+                  <th>Tên hoạt động</th>
+                  <th>Thời gian bắt đầu</th>
+                  <th>Thời gian kết thúc</th>
+                  <th>Danh sách tình nguyện viên</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                    <td>HD001</td>
+                    <td>Trồng cây gây rừng</td>
+                    <td>01/01/1990</td>
+                    <td>01/01/1993</td>
+                    <td><button><i class="fas fa-search"></i></button></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="chi-ti-tho-tng">
+          CHI TIẾT HOẠT ĐỘNG 
+          </div>
+          <div class="container-chitiet">
+            <table class="table1">
+              <thead>
+                  <tr>
+                      <th style="width: 150px">Tên hoạt động</th>
+                  </tr>
+                  <tr>
+                      <th style="width: 150px">Thời gian bắt đầu</th>
+                  </tr>
+                  <tr>
+                      <th>Thời gian kết thúc</th>
+                  </tr>
+                  <tr>
+                      <th>Thời gian chỉnh sửa</th>
+                  </tr>
+                  <tr>
+                      <th>Địa điểm</th>
+                  </tr>
+                  <tr>
+                      <th>Lĩnh vực</th>
+                  </tr>
+                  <tr>
+                      <th>Mục đích</th>
+                  </tr>
+                  <tr>
+                      <th>Trạng thái</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <!-- Thêm các hàng dữ liệu nếu cần -->
+              </tbody>
+          </table>
+          
+          </div>
+          <div class="container-5">
+              <button class="chnh-sa">
+              Chỉnh sửa
+              </button>
+              <button class="huyHD">
+              Hủy hoạt động
+              </button>
+          </div>
+        </div>
+    </div>
+    <!-- sửa từ đây -->
+    <section class="box">
+      <div class="close">&times;</div>
+
+      <div class="re-box">
+        <div>
+          <input type="text" class="ldHUY" placeholder="Nhập lý do huỷ Hoạt động">
+          <!-- <label for="ldHUY">Lý do huỷ Hoạt động</label> -->
+        </div>
+        <button class="btn_xacnhan">Xác nhận</button>
+
+      </div>
+    </section>
+     
+  </body>
+</html>
+<style>
+    .DanhsachHD {
+        background: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 3px;
+        width: 1440px;
+        box-sizing: border-box;
+    }
+
+        .DanhsachHD .logo {
+            background: url('images/logo.png') 50% / cover no-repeat;
+            width: 105px;
+            height: 99px;
+        }
+
+        .DanhsachHD .trangchu {
+            margin: 53px 0 11px 0;
+            display: inline-block;
+            overflow-wrap: break-word;
+            font-family: 'Baloo', 'Roboto Condensed';
+            font-weight: 400;
+            font-size: 30px;
+            color: #0F8730;
+        }
+
+        .DanhsachHD .qlHD {
+            margin: 53px 0 11px 0;
+            display: inline-block;
+            overflow-wrap: break-word;
+            font-family: 'Baloo', 'Roboto Condensed';
+            font-weight: 400;
+            font-size: 30px;
+            color: #0F8730;
+        }
+
+    .Sub {
+        position: absolute;
+        width: 240px;
+        border: 1px solid #000000;
+        list-style-type: none; /* Ẩn kiểu đánh dấu */
+        padding: 0; /* Loại bỏ padding */
+        margin: 0;
+        display: none;
+    }
+
+    .qlHD:hover .Sub {
+        display: block;
+    }
+
+    .Sub li {
+        /* Định dạng cho từng mục trong ul */
+        padding: 8px 0; /* Padding phía trên và phía dưới */
+    }
+
+        .Sub li a {
+            /* Định dạng cho các liên kết bên trong mục */
+            text-decoration: none; /* Loại bỏ gạch chân */
+            color: #000000; /* Màu chữ */
+            font-size: 20px;
+        }
+
+            .Sub li a:hover {
+                /* Định dạng khi di chuột qua liên kết */
+                color: #0F8730; /* Màu chữ thay đổi khi hover */
+            }
+
+    .btn-TimKiem {
+        background-color: #FFFFFF;
+        margin-right: 10px;
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .btn-TimKiem i {
+            font-size: 20px;
+        }
+
+    .btn-TaiKhoan {
+        background-color: #FFFFFF;
+        margin-right: 40px;
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .btn-TaiKhoan i {
+            font-size: 30px;
+        }
+
+
+    .DanhsachHD .search-input {
+        margin-top: 45px;
+        top: 50px;
+        width: 400px;
+        height: 32px;
+        padding: 5px;
+        border: 2px solid #000000;
+        border-radius: 20px;
+        font-size: 24px;
+        opacity: 0.5;
+    }
+
+    .DanhsachHD .container-head {
+        margin: 0 0 9px 4.2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 1365px;
+        box-sizing: border-box;
+    }
+
+    .DanhsachHD .together {
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 25px;
+        color: #0F8730;
+    }
+
+    /* dùng */
+    .DanhsachHD .dsHD-1 {
+        margin: 0 0 73px 58px;
+        display: inline-block;
+        align-self: center;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 48px;
+        color: #000000;
+    }
+    /* dùng */
+    .DanhsachHD .trng-thi-1 {
+        /* opacity: 0.5; */
+        margin: 10px 6px 4px 0;
+        display: inline-block;
+        width: 250px;
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+    /* dùng */
+    .DanhsachHD .lnh-vc-1 {
+        margin: 10px 6px 4px 0;
+        display: inline-block;
+        width: 150px;
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+    /* dùng */
+    .DanhsachHD .chn-mc-thi-gian {
+        /* opacity: 0.5; */
+        /* position: absolute; */
+        margin: 10px 6px 4px 0;
+        /* left: 650px; */
+        display: inline-block;
+        width: 100px;
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+    /* dùng */
+    .DanhsachHD .nhp-tn-hotng {
+        opacity: 0.5;
+        margin: 7px 5.7px 4px 0;
+        border-radius: 20px;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+    /* dùng */
+    .btn-TimKiem {
+        background-color: #FFFFFF;
+        margin-right: 10px;
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .btn-TimKiem i {
+            font-size: 20px;
+        }
+    /* dùng */
+    .DanhsachHD .container-9 {
+        margin-top: 3px;
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
+    }
+    /* dùng */
+    .DanhsachHD .hin-th {
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        border-radius: 20px;
+        font-weight: 400;
+        font-size: 32px;
+        color: #000000;
+    }
+    /* dùng */
+    table {
+        width: 1000px; /* Chiều rộng bảng */
+        border-collapse: collapse; /* Gộp viền của các ô */
+    }
+
+    th, td {
+        border: 1px solid #dddddd; /* Đường viền của các ô */
+        padding: 8px; /* Khoảng cách nội dung với viền của ô */
+    }
+
+    th {
+        background-color: #f2f2f2; /* Màu nền của ô tiêu đề */
+        font-size: 14px;
+        font-family: 'Barlow';
+        color: #000000; /* Màu chữ của ô tiêu đề */
+        text-align: center; /* Căn giữa nội dung trong ô tiêu đề */
+    }
+
+    tr:nth-child(even) {
+        background-color: #f2f2f2; /* Màu nền của các hàng chẵn */
+    }
+
+    tr:hover {
+        background-color: #ddd; /* Màu nền khi di chuột qua */
+    }
+
+    td {
+        font-size: 14px;
+        font-family: 'Barlow';
+        text-align: center; /* Căn giữa nội dung trong ô dữ liệu */
+    }
+    /* dùng */
+    .DanhsachHD .container-7 {
+        margin: 0 5px 52px 23px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 1033px;
+        box-sizing: border-box;
+    }
+    /* dùng */
+    .DanhsachHD .container {
+        background: #FFFFFF;
+        position: relative;
+        margin-bottom: 19px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 15px 42px 770px 51.6px;
+        width: 1061px;
+        box-sizing: border-box;
+    }
+    /* dùng */
+    .DanhsachHD .nhp-vo-hotng-xem-chi-tit {
+        opacity: 0.5;
+        margin: 0 100px 0 100px;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 20px;
+        color: rgba(27, 3, 147, 0.79);
+    }
+    /* dùng */
+    .DanhsachHD .chi-ti-tho-tng {
+        margin: 0 29px 0px 0;
+        display: inline-block;
+        align-self: center;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 40px;
+        color: #000000;
+    }
+    /* dùng */
+    .container-chitiet {
+        background: #FFFFFF;
+        position: relative;
+        margin-bottom: 0px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 15px 42px 20px 51.6px;
+        width: 1061px;
+        box-sizing: border-box;
+    }
+    /* Định dạng cho bảng */
+    .table1 {
+        display: block;
+        width: auto; /* hoặc chiều rộng cố định nếu cần */
+        margin: 0 auto 0 0;
+        border-collapse: collapse;
+    }
+
+        .table1 td:first-child {
+            width: 100px;
+        }
+
+
+        /* Định dạng cho các ô trong bảng */
+        .table1 td, .table1 th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        /* Định dạng cho hàng chẵn */
+        .table1 tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        /* Định dạng khi di chuột vào hàng */
+        .table1 tr:hover {
+            background-color: #f2f2f2;
+        }
+
+    .DanhsachHD .chnh-sa {
+        overflow-wrap: break-word;
+        font-family: 'Baloo';
+        border-radius: 20px;
+        width: 200px;
+        height: 50px;
+        background-color: #0F8730;
+        font-weight: 400;
+        font-size: 26px;
+        color: #000000;
+    }
+
+    .DanhsachHD .container-19 {
+        border-radius: 70px;
+        background: rgba(15, 135, 48, 0.72);
+        position: relative;
+        display: flex;
+        padding: 15px 3.7px 28px 0;
+        width: 349px;
+        box-sizing: border-box;
+    }
+    /* dùng */
+    .DanhsachHD .huyHD {
+        overflow-wrap: break-word;
+        font-family: 'Baloo';
+        border-radius: 20px;
+        width: 200px;
+        height: 50px;
+        background-color: #0F8730;
+        font-weight: 400;
+        font-size: 26px;
+        color: #000000;
+    }
+
+    .DanhsachHD .container-13 {
+        border-radius: 70px;
+        background: rgba(15, 135, 48, 0.72);
+        position: relative;
+        display: flex;
+        padding: 15px 3.8px 28px 0;
+        width: 349px;
+        box-sizing: border-box;
+    }
+    /* dùng */
+    .DanhsachHD .container-5 {
+        margin: 0 100px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 847px;
+        box-sizing: border-box;
+    }
+    /* có dùng */
+    .DanhsachHD .container-8 {
+        margin: 53px 0 115px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        box-sizing: border-box;
+    }
+
+    .DanhsachHD .container {
+        margin: 0 7px;
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Barlow';
+        font-weight: 400;
+        font-size: 30px;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .box {
+        position: relative;
+        border-radius: 12px;
+        width: 330px;
+        height: 300px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0px;
+        background-color: #fcfcfc;
+        display: none;
+    }
+
+    .close {
+        display: block;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: 0;
+        right: 0;
+        color: black;
+        font-size: 34px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+        .close:hover {
+            background-color: red;
+            color: #fcfcfc;
+            cursor: pointer;
+        }
+
+    .re-box {
+        margin-top: 43px;
+    }
+
+    input {
+        width: 300px;
+        height: 130px;
+        margin: 10px 1px 28px 1px;
+        padding: 9px;
+        font-size: 18px;
+        color: #555;
+        border: rgb(65, 118, 97) 1px solid;
+        outline: none;
+        border-radius: 5px;
+    }
+
+        input:focus ~ label,
+        input:valid ~ label {
+            margin-top: -95px;
+            padding-left: 8px;
+            color: #026948;
+            font-weight: 500;
+        }
+
+    .btn_xacnhan {
+        display: block;
+        border: none;
+        margin: 0 auto;
+    }
+</style>
+<script>
+    let huyHD = document.querySelector(".huyHD");
+    let box = document.querySelector(".box");
+    let btn_xacnhan = document.querySelector(".btn_xacnhan");
+    let close = document.querySelector(".close");
+
+    huyHD.addEventListener("click", () => {
+        box.style.display = "block";
+        box.style.position = "fixed"; // Đặt vị trí là fixed
+        box.style.top = "50%";
+        box.style.left = "50%";
+        box.style.transform = "translate(-50%, -50%)"; // Đảm bảo hộp hiển thị ở giữa màn hình
+        body.style.backgroundColor = "#222";
+        document.querySelector(".DanhsachHD").style.filter = "blur(50px)"; // hiệu ứng làm mờ layout bên dưới
+    });
+    btn_xacnhan.addEventListener("click", () => {
+
+        box.style.display = "none";
+
+    });
+
+    close.addEventListener("click", () => {
+        huyHD.style.display = "block";
+        box.style.display = "none";
+        body.style.backgroundColor = "#999";
+    });
+</script>
