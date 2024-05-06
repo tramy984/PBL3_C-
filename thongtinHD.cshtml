@@ -1,0 +1,407 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Danh sách hoạt động</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Dẫn đường link đến các font chữ sử dụng trong trang -->
+    <!-- baloo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo&display=swap" rel="stylesheet">
+    <!-- barlow -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="thongtinHD.css">
+</head>
+<body>
+    <div class="thongtinHD">
+        <div class="container-tong">
+            <div class="container-logo">
+                <div class="container-head">
+                    <div class="logo">
+                    </div>
+                    <div class="trangchu">
+                        Trang chủ
+                    </div>
+                    <div class="qlHD">
+                        Quản lý hoạt động
+                        <ul class="Sub">
+                            <li><a href="">Tạo mới hoạt động</a></li>
+                            <li><a href="">Danh sách các hoạt động</a></li>
+                        </ul>
+                    </div>
+                    <div class="container-24">
+                        <!-- <div class="container-15"> -->
+                        <input type="text" class="search-input" placeholder="Nhập thông tin tìm kiếm">
+                        <button class="btn-TimKiem" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                        <!-- </div> -->
+                        <button class="btn-TaiKhoan" type="button">
+                            <i class="fas fa-user"></i>
+                        </button>
+                    </div>
+                </div>
+                <span class="together">
+                    Together
+                </span>
+            </div>
+        </div>
+        <div class="container-hienthi">
+                <div class="container-gioithieu">
+                    <div class="tenDuan">
+                        Dự án Trồng Cây Phủ Xanh: &#34;Hành động để làm cho thế giới xanh hơn&#34;
+                    </div>
+                    <div class="frame-thoigian">
+                        <span class="thoigian-diadiem">
+                            Thời gian bắt đầu: 19/04/2024<br />
+                            Thời gian kết thúc: 26/04/2024<br />
+                            Địa điểm: Sơn Trà<br />
+                            Lĩnh vực: Môi trường<br />
+
+                        </span>
+                    </div>
+                    <div class="frame-thongdiep">
+                        <div class="TD">
+                            Thông điệp
+                        </div>
+                        <span class="ndTD">
+                            &#34;Hãy cùng nhau tham gia vào dự án Trồng Cây Phủ Xanh để hành động và tạo ra một thế giới xanh hơn cho tương lai. Mỗi cây được trồng không chỉ là một hành động nhỏ mà còn là một bước quan trọng trong việc bảo vệ và phát triển môi trường sống của chúng ta. Hãy để lại dấu ấn xanh tươi cho thế hệ tương lai!&#34;
+                        </span>
+                    </div>
+                    <div class="frame-muctieu">
+                        <div class="MT">
+                            Mục tiêu
+                        </div>
+                        <span class="ndMT">
+                            Tăng diện tích cây xanh để cải thiện chất lượng môi trường và giảm ô nhiễm.<br />
+                            Tạo ra không gian sống lành mạnh và tăng cường sinh khí cho cộng đồng.<br />
+                            Giáo dục cộng đồng về tầm quan trọng của việc bảo vệ môi trường và trồng cây, thúc đẩy hành động bảo vệ môi trường từ phía cộng đồng.
+                        </span>
+                    </div>
+                </div>
+                    <div class="frame-sl-yc">
+                        <div class="container-sl">
+                            <div class="SL">
+                                Số lượng TNV cần cho hoạt động
+                            </div>
+                            <span class="soluong">
+                                20
+                            </span>
+                        </div>
+                        <div class="yeucau">
+                            Yêu cầu:
+                        </div>
+                        <span class="ndYC">
+                            Giới tính: Nam/Nữ<br />
+                            Độ tuổi: từ 18 tuổi.<br />
+                            Sức khoẻ: Tốt.<br />
+                            Các kỹ năng cần thiết:<br />
+                            Đã từng tham gia các hoạt động trước đây<br />
+                            Có khả năng trồng cây, chăm sóc cây<br />
+                            v.v...
+                        </span>
+                    </div>
+                <button class="dangky">
+                    Đăng ký tham gia
+                </button>
+        </div>
+    </div>
+</body>
+<style>
+    .thongtinHD {
+        background: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 3px;
+        width: 1440px;
+        box-sizing: border-box;
+    }
+
+        .thongtinHD .logo {
+            background: url('images/logo.png') 50% / cover no-repeat;
+            width: 105px;
+            height: 99px;
+        }
+
+        .thongtinHD .trangchu {
+            margin: 53px 0 11px 0;
+            display: inline-block;
+            overflow-wrap: break-word;
+            font-family: 'Baloo', 'Roboto Condensed';
+            font-weight: 400;
+            font-size: 30px;
+            color: #0F8730;
+        }
+
+        .thongtinHD .qlHD {
+            margin: 53px 0 11px 0;
+            display: inline-block;
+            overflow-wrap: break-word;
+            font-family: 'Baloo', 'Roboto Condensed';
+            font-weight: 400;
+            font-size: 30px;
+            color: #0F8730;
+        }
+
+    .Sub {
+        position: absolute;
+        width: 240px;
+        border: 1px solid #000000;
+        list-style-type: none; /* Ẩn kiểu đánh dấu */
+        padding: 0; /* Loại bỏ padding */
+        margin: 0;
+        display: none;
+    }
+
+    .qlHD:hover .Sub {
+        display: block;
+    }
+
+    .Sub li {
+        /* Định dạng cho từng mục trong ul */
+        padding: 8px 0; /* Padding phía trên và phía dưới */
+    }
+
+        .Sub li a {
+            /* Định dạng cho các liên kết bên trong mục */
+            text-decoration: none; /* Loại bỏ gạch chân */
+            color: #000000; /* Màu chữ */
+            font-size: 20px;
+        }
+
+            .Sub li a:hover {
+                /* Định dạng khi di chuột qua liên kết */
+                color: #0F8730; /* Màu chữ thay đổi khi hover */
+            }
+
+    .btn-TimKiem {
+        background-color: #FFFFFF;
+        margin-right: 10px;
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .btn-TimKiem i {
+            font-size: 20px;
+        }
+
+    .btn-TaiKhoan {
+        background-color: #FFFFFF;
+        margin-right: 40px;
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .btn-TaiKhoan i {
+            font-size: 30px;
+        }
+
+
+    .thongtinHD .search-input {
+        margin-top: 45px;
+        top: 50px;
+        width: 400px;
+        height: 40px;
+        padding: 5px;
+        border: 2px solid #000000;
+        border-radius: 20px;
+        font-size: 24px;
+        opacity: 0.5;
+    }
+
+    .thongtinHD .container-head {
+        margin: 0 0 9px 4.2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 1365px;
+        box-sizing: border-box;
+    }
+
+    .thongtinHD .together {
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 25px;
+        color: #0F8730;
+    }
+    .container-hienthi{
+        background: rgba(217, 217, 217, 0.18);
+        position: relative;
+        margin: 0 44px 0 55px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 16px 58.6px 30px 17px;
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .container-gioithieu {
+        margin-right: 120.7px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+    .tenDuan {
+        margin-bottom: 32px;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 25px;
+        color: #000000;
+    }
+
+    .frame-thoigian {
+        margin: 0 16px 27px 16px;
+        display: flex;
+        align-self: flex-start;
+        box-sizing: border-box;
+    }
+
+    .thoigian-diadiem {
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 16px;
+        color: #000000;
+    }
+
+    .frame-thongdiep {
+        margin: 0 16px 46px 16px;
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .TD {
+        margin-bottom: 12px;
+        display: inline-block;
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .ndTD {
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 16px;
+        color: #000000;
+    }
+
+    .frame-muctieu {
+        margin: 0 19px;
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .MT {
+        margin-bottom: 12px;
+        display: inline-block;
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .ndMT {
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 16px;
+        color: #000000;
+    }
+
+    .frame-sl-yc {
+        display: flex;
+        flex-direction: column;
+        align-self: flex-start;
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .container-sl {
+        margin-bottom: 33px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 450px;
+        box-sizing: border-box;
+    }
+
+    .SL {
+        margin: 21px 11.5px 3px 19px;
+        display: inline-block;
+        width: 400px;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+
+    }
+
+    .soluong {
+        padding-left: 30px;
+        margin: 10px 0 0 0;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 40px;
+        color: #0F481F;
+    }
+
+    .yeucau {
+        margin: 21px 11.5px 3px 19px;
+        display: inline-block;
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .ndYC {
+        margin: 0 24.4px 0 19px;
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 16px;
+        color: #000000;
+    }
+    .dangky{
+        overflow-wrap: break-word;
+        font-family: 'Barlow';
+        border-radius: 16px;
+        width: 250px;
+        height: 50px;
+        background-color: #0F8730;
+        font-weight: 400;
+        font-size: 26px;
+        color: #FFFFFF;
+    }
+
+</style>
