@@ -112,6 +112,32 @@
                 </button>
         </div>
     </div>
+    <section class="dangkythamgia">
+        <div class="close">&times;</div>
+
+        <div class="re-box">
+            <div>
+                <label for="chonban">Chọn ban muốn tham gia</label>
+                <select class="chonban" style="width: 220px">
+                    <option value="ban1">Ban Lao động</option>
+                    <option value="ban2">Ban Hậu cần</option>
+                    <option value="ban3">Ban Tư vấn</option>
+                    <option value="ban3">Ban Truyền thông</option>
+                </select>
+                <div>
+                    <label for="uudiem">Nhập ưu điểm</label>
+                    <input type="text" class="uudiem"></input>
+
+                    <label for="khuyetdiem">Nhập khuyết điểm</label>
+                    <input type="text" class="khuyetdiem"></input>
+                </div>
+                
+                
+            </div>
+            <button class="btn_xacnhan">Xác nhận</button>
+
+        </div>
+    </section>
 </body>
 <style>
     .thongtinHD {
@@ -404,4 +430,98 @@
         color: #FFFFFF;
     }
 
+    .dangkythamgia {
+        border-radius: 12px;
+        width: 330px;
+        height: 400px;
+        margin: auto;
+        text-align: center;
+        padding: 0px;
+        background-color: #fcfcfc;
+        display: none;
+        position: fixed; /* Sử dụng vị trí cố định để nó không bị di chuyển khi cuộn trang */
+        top: 50%; /* Đặt top ở giữa màn hình */
+        left: 50%; /* Đặt left ở giữa màn hình */
+        transform: translate(-50%, -50%);
+    }
+
+    .close {
+        display: block;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: 0;
+        right: 0;
+        color: black;
+        font-size: 34px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+        .close:hover {
+            background-color: red;
+            color: #fcfcfc;
+            cursor: pointer;
+        }
+
+    .re-box {
+        margin-top: 20px;
+        justify-content: center;
+    }
+    label{
+        margin: 10px 0 0 0;
+    }
+    input {
+        width: 300px;
+        height: 70px;
+        margin: 10px 1px 28px 1px;
+        padding: 9px;
+        font-size: 14px;
+        color: #555;
+        border: rgb(65, 118, 97) 1px solid;
+        outline: none;
+        border-radius: 5px;
+    }
+
+        input:focus ~ label,
+        input:valid ~ label {
+            margin-top: -95px;
+            padding-left: 8px;
+            color: #026948;
+            font-weight: 500;
+        }
+
+    .btn_xacnhan {
+        display: block;
+        border: none;
+        margin: 0 auto;
+    }
+
 </style>
+<script>
+    let dangky = document.querySelector(".dangky");
+    let dangkythamgia = document.querySelector(".dangkythamgia");
+    let btn_xacnhan = document.querySelector(".btn_xacnhan");
+    let close = document.querySelector(".close");
+
+    dangky.addEventListener("click", () => {
+        dangkythamgia.style.display = "block";
+        dangkythamgia.style.position = "fixed"; // Đặt vị trí là fixed
+        dangkythamgia.style.top = "50%";
+        dangkythamgia.style.left = "50%";
+        dangkythamgia.style.transform = "translate(-50%, -50%)"; // Đảm bảo hộp hiển thị ở giữa màn hình
+        body.style.backgroundColor = "#222";
+        document.querySelector(".thongtinHD").style.filter = "blur(50px)"; // hiệu ứng làm mờ layout bên dưới
+    });
+    btn_xacnhan.addEventListener("click", () => {
+
+        dangkythamgia.style.display = "none";
+
+    });
+
+    close.addEventListener("click", () => {
+        dangky.style.display = "block";
+        dangkythamgia.style.display = "none";
+        body.style.backgroundColor = "#999";
+    });
+</script>
