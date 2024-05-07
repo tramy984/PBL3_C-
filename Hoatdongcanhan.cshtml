@@ -1,0 +1,193 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutCanhan.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Hoạt động cá nhân</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter Da 2:wght@400&display=swap" />
+</head>
+<body>
+    <div class="container">
+            <div class="retangle1"></div>
+            <select class="cbbtinhtrang" id="cbbtinhtrang" name="cbbtinhtrang" >
+                <option disabled selected hidden>Chọn tình trạng</option>
+                <option value="DDK">Đã đăng ký</option>
+                <option value="DDD">Đã được duyệt</option>
+                <option value="DTG">Đã tham gia</option>
+                <option value="DH">Đã hủy</option>
+            </select>
+            <select class="cbblinhvuc" id="cbblinhvuc" name="cbblinhvuc"  >
+                <option disabled selected hidden>Chọn lĩnh vực</option>
+                <option value="MT">Môi trường</option>
+                <option value="YT">Y tế</option>
+                <option value="GD">Giáo dục</option>
+                <option value="CD">Cộng đồng</option>
+                <option value="K">Khác</option>
+            </select>     
+            <input class="thoigian" type="month" id="thoigian" name="thoigian">
+            <button class="hienthi" id="hienthi" name="hienthi">Hiển thị</button>
+            <table class="dshoatdong" id="dshd" name="danhsachhd"></table>
+            <label class="lb1" >Nhấp vào hoạt động để xem chi tiết</label>
+            <button class="Huydangky" id="huydangky" name="huydangky">Hủy đăng ký</button>
+            <table class="chitiethoatdong" id="chitiet" name="chitiet"></table>
+            <div class="timkiemtenhoatdong">
+                <input type="text" class="search-input" placeholder="Nhập tên hoạt động">
+                <button class="search-button" type="button">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <label class="lb2">Chi tiết hoạt động</label>
+            <hr color="black" size="1" width="660" style="position:absolute ; left: 375px; top: 908px;">
+    </div>
+</body>
+</html>
+<style>
+    .container {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative; /* Cần thiết để sử dụng position absolute cho các phần tử con */
+        height: 2000px;
+       
+    }
+
+   
+    .retangle1{
+        position:absolute;
+        top:160px;
+        left:0px;
+        height:71px;
+        width:1440px;
+        background-color: rgba(118, 234, 150, 0.36);
+    }
+    .cbbtinhtrang{
+        position: absolute;
+        left: 76px;
+        top: 177px;
+        font-size: 16px;
+        height: 39px;;
+        wight :174px;
+        background-color: rgba(118, 234, 150, 0.85);
+    }
+
+    .cbblinhvuc {
+        position: absolute;
+        left: 286px;
+        top: 177px;
+        font-size: 16px;
+        height: 39px;
+        wight: 174px;
+        background-color: rgba(118, 234, 150, 0.85);
+    }
+    .thoigian{
+        position: absolute;
+        left: 476px;
+        top: 177px;
+        font-size: 16px;
+        height: 36px;      
+        wight: 174px;
+        background-color: rgba(118, 234, 150, 0.85);
+    }
+    .hienthi{
+        position: absolute;
+        left: 777px;
+        top: 177px;
+        height: 39px;
+        wight: 138px;
+        font-size: 22px;
+        font-family:Inter;
+        font-weight: bold;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+
+    .timkiemtenhoatdong{
+        position: absolute;
+        left: 963px;
+        top: 175px;
+        width: 389px;
+        height: 47px;
+       
+    }
+    .search-input {
+      
+        width: 282px;
+        height: 24px;
+        padding: 5px 10px;
+        border-radius: 15px;
+        font-size:16px;
+    }
+
+    .search-button {
+        background-color: transparent;
+      
+        width: 50px;
+        height: 39px;
+        border: none;
+        outline: none;
+    }
+
+
+        .search-button i {
+            color: #000000;
+            margin-top: 3px;
+            font-size: 20px;
+        }
+     .dshoatdong{
+        position: absolute;
+        left: 96px;
+        top: 273px;
+        width: 1248px;
+        height: 492px;
+        border: 1px solid #000;
+     }
+
+    .chitiethoatdong{
+        position: absolute;
+        left: 96px;
+        top: 1080px;
+        width: 1248px;
+        height: 700px;
+        border: 1px solid #000;
+    }
+     .lb1{
+        position: absolute;
+        left: 99px;
+        top: 784px;
+        width: 413px;
+        height: 43px;
+        font-size:16px;
+     }
+
+    .lb2 {
+        font-size: 40px;
+        position: absolute;
+        left: 550px;
+        top: 1000px;
+    }
+     .Huydangky{
+        position: absolute;
+        left: 1175px;
+        top: 842px;
+        width: 170px;
+        height: 50px;
+        font-size: 20px;
+        background-color: rgba(118, 234, 150, 0.85);
+        border-radius:20px;
+     }
+  
+      
+
+
+</style>
+
