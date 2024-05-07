@@ -1,0 +1,155 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+   
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" /> 
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" />
+</head>
+<body>
+    <header>
+   <div class="khunghead">
+        <div class="image_logo">
+            <img src="https://www.hasfarmgreens.com/wp-content/uploads/2021/09/12-icon-HFG_FA-09.png" alt=" " width="105px" height="99px" />
+        </div>
+        <label class="together">Together</label>
+        <ul>
+            <li><a class="trangchu" href="https://localhost:7143/Home/Trangchu">Trang chủ</a></li>
+            <li><a class="gioithieu" href="https://localhost:7143/Home/Gioithieu">Giới thiệu</a></li>
+            <li><a class="dangky" href="https://localhost:7143/Taikhoan/Dangkytaikhoan">Đăng ký</a></li>
+            <li><a class="dangnhap" href="https://localhost:7143/Taikhoan/Dangnhap">Đăng nhập</a></li>
+
+        </ul>
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Nhập thông tin tìm kiếm">
+            <button class="search-button" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+        </div>
+        </header>
+  
+        <div >
+            @RenderBody();
+        </div>
+        <footer>
+
+        </footer>
+ 
+</body>
+</html>
+
+<style>
+   
+    .khunghead {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative; /* Cần thiết để sử dụng position absolute cho các phần tử con */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        background-color: rgba(15, 135, 48, 0.17);
+        width: 1440px;
+        height: 160px;
+    }
+
+        .khunghead:hover {
+            transform: scale(1.1);
+        }
+
+    .image_logo {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    .together {
+        position: absolute;
+        left: 0px;
+        top: 102px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 25px;
+    }
+
+    .trangchu {
+        position: absolute;
+        left: 611px;
+        top: 58px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 30px;
+        text-decoration: none;
+    }
+
+    .gioithieu {
+        position: absolute;
+        left: 825px;
+        top: 58px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 30px;
+        text-decoration: none;
+    }
+
+    .dangky {
+        position: absolute;
+        left:1042px;
+        top: 58px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 30px;
+        text-decoration: none;
+    }
+
+    .dangnhap {
+        position: absolute;
+        left: 1240px;
+        top: 58px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 30px;
+        text-decoration: none;
+    }
+
+    .search-container {
+        position: absolute;
+        left:172px;
+        top: 64px;
+        width: 375px;
+        height: 45px;
+      
+    }
+
+    .search-input {
+        width: 282px;
+        height: 23px;
+        padding: 5px 10px;
+        font-size: 16px;
+        border-radius: 15px;
+    }
+
+    .search-button {
+        background-color: transparent;
+        width: 29px;
+        height: 33px;
+        border: none;
+        outline: none;
+    }
+
+
+        .search-button i {
+            color: #000000;
+            margin-top: 3px;
+            font-size: 20px;
+        }
+        a:active,
+        a:focus {          
+            color: #000000; 
+        }
+
+    
+</style>
