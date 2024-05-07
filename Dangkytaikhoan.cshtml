@@ -1,0 +1,246 @@
+﻿@model PBL3_vstim.ViewsModel.DKTK;
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Đăng ký tài khoản</title>
+    <meta charset="utf-8" />
+    <base href="https://localhost:7029/">
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+    <form method="post">
+        <div class="DK"> Đăng ký tài khoản</div>
+
+        @using (Html.BeginForm("Dangkytaikhoan", "Dangkytaikhoan", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <div>
+                <select class="CBB" id="myComboBox" name="myComboBox">
+                    <option disabled selected hidden>Chọn vai trò</option>
+                    <option value="CN">Cá nhân</option>
+                    <option value="TC">Tổ chức</option>
+                </select>
+            </div>
+            <div class="TDN">
+                <label>Tên đăng nhập:</label>
+                @Html.TextBoxFor(m => m.Tendangnhap)
+                @Html.ValidationMessageFor(m => m.Tendangnhap)
+            </div>
+            <div class="MK">
+                <label>Mật khẩu:</label>
+                @Html.PasswordFor(m => m.Matkhau)
+
+            </div>
+            <div class="mk1">
+                @Html.ValidationMessageFor(m => m.Matkhau)
+            </div>
+            <div class="NLMK">
+                <label>Nhập lại mật khẩu:</label>
+                @Html.PasswordFor(m => m.NLMK)
+                @Html.ValidationMessageFor(m => m.NLMK)
+            </div>
+            <div class="Ten">
+                <label>Tên:</label>
+                @Html.TextBoxFor(m => m.Ten)
+                @Html.ValidationMessageFor(model => model.Ten)
+            </div>
+
+            <div class="SDT">
+                <label>Số điện thoại:</label>
+                @Html.TextBoxFor(m => m.Sdt)
+                @Html.ValidationMessageFor(m => m.Sdt)
+            </div>
+
+            <div class="Email">
+                <label>Email:</label>
+                @Html.TextBoxFor(m => m.Email)
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+            <button type="submit" class="Dangky">Đăng ký</button>
+        }
+        <p class="TB">
+            @ViewBag.thongbao
+        </p>
+        <a href="Dangnhap/Dangnhap" class="DCTK">Bạn đã có tài khoản. Đăng nhập.</a>
+
+    </form>
+    </div>
+</body>
+</html>
+
+<style>
+    .container {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+    .TB {
+        position: absolute;
+        top: 720px;
+        left: 700px;
+        height: 51px;
+        width: 300px;
+        font-size: 25px;
+        color: red;
+    }
+    label{
+        font-size:20px;
+    }
+    .DK {
+        position: absolute;
+        left: 560px;
+        top: 171px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 36px;
+    }
+
+    .CBB {
+        position: absolute;
+        left: 255px;
+        top: 283px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+        font-size: 20px;
+    }
+
+    .TDN {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 255px;
+        top: 407px;
+        font-size: 20px;
+        font-family: Barlow;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+    }
+
+    .MK {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 255px;
+        top: 523px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+    }
+    .mk1{
+        color:red;
+        position: absolute;
+        left: 300px;
+        top: 580px;
+    }
+    .NLMK {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 255px;
+        top: 636px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+        font-size: 20px;
+    }
+
+    .Ten {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 742px;
+        top: 407px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+        font-size: 20px;
+    }
+
+    .SDT {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 742px;
+        top: 523px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+        font-size: 20px;
+    }
+
+    .Email {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        left: 742px;
+        top: 638px;
+        width: 413px;
+        height: 50px;
+        border-radius: 20px;
+        border: 2px solid #03571F;
+        font-size: 20px;
+    }
+
+    .Dangky {
+        position: absolute;
+        top: 745px;
+        left: 961px;
+        width: 204px;
+        height: 51px;
+        font-size: 24px;
+        color: #000000;
+        font-family: Baloo;
+        border-radius: 20px;
+        background-color: #0F8730;
+        text-align: center;
+    }
+
+    .DCTK {
+        position: absolute;
+        top: 868px;
+        left: 868px;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .TK {
+        position: absolute;
+        top: 55px;
+        left: 190px;
+        width: 400px;
+        height: 45px;
+        font-size: 30px;
+        color: #000000;
+        border-radius: 20px;
+        border: 2px solid #000000;
+    }
+
+    .btn-Timkiem {
+        position: absolute;
+        left: 530px;
+        top: 60px;
+        width: 50px;
+        height: 40px;
+        background-color: #fff;
+    }
+</style>

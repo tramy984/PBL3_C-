@@ -1,0 +1,149 @@
+﻿
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <base href="https://localhost:7029/">
+    <title>Đăng nhập</title>
+    <base href="http://127.0.0.1:5500/">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo Da:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo Da 2:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter Da 2:wght@400&display=swap" />
+</head>
+
+<body>
+    <div class="container">
+    <form method="post">
+    <div class=" img">
+        <img src="https://www.kindpng.com/picc/m/235-2351000_login-icon-png-transparent-png.png" width="643px" height="604px" />
+    </div>
+    <div class="Dangnhap"> Đăng nhập </div>
+    <div class="TDN">
+        Tên đăng nhập:
+    </div>
+    <input type="text" class="TDNh" name="TDN">
+    <div class="Matkhau">
+        Mật khẩu:
+    </div>
+    <input type="password" class="MK" name="MK">
+    <button onclick="" class="QMK">
+        Quên mật khẩu</button>
+    <button type="submit" class="Dangnhap2">Đăng nhập </button>
+                <p class="TB">
+                    @ViewBag.thongbao
+                </p>
+    <a class="Chuacotk" href="Dangkytaikhoan/Dangkytaikhoan">Bạn chưa có tài khoản. Đăng ký ngay !!</a>
+    </form>
+    </div>
+</body>
+</html>
+<style>
+    .container {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+    .TB{
+        position: absolute;
+        top: 720px;
+        left: 700px;
+        height: 51px;
+        width: 300px;
+        font-size: 25px;
+        color: red;
+    }
+
+    .Dangnhap {
+        position: absolute;
+        top: 190px;
+        left: 884px;
+        font-size: 48px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+
+    .TDN {
+        position: absolute;
+        top: 466px;
+        left: 731px;
+        font-size: 24px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+    .TDNh {
+        position: absolute;
+        top: 461px;
+        left: 950px;
+        width: 298px;
+        height: 50px;
+        font-size: 24px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+    .Matkhau {
+        position: absolute;
+        top: 607px;
+        left: 737px;
+        font-size: 24px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+    .MK {
+        position: absolute;
+        top: 593px;
+        left: 949px;
+        width: 298px;
+        height: 50px;
+        font-size: 24px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+    .img {
+        position: absolute;
+        top: 208px;
+        left: 16px;
+    }
+
+    .QMK {
+        position: absolute;
+        top: 796px;
+        left: 1160px;
+        font-size: 20px;
+        color: #000000;
+        font-family: Baloo Bhaijaan;
+    }
+
+    .Dangnhap2 {
+        position: absolute;
+        top: 729px;
+        left: 1147px;
+        width: 159px;
+        height: 53px;
+        background-color: #0F8730;
+        font-size: 24px;
+        color: #000000;
+        border-radius: 20px;
+        font-family: Baloo;
+    }
+
+    .Chuacotk {
+        position: absolute;
+        top: 902px;
+        left: 955px;
+        font-size: 20px;
+        color: #000000;
+        font-family: Inter;
+    }
+</style>
