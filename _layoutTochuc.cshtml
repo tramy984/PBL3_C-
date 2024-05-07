@@ -1,0 +1,220 @@
+﻿﻿
+<!DOCTYPE html>
+<html>
+<head>
+
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, width=device-width" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+
+    <div class="khunghead">
+        <div class="image_logo">
+            <img src="https://www.hasfarmgreens.com/wp-content/uploads/2021/09/12-icon-HFG_FA-09.png" alt=" " width="105px" height="99px" />
+        </div>
+        <label class="together">Together</label>
+        <div style="margin-left: 500px;">
+            <div class="trangchu" style="margin-right: 100px;">
+                Trang chủ
+            </div>
+            <div class="quanlyhoatdong">
+                Quản lý hoạt động
+                <ul class="Sub">
+                    <li><a href="">Tạo mới hoạt động</a></li>
+                    <li><a href="">Danh sách các hoạt động</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Nhập thông tin tìm kiếm">
+            <button class="search-button" type="button">
+                <i class="fas fa-search"></i>
+            </button>
+        </div>
+
+        <div class="taikhoan">
+            <button class="btn">
+                <i class="fas fa-user"></i>
+            </button>
+            <ul class="luachon">
+                <li><a href="https://localhost:7143/Canhan/Hienthithongtincanhan">Xem thông tin</a></li>
+                <li><a href="https://localhost:7143/Canhan/Chinhsuathongtin">Chỉnh sửa thông tin</a></li>
+                <li><a href="https://localhost:7143/Taikhoan/Doimatkhau">Đổi mật khẩu</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div>
+        @RenderBody();
+    </div>
+
+</body>
+</html>
+
+<style>
+    .khunghead {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative; /* Cần thiết để sử dụng position absolute cho các phần tử con */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+        width: 1440px;
+        height: 160px;
+    }
+
+    .image_logo {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+    }
+
+    .together {
+        position: absolute;
+        left: 0px;
+        top: 102px;
+        font-family: Baloo;
+        color: #0F8730;
+        font-size: 25px;
+    }
+
+    .trangchu {
+        margin: 65px 0 11px 0;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #0F8730;
+    }
+
+    .quanlyhoatdong {
+        margin: 65px 0 11px 0;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #0F8730;
+    }
+
+        .quanlyhoatdong .Sub {
+            position: absolute;
+            width: 240px;
+            font-family: 'Barlow';
+
+            border: 1px solid #000000;
+            list-style-type: none; /* Ẩn kiểu đánh dấu */
+            padding: 0; /* Loại bỏ padding */
+            margin: 0;
+            display: none;
+            
+        }
+
+        .quanlyhoatdong:hover .Sub {
+            display: block;
+        }
+
+        .quanlyhoatdong .Sub li {
+            padding: 3px 0;
+            padding-left: 3px;
+        }
+
+            .quanlyhoatdong .Sub li a {
+                text-decoration: none;
+                color: #000000;
+                font-size: 20px;
+            }
+
+                .quanlyhoatdong .Sub li a:hover {
+                    color: #0F8730;
+                }
+
+    a:active,
+    a:focus {
+        color: #000000;
+    }
+
+
+    .search-container {
+        position: absolute;
+        left: 900px;
+        top: 50px;
+        width: 375px;
+        height: 45px;
+    }
+
+    .search-input {
+        width: 282px;
+        height: 23px;
+        padding: 5px 10px;
+        font-size: 16px;
+        border-radius: 15px;
+    }
+
+    .search-button {
+        background-color: transparent;
+        width: 29px;
+        height: 33px;
+        border: none;
+        outline: none;
+    }
+
+
+        .search-button i {
+            color: #000000;
+            margin-top: 3px;
+            font-size: 20px;
+        }
+
+    .taikhoan {
+        position: absolute;
+        left: 1340px;
+        top: 60px;
+        width: 100px;
+        height: 63px;
+    }
+
+    .luachon {
+        display: none;
+        position: absolute;
+        list-style-type: none;
+        padding: 0;
+        background-color: #fff;
+        border: 1px solid #ccc;
+        z-index: 1000;
+    }
+
+    .taikhoan:hover .luachon,
+    .taikhoan:focus .luachon {
+        display: block;
+    }
+
+    .luachon li {
+        display: block;
+        padding: 5px 10px;
+
+    }
+
+        .luachon li a:hover {
+            background-color: #f0f0f0;
+        }
+
+    .btn i {
+        font-size: 30px;
+    }
+
+    .btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+    }
+</style>
