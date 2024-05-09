@@ -1,0 +1,152 @@
+@model WebsiteQLHDTN.Models.Taikhoan
+@{
+    Layout = "~/Views/Shared/_LayoutHome.cshtml";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Đăng nhập</title>
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter Da 2:wght@400&display=swap" />
+</head>
+
+<body>
+
+    <div class="container">
+        @using(Html.BeginForm("Dangnhap","Taikhoan",FormMethod.Post))
+        {
+            <div class=" img">
+                <img src="https://www.kindpng.com/picc/m/235-2351000_login-icon-png-transparent-png.png" width="508px" height="535px" />
+            </div>
+            <div class="Dangnhap"> Đăng nhập </div>
+            <label class="TDN" id="Tendangnhap">Tên đăng nhập</label>
+            <div class="TDNh">
+           @Html.TextBoxFor(model=>model.Tendangnhap)
+           </div>
+            <label class="Matkhau">
+                Mật khẩu:
+            </label>
+            <div class="MK">
+           @Html.PasswordFor(model=>model.Matkhau)</div>
+            <button type="submit" class="btnDangnhap">Đăng nhập</button>
+            <p class="TB">
+                @ViewBag.thongbao
+            </p>
+            <a class="Chuacotk" href="https://localhost:7143/Taikhoan/Dangkytaikhoan"> Bạn chưa có tài khoản >>Đăng ký ngay</a>
+            <a class="QMK" href="https://localhost:7143/Taikhoan/Quenmatkhau">Quên mật khẩu </a>
+
+        }
+    </div>
+
+</body>
+</html>
+<style>
+    .container {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative; /* Cần thiết để sử dụng position absolute cho các phần tử con */
+        height: 1000px;
+    }
+
+    .TB {
+        position: absolute;
+        top: 560px;
+        left: 700px;
+        height: 51px;
+        width: 300px;
+        font-size: 25px;
+        color: red;
+    }
+
+    .Dangnhap {
+        position: absolute;
+        top: 190px;
+        left: 884px;
+        font-size: 48px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+    .TDN {
+        position: absolute;
+        top: 327px;
+        left: 731px;
+        font-size: 24px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+    .TDNh {
+        position: absolute;
+        top: 322px;
+        left: 950px;
+        width: 298px;
+        height: 50px;
+        font-size: 24px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+    .Matkhau {
+        position: absolute;
+        top: 468px;
+        left: 731px;
+        font-size: 24px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+    .MK {
+        position: absolute;
+        top: 468px;
+        left: 950px;
+        width: 298px;
+        height: 50px;
+        font-size: 24px;
+        color: #000000;
+        font-family: Baloo;
+    }
+
+    .img {
+        position: absolute;
+        top: 223px;
+        left: 113px;
+    }
+
+    .QMK {
+        position: absolute;
+        top: 640px;
+        left: 1105px;
+        font-size: 20px;
+        color: #000000;
+        font-style: italic;
+        text-decoration: none;
+    }
+
+    .btnDangnhap {
+        position: absolute;
+        top: 575px;
+        left: 1088px;
+        width: 159px;
+        height: 43px;
+        background-color: #0F8730;
+        border-radius: 23px;
+        font-size: 20px;
+        font-family: Baloo;
+    }
+
+    .Chuacotk {
+        position: absolute;
+        top: 736px;
+        left: 880px;
+        font-size: 20px;
+        color: #000000;
+        font-family: Inter;
+        text-decoration: none;
+    }
+</style>
