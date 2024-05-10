@@ -6,11 +6,14 @@ namespace WebsiteQLHDTN.Controllers
     public class TochucController : Controller
     {
         QLYHDTNContext db = new QLYHDTNContext();
+        public IActionResult Trangchutochuc()
+        {        
+            return View();
+        }
         
         public IActionResult thongtinToChuc() 
         {
             int? userID = HttpContext.Session.GetInt32("UserID");
-            //int userID=2;
             var u = db.Tochucs.Where(model => model.Idtochuc.Equals(userID)).Select(model => new { Ten = model.Ten, Email = model.Email, Sdt = model.Sdt, Diachi = model.Diachi }).FirstOrDefault();
 
             if (u != null)
