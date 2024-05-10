@@ -1,0 +1,180 @@
+﻿@model WebsiteQLHDTN.Models.YeucauTnv;
+@{
+    Layout = null;
+}
+@{
+    List<SelectListItem> ListTenBan = new List<SelectListItem>();
+    foreach (var tenBan in ViewBag.ListTenBan)
+    {
+        ListTenBan.Add(new SelectListItem { Text = tenBan, Value = tenBan });
+    }
+}
+
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Đăng ký tham gia</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Dẫn đường link đến các font chữ sử dụng trong trang -->
+    <!-- baloo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo&display=swap" rel="stylesheet">
+    <!-- barlow -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    @using (Html.BeginForm("layTenBan", "dangkyHDController", FormMethod.Post))
+        {
+            <section class="dangkythamgia">
+                <div class="close">&times;</div>
+
+                <div class="re-box" style="top: 50px">
+                    <div>
+                        <select class="CBB">
+                            @Html.DropDownListFor(model=>model.Tenban, new SelectList(ViewBag.ListTenBan), "Chọn", new {@id="CBBTenban"} )
+                            @foreach(var tban in ViewBag.ListTenBan)
+                            {
+                                <option>@tban</option>
+                            }
+                        </select>
+
+
+
+                        <div class="UD">
+                            <label>Nhập ưu điểm:</label>
+                            <div class="uudiem">
+                                @Html.TextBoxFor(model=>model.UuDiem)
+                            </div>
+                        </div>
+                        <div class="KD">
+                            <label>Nhập khuyết điểm:</label>
+                            <div class="khuyetdiem">
+                                @Html.TextBoxFor(model=>model.KhuyetDiem)
+                            </div>
+                        </div>
+                    </div>
+                    <button class="btn_xacnhan" id="btn_xacnhan">Xác nhận</button>
+                </div>
+            </section>
+        }
+</body>
+
+<style>
+    .dangkythamgia {
+        width: 500px;
+        height: 400px;
+        margin: auto;
+        text-align: center;
+        padding: 0px;
+        background-color: rgba(118, 234, 150, 0.17);
+        display: block;
+        position: fixed; /* Sử dụng vị trí cố định */
+        top: 50%; /* Đặt top ở giữa màn hình */
+        left: 50%; /* Đặt left ở giữa màn hình */
+        transform: translate(-50%, -50%);
+        z-index: 999; /* Đảm bảo phần tử nằm trên các phần tử khác */
+    }
+
+    .close {
+        display: block;
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        top: 0;
+        right: 0;
+        color: black;
+        font-size: 34px;
+        line-height: 30px;
+        text-align: center;
+    }
+
+        .close:hover {
+            background-color: red;
+            color: #fcfcfc;
+            cursor: pointer;
+        }
+
+    .re-box {
+        margin-top: 20px;
+        justify-content: center;
+    }
+
+    .CBB {
+        width: 250px;
+        height:40px;
+        font-size: 18px;
+        margin-bottom: 30px;
+    }
+
+    label {
+        margin: 10px 0 0 0;
+    }
+
+    input {
+        width: 300px;
+        height: 70px;
+        margin: 10px 1px 28px 1px;
+        padding: 9px;
+        font-size: 14px;
+        color: #555;
+        border: rgb(65, 118, 97) 1px solid;
+        outline: none;
+        border-radius: 5px;
+    }
+
+        input:focus ~ label,
+        input:valid ~ label {
+            margin-top: -95px;
+            padding-left: 8px;
+            color: #026948;
+            font-weight: 500;
+        }
+
+    .re-box {
+        top: 40px;
+        display: flex; /* Sử dụng Flexbox */
+        flex-direction: column; /* Xếp các phần tử theo chiều dọc */
+    }
+
+        .re-box > div {
+            height: 100px;
+            margin-bottom: 10px; /* Khoảng cách giữa các div con */
+        }
+
+    /* Định dạng các label và input nằm cạnh nhau */
+    .UD label, .KD label {
+        display: inline-block; /* Hiển thị các label như một khối cạnh nhau */
+        width: 150px; /* Độ rộng cố định của label */
+        margin-right: 10px; /* Khoảng cách giữa label và input */
+    }
+
+    .btn_xacnhan {
+        position: absolute;
+        display: block;
+        border: none;
+        bottom: 20px;
+        left: 40%;
+    }
+
+</style>
+<script>
+    let btn_xacnhan = document.querySelector(".btn_xacnhan");
+    let close = document.querySelector(".close");
+
+    close.addEventListener("click", () => {
+        window.location.href = "/thongtinHD"; // Chuyển hướng đến view thongtinHD
+    });
+    btn_xacnhan.addEventListener("click", () => {
+
+        window.location.href = "/thongtinHD"; // Chuyển hướng đến view thongtinHD
+    });
+</script>
