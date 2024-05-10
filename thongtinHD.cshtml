@@ -1,10 +1,13 @@
-﻿<!doctype html>
+@{
+    Layout = "~/Views/Shared/_layoutTochuc.cshtml";
+}
+<!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Danh sách hoạt động</title>
+    <title>Thông tin hoạt động</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 
     <!-- Dẫn đường link đến các font chữ sử dụng trong trang -->
@@ -16,128 +19,55 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="thongtinHD.css">
 </head>
 <body>
     <div class="thongtinHD">
-        <div class="container-tong">
-            <div class="container-logo">
-                <div class="container-head">
-                    <div class="logo">
-                    </div>
-                    <div class="trangchu">
-                        Trang chủ
-                    </div>
-                    <div class="qlHD">
-                        Quản lý hoạt động
-                        <ul class="Sub">
-                            <li><a href="">Tạo mới hoạt động</a></li>
-                            <li><a href="">Danh sách các hoạt động</a></li>
-                        </ul>
-                    </div>
-                    <div class="container-24">
-                        <!-- <div class="container-15"> -->
-                        <input type="text" class="search-input" placeholder="Nhập thông tin tìm kiếm">
-                        <button class="btn-TimKiem" type="button">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <!-- </div> -->
-                        <button class="btn-TaiKhoan" type="button">
-                            <i class="fas fa-user"></i>
-                        </button>
-                    </div>
-                </div>
-                <span class="together">
-                    Together
-                </span>
-            </div>
-        </div>
         <div class="container-hienthi">
-                <div class="container-gioithieu">
-                    <div class="tenDuan">
-                        Dự án Trồng Cây Phủ Xanh: &#34;Hành động để làm cho thế giới xanh hơn&#34;
-                    </div>
-                    <div class="frame-thoigian">
-                        <span class="thoigian-diadiem">
-                            Thời gian bắt đầu: 19/04/2024<br />
-                            Thời gian kết thúc: 26/04/2024<br />
-                            Địa điểm: Sơn Trà<br />
-                            Lĩnh vực: Môi trường<br />
-
-                        </span>
-                    </div>
-                    <div class="frame-thongdiep">
-                        <div class="TD">
-                            Thông điệp
-                        </div>
-                        <span class="ndTD">
-                            &#34;Hãy cùng nhau tham gia vào dự án Trồng Cây Phủ Xanh để hành động và tạo ra một thế giới xanh hơn cho tương lai. Mỗi cây được trồng không chỉ là một hành động nhỏ mà còn là một bước quan trọng trong việc bảo vệ và phát triển môi trường sống của chúng ta. Hãy để lại dấu ấn xanh tươi cho thế hệ tương lai!&#34;
-                        </span>
-                    </div>
-                    <div class="frame-muctieu">
-                        <div class="MT">
-                            Mục tiêu
-                        </div>
-                        <span class="ndMT">
-                            Tăng diện tích cây xanh để cải thiện chất lượng môi trường và giảm ô nhiễm.<br />
-                            Tạo ra không gian sống lành mạnh và tăng cường sinh khí cho cộng đồng.<br />
-                            Giáo dục cộng đồng về tầm quan trọng của việc bảo vệ môi trường và trồng cây, thúc đẩy hành động bảo vệ môi trường từ phía cộng đồng.
-                        </span>
-                    </div>
+            <div class="container-gioithieu">
+                <label class="tenDuan">@ViewBag.Tenhoatdong</label>
+                <div class="frame-thoigian">
+                    <label class="thoigian-diadiem">
+                        Thời gian bắt đầu: @ViewBag.Thoigianbatdau <br />
+                        Thời gian kết thúc: @ViewBag.Thoigianketthuc<br />
+                        Địa điểm: @ViewBag.Diadiem<br />
+                        Lĩnh vực: @ViewBag.Linhvuc<br />
+                    </label>
                 </div>
-                    <div class="frame-sl-yc">
-                        <div class="container-sl">
-                            <div class="SL">
-                                Số lượng TNV cần cho hoạt động
-                            </div>
-                            <span class="soluong">
-                                20
-                            </span>
-                        </div>
-                        <div class="yeucau">
-                            Yêu cầu:
-                        </div>
-                        <span class="ndYC">
-                            Giới tính: Nam/Nữ<br />
-                            Độ tuổi: từ 18 tuổi.<br />
-                            Sức khoẻ: Tốt.<br />
-                            Các kỹ năng cần thiết:<br />
-                            Đã từng tham gia các hoạt động trước đây<br />
-                            Có khả năng trồng cây, chăm sóc cây<br />
-                            v.v...
-                        </span>
+                <div class="frame-thongdiep">
+                    <div class="TD">
+                        Thông điệp
                     </div>
-                <button class="dangky">
-                    Đăng ký tham gia
-                </button>
+                    <label class="ndTD">@ViewBag.Thongdiep</label>
+                </div>
+                <div class="frame-muctieu">
+                    <div class="MT">
+                        Mục tiêu
+                    </div>
+                    <label class="ndMT">@ViewBag.Muctieuhoatdong</label>
+                </div>
+            </div>
+            <div class="frame-sl-yc">
+                <div class="container-sl">
+                    <div class="SL">
+                        Số lượng TNV cần cho hoạt động
+                    </div>
+                    <label class="soluong">@ViewBag.Tongsotnvcan</label>
+                </div>
+                <div class="cacban">
+                    Các ban dự kiến trong hoạt động:
+                </div>
+                <label class="ndYC">
+                    @ViewBag.ListCacban
+                </label>
+            </div>
+            <button class="dangky">
+                Đăng ký tham gia
+            </button>
         </div>
     </div>
-    <section class="dangkythamgia">
-        <div class="close">&times;</div>
 
-        <div class="re-box">
-            <div>
-                <label for="chonban">Chọn ban muốn tham gia</label>
-                <select class="chonban" style="width: 220px">
-                    <option value="ban1">Ban Lao động</option>
-                    <option value="ban2">Ban Hậu cần</option>
-                    <option value="ban3">Ban Tư vấn</option>
-                    <option value="ban3">Ban Truyền thông</option>
-                </select>
-                <div>
-                    <label for="uudiem">Nhập ưu điểm</label>
-                    <input type="text" class="uudiem"></input>
 
-                    <label for="khuyetdiem">Nhập khuyết điểm</label>
-                    <input type="text" class="khuyetdiem"></input>
-                </div>
-                
-                
-            </div>
-            <button class="btn_xacnhan">Xác nhận</button>
 
-        </div>
-    </section>
 </body>
 <style>
     .thongtinHD {
@@ -146,139 +76,35 @@
         flex-direction: column;
         align-items: center;
         padding-top: 3px;
-        width: 1440px;
         box-sizing: border-box;
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
     }
 
-        .thongtinHD .logo {
-            background: url('images/logo.png') 50% / cover no-repeat;
-            width: 105px;
-            height: 99px;
-        }
-
-        .thongtinHD .trangchu {
-            margin: 53px 0 11px 0;
-            display: inline-block;
-            overflow-wrap: break-word;
-            font-family: 'Baloo', 'Roboto Condensed';
-            font-weight: 400;
-            font-size: 30px;
-            color: #0F8730;
-        }
-
-        .thongtinHD .qlHD {
-            margin: 53px 0 11px 0;
-            display: inline-block;
-            overflow-wrap: break-word;
-            font-family: 'Baloo', 'Roboto Condensed';
-            font-weight: 400;
-            font-size: 30px;
-            color: #0F8730;
-        }
-
-    .Sub {
-        position: absolute;
-        width: 240px;
-        border: 1px solid #000000;
-        list-style-type: none; /* Ẩn kiểu đánh dấu */
-        padding: 0; /* Loại bỏ padding */
-        margin: 0;
-        display: none;
-    }
-
-    .qlHD:hover .Sub {
-        display: block;
-    }
-
-    .Sub li {
-        /* Định dạng cho từng mục trong ul */
-        padding: 8px 0; /* Padding phía trên và phía dưới */
-    }
-
-        .Sub li a {
-            /* Định dạng cho các liên kết bên trong mục */
-            text-decoration: none; /* Loại bỏ gạch chân */
-            color: #000000; /* Màu chữ */
-            font-size: 20px;
-        }
-
-            .Sub li a:hover {
-                /* Định dạng khi di chuột qua liên kết */
-                color: #0F8730; /* Màu chữ thay đổi khi hover */
-            }
-
-    .btn-TimKiem {
-        background-color: #FFFFFF;
-        margin-right: 10px;
-        padding: 8px 12px;
-        border: none;
-        cursor: pointer;
-    }
-
-        .btn-TimKiem i {
-            font-size: 20px;
-        }
-
-    .btn-TaiKhoan {
-        background-color: #FFFFFF;
-        margin-right: 40px;
-        padding: 8px 12px;
-        border: none;
-        cursor: pointer;
-    }
-
-        .btn-TaiKhoan i {
-            font-size: 30px;
-        }
 
 
-    .thongtinHD .search-input {
-        margin-top: 45px;
-        top: 50px;
-        width: 400px;
-        height: 40px;
-        padding: 5px;
-        border: 2px solid #000000;
-        border-radius: 20px;
-        font-size: 24px;
-        opacity: 0.5;
-    }
 
-    .thongtinHD .container-head {
-        margin: 0 0 9px 4.2px;
+    .container-hienthi {
+        background: rgba(217, 217, 217, 0.18);
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative; /* Cần thiết để sử dụng position absolute cho các phần tử con */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+        width: 1440px;
+        height: 566px;
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
-        width: 1365px;
-        box-sizing: border-box;
-    }
-
-    .thongtinHD .together {
-        align-self: flex-start;
-        overflow-wrap: break-word;
-        font-family: 'Baloo', 'Roboto Condensed';
-        font-weight: 400;
-        font-size: 25px;
-        color: #0F8730;
-    }
-    .container-hienthi{
-        background: rgba(217, 217, 217, 0.18);
-        position: relative;
-        margin: 0 44px 0 55px;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        padding: 16px 58.6px 30px 17px;
-        width: fit-content;
-        box-sizing: border-box;
     }
 
     .container-gioithieu {
-        margin-right: 120.7px;
         display: flex;
         flex-direction: column;
+        max-width: 800px;
         box-sizing: border-box;
     }
+
     .tenDuan {
         margin-bottom: 32px;
         display: inline-block;
@@ -363,8 +189,9 @@
     .frame-sl-yc {
         display: flex;
         flex-direction: column;
-        align-self: flex-start;
+        margin-top: 180px;
         width: fit-content;
+        align-self: flex-start;
         box-sizing: border-box;
     }
 
@@ -386,7 +213,6 @@
         font-weight: 400;
         font-size: 20px;
         color: #000000;
-
     }
 
     .soluong {
@@ -399,7 +225,7 @@
         color: #0F481F;
     }
 
-    .yeucau {
+    .cacban {
         margin: 21px 11.5px 3px 19px;
         display: inline-block;
         align-self: flex-start;
@@ -418,110 +244,29 @@
         font-size: 16px;
         color: #000000;
     }
-    .dangky{
+
+    .dangky {
         overflow-wrap: break-word;
         font-family: 'Barlow';
         border-radius: 16px;
         width: 250px;
         height: 50px;
+        position: absolute;
+        bottom: 40px; /* Hiển thị ở phía dưới */
+        right: 10px;
         background-color: #0F8730;
         font-weight: 400;
         font-size: 26px;
         color: #FFFFFF;
     }
 
-    .dangkythamgia {
-        border-radius: 12px;
-        width: 330px;
-        height: 400px;
-        margin: auto;
-        text-align: center;
-        padding: 0px;
-        background-color: #fcfcfc;
-        display: none;
-        position: fixed; /* Sử dụng vị trí cố định để nó không bị di chuyển khi cuộn trang */
-        top: 50%; /* Đặt top ở giữa màn hình */
-        left: 50%; /* Đặt left ở giữa màn hình */
-        transform: translate(-50%, -50%);
-    }
-
-    .close {
-        display: block;
-        position: absolute;
-        width: 30px;
-        height: 30px;
-        top: 0;
-        right: 0;
-        color: black;
-        font-size: 34px;
-        line-height: 30px;
-        text-align: center;
-    }
-
-        .close:hover {
-            background-color: red;
-            color: #fcfcfc;
-            cursor: pointer;
-        }
-
-    .re-box {
-        margin-top: 20px;
-        justify-content: center;
-    }
-    label{
-        margin: 10px 0 0 0;
-    }
-    input {
-        width: 300px;
-        height: 70px;
-        margin: 10px 1px 28px 1px;
-        padding: 9px;
-        font-size: 14px;
-        color: #555;
-        border: rgb(65, 118, 97) 1px solid;
-        outline: none;
-        border-radius: 5px;
-    }
-
-        input:focus ~ label,
-        input:valid ~ label {
-            margin-top: -95px;
-            padding-left: 8px;
-            color: #026948;
-            font-weight: 500;
-        }
-
-    .btn_xacnhan {
-        display: block;
-        border: none;
-        margin: 0 auto;
-    }
-
+    
 </style>
 <script>
     let dangky = document.querySelector(".dangky");
-    let dangkythamgia = document.querySelector(".dangkythamgia");
-    let btn_xacnhan = document.querySelector(".btn_xacnhan");
-    let close = document.querySelector(".close");
 
     dangky.addEventListener("click", () => {
-        dangkythamgia.style.display = "block";
-        dangkythamgia.style.position = "fixed"; // Đặt vị trí là fixed
-        dangkythamgia.style.top = "50%";
-        dangkythamgia.style.left = "50%";
-        dangkythamgia.style.transform = "translate(-50%, -50%)"; // Đảm bảo hộp hiển thị ở giữa màn hình
-        body.style.backgroundColor = "#222";
-        document.querySelector(".thongtinHD").style.filter = "blur(50px)"; // hiệu ứng làm mờ layout bên dưới
-    });
-    btn_xacnhan.addEventListener("click", () => {
+        window.location.href = "/dangkyHD";
 
-        dangkythamgia.style.display = "none";
-
-    });
-
-    close.addEventListener("click", () => {
-        dangky.style.display = "block";
-        dangkythamgia.style.display = "none";
-        body.style.backgroundColor = "#999";
     });
 </script>
