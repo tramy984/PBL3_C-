@@ -1,0 +1,554 @@
+﻿@{
+    Layout = "~/Views/Shared/_LayoutTochuc.cshtml";
+}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tạo hoạt động</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Dẫn đường link đến các font chữ sử dụng trong trang -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inder:wght@400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styleTaoHD.css">
+</head>
+<body>
+    <div class="TAOHD">
+        <form method="post">
+            <div class="container-6">
+                <div class="toho-tng"> TẠO HOẠT ĐỘNG </div>
+
+                <input type="text" class="nhp-tn-hotng" name="TenHD" placeholder="Nhập tên hoạt động"></input>
+                <input class="chn-thi-gian-btu" name="TGBD" placeholder="Chọn thời gian bắt đầu"></input>
+                <input type="text" class="chn-thi-gian-kt-thc" name="TGKT" placeholder="Chọn thời gian kết thúc"> </input>
+                <input type="text" class="aim-tchc-hotng" name="DiaDiem" placeholder="Địa điểm tổ chức hoạt động"></input>
+                <input type="text" class="lnh-vc-mhotngc-tchc" name="LinhVuc" placeholder="Lĩnh vực mà hoạt động được tổ chức"></input>
+                <input type="text" class="mtmcch-thngip-ca-hotng" name="ThongDiep" placeholder="Mô tả mục đích, thông điệp của hoạt động"></input>
+                <div class="container-12">
+                    <div class="slng-tnv-1">
+                        Số lượng TNV:
+                    </div>
+                    <input type="number" class="SL-tong" name="SL" placeholder="0"></input>
+                </div>
+                <div class="Text_TYC"> Tạo yêu cầu cho hoạt động </div>
+                <div class="container-10">
+                    <input type="text" class="nhp-tn-ban" name="TenBan" placeholder="Nhập tên Ban"></input>
+                    <div class="slng-tnv"> Số lượng TNV trong Ban:</div>
+                    <input type="number" class="SL-moiBan" name="SLBan" placeholder="0"></input>
+                </div>
+                <div class="container-9">
+                    <input type="text" class="nhp-nhim-vca-ban" name="NhiemVu" placeholder="Nhập nhiệm vụ của Ban "></input>
+                    <input type="text" class="nhp-yu-cu-ca-ban" name="Yeucau" placeholder="Nhập yêu cầu của ban"></input>
+                </div>
+                <button onclick="TaoHDong()" action="TaoHD" class="TAOHD-1">Tạo hoạt động</button>
+        </form>
+                <button onclick="Themban()" action="ThemBan" class="thm-ban">Thêm Ban</button>
+
+                <p class="TB">
+                    @ViewBag.thongbao
+                </p>
+       
+    </div>
+    </div>
+    </div>
+    </div>
+</body>
+</html>
+<style>
+    .TAOHD {
+        background: #FFFFFF;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 3px;
+        width: 1440px;
+        box-sizing: border-box;
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+    }
+
+        .TAOHD .logo {
+            background: url('images/logo.png') 50% / cover no-repeat;
+            width: 105px;
+            height: 99px;
+        }
+
+        .TAOHD .trangchu {
+            margin: 53px 0 11px 0;
+            display: inline-block;
+            overflow-wrap: break-word;
+            font-family: 'Baloo', 'Roboto Condensed';
+            font-weight: 400;
+            font-size: 30px;
+            color: #0F8730;
+        }
+
+        .TAOHD .qlHD {
+            margin: 53px 0 11px 0;
+            display: inline-block;
+            overflow-wrap: break-word;
+            font-family: 'Baloo', 'Roboto Condensed';
+            font-weight: 400;
+            font-size: 30px;
+            color: #0F8730;
+        }
+
+    .Sub {
+        position: absolute;
+        width: 240px;
+        border: 1px solid #000000;
+        list-style-type: none; /* Ẩn kiểu đánh dấu */
+        padding: 0; /* Loại bỏ padding */
+        margin: 0;
+        display: none;
+    }
+
+    .qlHD:hover .Sub {
+        display: block;
+    }
+
+    .Sub li {
+        /* Định dạng cho từng mục trong ul */
+        padding: 8px 0; /* Padding phía trên và phía dưới */
+    }
+
+        .Sub li a {
+            /* Định dạng cho các liên kết bên trong mục */
+            text-decoration: none; /* Loại bỏ gạch chân */
+            color: #000000; /* Màu chữ */
+            font-size: 20px;
+        }
+
+            .Sub li a:hover {
+                /* Định dạng khi di chuột qua liên kết */
+                color: #0F8730; /* Màu chữ thay đổi khi hover */
+            }
+
+    .btn-TimKiem {
+        background-color: #FFFFFF;
+        margin-right: 10px;
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .btn-TimKiem i {
+            font-size: 20px;
+        }
+
+    .btn-TaiKhoan {
+        background-color: #FFFFFF;
+        margin-right: 40px;
+        padding: 8px 12px;
+        border: none;
+        cursor: pointer;
+    }
+
+        .btn-TaiKhoan i {
+            font-size: 30px;
+        }
+
+    .TAOHD .search-input {
+        width: 400px;
+        height: 32px;
+        padding: 5px;
+        border: 2px solid #000000;
+        border-radius: 20px;
+        font-size: 24px;
+        opacity: 0.5;
+    }
+
+    .TAOHD .container-15 {
+        background: #FFFFFF;
+        position: relative;
+        margin: 6px 30px 4px 0;
+        display: flex;
+        flex-direction: row;
+        padding: 2px 27.3px 11px 15px;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .container-24 {
+        margin-top: 40px;
+        display: flex;
+        flex-direction: row;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .container-head {
+        margin: 0 0 9px 4.2px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 1365px;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .together {
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 25px;
+        color: #0F8730;
+    }
+
+    .TAOHD .container-6 {
+        margin: 55px 0 428px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .container-logo {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .container-header {
+        background: #FFFFFF;
+        position: relative;
+        display: flex;
+        padding: 1px 14px 33px 56.8px;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .toho-tng {
+        margin: 0 0 77px 34.7px;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 48px;
+        color: #000000;
+    }
+
+    .TAOHD .nhp-tn-hotng {
+        width: 700px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .TAOHD .chn-thi-gian-btu {
+        width: 700px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .TAOHD .chn-thi-gian-kt-thc {
+        width: 700px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .TAOHD .aim-tchc-hotng {
+        width: 700px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .TAOHD .lnh-vc-mhotngc-tchc {
+        width: 700px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .TAOHD .mtmcch-thngip-ca-hotng {
+        width: 700px;
+        height: 100px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .SL-tong {
+        width: 100px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+        margin-top: 30px;
+    }
+
+    .TAOHD .container-12 {
+        margin: 0 0 96px 12px;
+        /* display: flex; */
+        flex-direction: row;
+        justify-content: space-between;
+        width: 700px;
+        box-sizing: border-box;
+    }
+
+    .Text_TYC {
+        margin: 0 0 91px 0.9px;
+        font-family: 'Baloo';
+        font-size: 32px;
+        color: #000000;
+    }
+
+    .TAOHD .nhp-tn-ban {
+        width: 300px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+        margin-right: 50px;
+    }
+
+    .TAOHD .SL-moiBan {
+        width: 100px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+        /* margin-top: 30px; */
+    }
+
+    .TAOHD .container {
+        margin: 0 69.3px 5.1px 0;
+        display: inline-block;
+        align-self: center;
+        overflow-wrap: break-word;
+        font-family: 'Barlow';
+        font-weight: 400;
+        font-size: 30px;
+        color: rgba(0, 0, 0, 0.5);
+    }
+
+    .TAOHD .container-1 {
+        border-radius: 20px;
+        border: 1px solid #0F8730;
+        background: #FFFFFF;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        padding: 0 8.7px 2.7px 0;
+        width: 157px;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .container-10 {
+        margin-bottom: 110px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 996px;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .nhp-nhim-vca-ban {
+        width: 500px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+        margin-right: 50px;
+    }
+
+    .TAOHD .nhp-yu-cu-ca-ban {
+        width: 500px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .TAOHD .container-2 {
+        border-radius: 70px;
+        background: #29B24F;
+        position: relative;
+        margin-left: 54px;
+        display: flex;
+        padding: 10px 0 17px 43.8px;
+        width: 286px;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .container-14 {
+        margin: 0 94px 0 1px;
+        display: flex;
+        flex-direction: row;
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .logo {
+        background: url('../assets/images/image_37.png') 50% / cover no-repeat;
+        width: 105px;
+        height: 99px;
+    }
+
+
+    .TAOHD .nhp-thng-tin-tm-kim {
+        opacity: 0.5;
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 30px;
+        color: #000000;
+    }
+
+    .TAOHD .container-TK {
+        border-radius: 20px;
+        border: 1px solid #000000;
+        background: #FFFFFF;
+        position: relative;
+        margin: 6px 30px 4px 0;
+        display: flex;
+        flex-direction: row;
+        padding: 2px 27.3px 11px 15px;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .container-12 {
+        margin: 0 0 96px 12px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 450px;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .to-yu-cu-cho-hotng {
+        margin: 0 0 91px 0.9px;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Inder';
+        font-weight: 400;
+        font-size: 32px;
+        color: #000000;
+    }
+
+    .TAOHD .slng-tnv {
+        margin: 19px 0 23px 0;
+        width: 350px;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Barlow';
+        font-weight: 400;
+        font-size: 30px;
+        color: #000000;
+    }
+
+    .TAOHD .container-9 {
+        margin-bottom: 93px;
+        display: flex;
+        flex-direction: row;
+        width: 996px;
+        box-sizing: border-box;
+    }
+
+    .TAOHD .thm-ban {
+        margin: 0 20px 189px 841px;
+        display: inline-block;
+        align-self: flex-end;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 30px;
+        border: #0F8730;
+        border-radius: 20px;
+        color: #000000;
+        margin-bottom: 20px;
+    }
+
+    .TAOHD .TAOHD-1 {
+        margin: 0 auto 189px auto;
+        display: inline-block;
+        align-self: flex-end;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-size: 30px;
+        border: #0F8730;
+        background-color: #0F8730;
+        border-radius: 20px;
+        color: #000000;
+    }
+</style>
+<script>
+    let TaoHD = document.querySelector(".TaoHD-1");
+
+    TaoHD.addEventListener("click", () => {
+
+    });
+    let Themban = document.querySelector(".thm-ban");
+
+    Themban.addEventListener("click", () => {
+
+    });
+</script>

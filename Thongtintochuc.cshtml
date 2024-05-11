@@ -1,0 +1,262 @@
+﻿﻿@{
+    Layout = "~/Views/Shared/_layoutTochuc.cshtml";
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Thông tin Tổ chức</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Dẫn đường link đến các font chữ sử dụng trong trang -->
+    <!-- baloo -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo&display=swap" rel="stylesheet">
+    <!-- barlow -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div>
+        <div class="frame-13">
+            <span class="baocao" id="baocao">
+                Báo cáo vi phạm
+            </span>
+        </div>
+        <div class="container-thongtin">
+            <label class="TenTC">@ViewBag.Ten</label>
+            <div class="frame-lienlac">
+                <label class="lienlac">
+                    Thông tin liên hệ:<br />
+                    Email: @ViewBag.Email<br />
+                    SĐT: @ViewBag.Sdt<br />
+                    Địa chỉ: @ViewBag.Diachi
+                </label>
+            </div>
+            <div class="frame-mota">
+                <div class="mt">Mô tả</div>
+                <label class="mota">@ViewBag.Mota</label>
+            </div>
+            <div class="frame-thanhtuu">
+                <div class="tt">Thành tựu</div>
+                <label class="thanhtuu">@ViewBag.Thanhtuu </label>
+            </div>
+            <div class="frame-11">
+                <div class="container-8">
+                    <div class="datc">
+                        Đã tổ chức được:
+                    </div>
+                    <label class="slHD">@ViewBag.soluongHD</label>
+                    <div class="hd">
+                        hoạt động.
+                    </div>
+                </div>
+                <div class="container-9">
+                    <div class="kn">
+                        Kết nối với gần
+                    </div>
+                    <label class="slTNV">@ViewBag.slTNV</label>
+                    <div class="tnv">
+                        tình nguyện viên.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+</body>
+<script>
+    var spanElement = document.getElementById('baocao');
+    spanElement.addEventListener('click', function () {
+        window.location.href = '/';
+    });
+</script>
+
+<style>
+    .baocao {
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-style: italic;
+        font-weight: 400;
+        font-size: 20px;
+        color: #E12424;
+    }
+
+    .frame-13 {
+        margin-right: 200px;
+        display: flex;
+        justify-content: flex-end;
+    }
+
+    .tnv {
+        margin: 19px 0 5px 20px;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .slTNV {
+        margin-right: 18px;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 40px;
+        color: #0F481F;
+    }
+
+    .kn {
+        margin: 20px 35.7px 4px 0;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .container-9 {
+        display: flex;
+        flex-direction: row;
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .hd {
+        margin: 20px 0 4px 0;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .slHD {
+        margin-right: 32.5px;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 40px;
+        color: #0F481F;
+    }
+
+    .datc {
+        margin: 21px 41.5px 3px 0;
+        display: inline-block;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .container-8 {
+        margin-bottom: 93px;
+        display: flex;
+        flex-direction: row;
+        align-self: flex-start;
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .frame-11 {
+        margin-top: 119px;
+        display: flex;
+        flex-direction: column;
+        box-sizing: border-box;
+    }
+
+    .thanhtuu {
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 16px;
+        color: #000000;
+    }
+
+    .tt {
+        margin-bottom: 12px;
+        display: inline-block;
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .frame-thanhtuu {
+        margin-left: 3px;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .mota {
+        overflow-wrap: break-word;
+        font-family: 'Inter';
+        font-weight: 400;
+        font-size: 16px;
+        color: #000000;
+    }
+
+    .mt {
+        margin-bottom: 12px;
+        display: inline-block;
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 20px;
+        color: #000000;
+    }
+
+    .frame-mota {
+        margin: 0 3.2px 27px 0;
+        display: flex;
+        flex-direction: column;
+        width: fit-content;
+        box-sizing: border-box;
+    }
+
+    .frame-lienlac {
+        margin-bottom: 27px;
+        display: flex;
+        align-self: flex-start;
+        box-sizing: border-box;
+    }
+
+    .TenTC {
+        margin: 0 35.4px 28px 35.4px;
+        display: inline-block;
+        align-self: flex-start;
+        overflow-wrap: break-word;
+        font-family: 'Baloo', 'Roboto Condensed';
+        font-weight: 400;
+        font-size: 28px;
+        color: #0F481F;
+    }
+
+    .container-thongtin {
+        background: rgba(217, 217, 217, 0.18);
+        position: relative;
+        margin: 0 44px 39px 55px;
+        display: flex;
+        flex-direction: column;
+        padding: 16px 128.9px 47px 33px;
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        box-sizing: border-box;
+    }
+</style>
+

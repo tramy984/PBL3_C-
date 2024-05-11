@@ -1,0 +1,55 @@
+﻿@page
+@{
+    Layout = "~/Views/Shared/_LayoutTochuc.cshtml";
+}
+@model PBL3_demo1.Controllers.TochucController
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tạo hoạt động</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <!-- Dẫn đường link đến các font chữ sử dụng trong trang -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Baloo&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inder:wght@400&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styleTaoHD.css">
+</head>
+<body>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID hoạt động</th>
+                <th>Tên hoạt động</th>
+                <th>Thời gian bắt đầu</th>
+                <th>Thời gian kết thúc</th>
+                <th>Danh sách tính nguyện viên</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var items in PBL3_demo1.Controllers.TochucController.ListDS())
+            {
+                <tr>
+                    <td>@items.Idhoatdong</td>
+                    <td>@items.Tenhoatdong</td>
+                    <td>@items.Thoigianbatdau</td>
+                    <td>@items.Thoigianketthuc</td>
+                    <td><button>Chi tiết</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>
