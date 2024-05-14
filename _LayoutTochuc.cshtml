@@ -1,8 +1,7 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
-    <base href="https://localhost:7183/">
+
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1, width=device-width" />
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
@@ -19,19 +18,10 @@
             <img src="https://www.hasfarmgreens.com/wp-content/uploads/2021/09/12-icon-HFG_FA-09.png" alt=" " width="105px" height="99px" />
         </div>
         <label class="together">Together</label>
-        <div style="margin-left: 500px;">
-            <div class="trangchu" style="margin-right: 100px;">
-                Trang chủ
-            </div>
-            <div class="quanlyhoatdong">
-                Quản lý hoạt động
-                <ul class="Sub">
-                    <li><a href="Tochuc/TaoHD">Tạo mới hoạt động</a></li>
-                    <li><a href="Tochuc/DSHD">Danh sách các hoạt động</a></li>
-                </ul>
-            </div>
-        </div>
-
+        <ul>
+            <li><a class="trangchu" href="https://localhost:7131/Tochuc/Trangchutochuc">Trang chủ</a></li>
+            <li><a class="hoatdongcanhan" href="https://localhost:7131/Tochuc/Quanlyhoatdong">Quản lý hoạt động </a></li>
+        </ul>
         <div class="search-container">
             <input type="text" class="search-input" placeholder="Nhập thông tin tìm kiếm">
             <button class="search-button" type="button">
@@ -44,14 +34,50 @@
                 <i class="fas fa-user"></i>
             </button>
             <ul class="luachon">
-                <li><a href="Canhan/Hienthithongtincanhan">Xem thông tin</a></li>
-                <li><a href="Canhan/Chinhsuathongtin">Chỉnh sửa thông tin</a></li>
-                <li><a href="Taikhoan/Doimatkhau">Đổi mật khẩu</a></li>
+                <li><a href="https://localhost:7131/Tochuc/Hienthithongtintochuc">Xem thông tin tổ chức </a></li>
+                <li><a href="https://localhost:7131/Tochuc/Chinhsuathongtin">Chỉnh sửa thông tin tổ chức</a></li>
+                <li> <a href="#" id="forgotPasswordLink">Đổi mật khẩu</a></li>
+                <li><a href="https://localhost:7131/Taikhoan/Dangnhap">Đăng xuất</a></li>
             </ul>
         </div>
+
+
+
+        <!-- Các nội dung khác ở trang canhan.cshtml -->
+        <!-- Popup -->
+        <div id="forgotPasswordPopup" class="popup">
+            <div class="popup-content">
+                <span class="close" id="closeForgotPasswordPopup">&times;</span>
+                <h2>Quên mật khẩu</h2>
+                <form id="forgotPasswordForm">
+                    <label for="oldPassword">Mật khẩu cũ:</label>
+                    <input type="password" id="oldPassword" name="oldPassword"><br><br>
+
+                    <label for="newPassword">Mật khẩu mới:</label>
+                    <input type="password" id="newPassword" name="newPassword"><br><br>
+
+                    <label for="confirmPassword">Nhập lại mật khẩu mới:</label>
+                    <input type="password" id="confirmPassword" name="confirmPassword"><br><br>
+
+                    <button type="submit">Xác nhận</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- JavaScript để điều khiển hiển thị của popup -->
+        <script>
+            document.getElementById('forgotPasswordLink').addEventListener('click', function () {
+                document.getElementById('forgotPasswordPopup').style.display = 'block';
+            });
+
+            document.getElementById('closeForgotPasswordPopup').addEventListener('click', function () {
+                document.getElementById('forgotPasswordPopup').style.display = 'none';
+            });
+        </script>
+
+        <!-- Các nội dung khác ở trang canhan.cshtml -->
+
     </div>
-
-
     <div>
         @RenderBody();
     </div>
@@ -65,10 +91,15 @@
         margin-left: auto;
         margin-right: auto;
         position: relative; /* Cần thiết để sử dụng position absolute cho các phần tử con */
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        background-color: rgba(15, 135, 48, 0.17);
         width: 1440px;
         height: 160px;
     }
+
+    /* .khunghead:hover {
+            transform: scale(1.1);
+            }*/
 
     .image_logo {
         position: absolute;
@@ -86,54 +117,24 @@
     }
 
     .trangchu {
-        margin: 65px 0 11px 0;
-        display: inline-block;
-        overflow-wrap: break-word;
-        font-family: 'Baloo', 'Roboto Condensed';
-        font-weight: 400;
-        font-size: 20px;
+        position: absolute;
+        left: 281px;
+        top: 58px;
+        font-family: Baloo;
         color: #0F8730;
+        font-size: 30px;
+        text-decoration: none;
     }
 
-    .quanlyhoatdong {
-        margin: 65px 0 11px 0;
-        display: inline-block;
-        overflow-wrap: break-word;
-        font-family: 'Baloo', 'Roboto Condensed';
-        font-weight: 400;
-        font-size: 20px;
+    .hoatdongcanhan {
+        position: absolute;
+        left: 528px;
+        top: 58px;
+        font-family: Baloo;
         color: #0F8730;
+        font-size: 30px;
+        text-decoration: none;
     }
-
-        .quanlyhoatdong .Sub {
-            position: absolute;
-            width: 240px;
-            font-family: 'Barlow';
-            border: 1px solid #000000;
-            list-style-type: none; /* Ẩn kiểu đánh dấu */
-            padding: 0; /* Loại bỏ padding */
-            margin: 0;
-            display: none;
-        }
-
-        .quanlyhoatdong:hover .Sub {
-            display: block;
-        }
-
-        .quanlyhoatdong .Sub li {
-            padding: 3px 0;
-            padding-left: 3px;
-        }
-
-            .quanlyhoatdong .Sub li a {
-                text-decoration: none;
-                color: #000000;
-                font-size: 20px;
-            }
-
-                .quanlyhoatdong .Sub li a:hover {
-                    color: #0F8730;
-                }
 
     a:active,
     a:focus {
@@ -144,7 +145,7 @@
     .search-container {
         position: absolute;
         left: 900px;
-        top: 50px;
+        top: 60px;
         width: 375px;
         height: 45px;
     }
@@ -175,7 +176,7 @@
     .taikhoan {
         position: absolute;
         left: 1340px;
-        top: 60px;
+        top: 48px;
         width: 100px;
         height: 63px;
     }
@@ -193,19 +194,28 @@
     .taikhoan:hover .luachon,
     .taikhoan:focus .luachon {
         display: block;
+        width: 220px;
+        height: 200px;
     }
 
     .luachon li {
         display: block;
         padding: 5px 10px;
+        font-family: Inter;
+        font-size: 20px;
     }
 
         .luachon li a:hover {
             background-color: #f0f0f0;
         }
 
+    .taikhoan:hover .luachon li a {
+        text-decoration: none;
+    }
+
+
     .btn i {
-        font-size: 30px;
+        font-size: 50px;
     }
 
     .btn {
@@ -213,5 +223,38 @@
         border: none;
         cursor: pointer;
         padding: 0;
+    }
+
+
+
+
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background-color: white;
+        padding: 40px; /* Tăng padding để làm cho popup to ra */
+        border: 1px solid #0F8730;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 450px;
+        height: 250px;
+        max-width: 90%; /* Hoặc sử dụng giá trị phù hợp khác */
+        z-index: 9999; /* Đảm bảo popup nổi lên trên các thành phần khác */
+    }
+
+
+
+    .popup-content {
+        text-align: center;
+    }
+
+    .close {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        cursor: pointer;
     }
 </style>
