@@ -1,0 +1,204 @@
+﻿@model PBL3_QLHDTN.ViewModel.ChitiethoatdongViewModel
+
+@using PBL3_QLHDTN.Models
+@{
+    Layout = "~/Views/Shared/_LayoutCanhan.cshtml";
+}
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Hoạt động cá nhân</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter Da 2:wght@400&display=swap" />
+</head>
+<body>
+    <div class="container">
+        <label class="lb1">Chi tiết hoạt động</label>
+        <div class="dshoatdong">
+        <table class="tb" id="dshd" name="danhsachhd">
+            <tr>
+                <th>Tên hoạt động </th>
+                    @if (Model.Tenhoatdong != null)
+                    {
+                        <td>@Model.Tenhoatdong</td>
+                    }
+                    else
+                    {
+                        <td>Trống</td>
+                    }
+                </tr>
+            <tr>
+                <th>Lĩnh vực </th>
+                    @if ( Model.Linhvuc != null)
+                    {
+                        <td>@Model.Linhvuc</td>
+                    }
+                    else
+                    {
+                        <td>Trống</td>
+                    }
+            </tr>
+            <tr>
+                <th>Trạng thái</th>
+                    @if ( Model.Tinhtrang != null)
+                    {
+                        <td>@Model.Tinhtrang</td>
+                    }
+                    else
+                    {
+                        <td>Trống</td>
+                    }
+            </tr>
+            <tr>
+                <th> Địa điểm</th>
+                    @if ( Model.DiaDiem!= null )
+                    {
+                        <td>@Model.DiaDiem</td>
+                    }
+                    else
+                    {
+                        <td>Trống</td>
+                    }
+            </tr>
+            <tr>
+                <th>Thời gian bắt đầu </th>
+                    @if ( Model.Thoigianbatdau != null)
+                    {
+                        <td>@Model.Thoigianbatdau</td>
+                    }
+                    else
+                    {
+                        <td>Trống</td>
+                    }
+            </tr>
+            <tr>
+                <th>Đã chỉnh sửa </th>
+                    @if ( Model.Tgbdchinhsua != null && string.IsNullOrEmpty((Model.Tgbdchinhsua).ToString()))
+                    {
+                        <td>@Model.Tgbdchinhsua</td>
+                    }
+                    else
+                    {
+                        <td>Không có chỉnh sửa</td>
+                    }
+           </tr>
+            <tr>
+                <th>Thời gian kết thúc</th>
+                    @if ( Model.Thoigiaketthuc != null)
+                    {
+                        <td>@Model.Thoigiaketthuc</td>
+                    }
+                    else
+                    {
+                        <td>Trống</td>
+                    }
+            </tr>
+            <tr>
+                <th>Đã chỉnh sửa </th>
+                    @if (Model.Tgktchinhsua != null && string.IsNullOrEmpty((Model.Tgktchinhsua).ToString()))
+                    {
+                        <td>@Model.Tgktchinhsua</td>
+                    }
+                    else
+                    {
+                        <td>Không có chỉnh sửa</td>
+                    }
+            </tr>
+            <tr>
+                <th>Mục tiêu hoạt động </th>
+                    @if ( Model.MuctieuHd != null)
+                    {
+                        <td>@Model.MuctieuHd</td>
+                    }
+                    else
+                    {
+                        <td>Trống</td>
+                    }
+            </tr>
+          <tr>
+            <th>Đánh giá từ tổ chức</th>
+                    @if ( Model.Danhgiatutochuc != null)
+                    {
+                        <td>@Model.DiaDiem</td>
+                    }
+                    else
+                    {
+                        <td>Không có đánh giá</td>
+                    }
+           </tr>
+               
+
+
+            </table>
+        </div>
+      
+    </div>
+</body>
+</html>
+<style>
+    .container {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative; /* Cần thiết để sử dụng position absolute cho các phần tử con */
+        height: 1500px;
+    }
+
+    .lb1{
+        position: absolute;
+        left: 600px;
+        top: 160px;
+        font-size:40px;
+        font-family:Baloo;
+    }
+   
+    .tb{
+        border-collapse: collapse; /* Đảm bảo các ô không được tách biệt */
+        width: 1248px;
+    }
+
+    .dshoatdong {
+        position: absolute;
+        left: 96px;
+        top: 273px;
+        width: 1248px;
+        max-height: 700px;
+        overflow-y: scroll;
+        font-size: 16px;
+    }
+
+        .dshoatdong th, .dshoatdong td {
+            padding: 6px 10px; /* Thêm padding cho các ô */
+            text-align: center; /* Căn giữa văn bản trong ô */
+            border: 1px solid #ddd; /* Đường viền cho các ô */
+            height: 50px; /* Thiết lập chiều cao cho các hàng */
+
+        }
+
+        .dshoatdong th {
+            background-color: #f2f2f2; /* Màu nền cho hàng tiêu đề */
+        }
+
+        .dshoatdong tr:nth-child(even) {
+            background-color: #f9f9f9; /* Màu nền cho các hàng chẵn */
+        }
+
+        .dshoatdong tr:hover {
+            background-color: #ddd; /* Màu nền khi hover trên hàng */
+        }
+
+        .dshoatdong th, .dshoatdong td {
+            border: 1px solid #ddd; /* Đường viền cho các ô */
+        }
+
+  
+</style>
+
