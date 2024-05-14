@@ -1,0 +1,247 @@
+@model List<PBL3_QLHDTN.ViewModel.Hoatdong>
+@using PBL3_QLHDTN.Models
+@{
+    Layout = "~/Views/Shared/_LayoutTochuc.cshtml";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+
+    <title>Hoạt động cá nhân</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Baloo:wght@400&display=swap" />
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css2?family=Inter Da 2:wght@400&display=swap" />
+</head>
+<body>
+    <div class="container">
+        <div class="retangle1"></div>
+        <select class="cbbtinhtrang" id="cbbtinhtrang" name="cbbtinhtrang">
+            <option disabled selected hidden>Chọn tình trạng</option>
+            <option value="DDK">Đã đăng ký</option>
+            <option value="DDD">Đã được duyệt</option>
+            <option value="DTG">Đã tham gia</option>
+            <option value="DH">Đã hủy</option>
+        </select>
+        <select class="cbblinhvuc" id="cbblinhvuc" name="cbblinhvuc">
+            <option disabled selected hidden>Chọn lĩnh vực</option>
+            @foreach (var lv in ViewBag.Linhvuc)
+            {
+                <option value="@lv.Idlinhvuc">@lv.Linhvuc1</option>
+            }
+        </select>
+        <input class="thoigian" type="month" id="thoigian" name="thoigian">
+        <button class="hienthi" id="hienthi" name="hienthi">Hiển thị</button>
+        <div class="dshoatdong">
+            <table class="tb" id="dshd" name="danhsachhd">
+                <thead>
+                    <tr>
+                        <th>ID hoạt động</th>
+                        <th>Tên hoạt động</th>
+                        <th>Thời gian bắt đầu</th>
+                        <th>Thời gian kết thúc</th>
+                        <th>Thời gian bắt đầu đã chỉnh sửa</th>
+                        <th>Thời gian kết thúc đã chỉnh sửa</th>
+                        <th>Địa điểm</th>
+                        <th>Lĩnh vực</th>
+                        <th>Mục tiêu hoạt động</th>
+                        <th>Số lượng tình nguyện viên</th>
+                        <th>Tình trạng hoạt động</th>
+                        <th> Danh sách tình nguyện viên</th>
+                    </tr>
+                </thead>
+                @if (Model != null)
+                {
+                    <tbody>
+                        @foreach (var hoatDong in Model)
+                        {
+                            <tr>
+                                <td>@hoatDong.Idhoatdong</td>
+                                <td>@hoatDong.Tenhoatdong</td>
+                                @if (@hoatDong.Tgbdchinhsua != null)
+                                {
+                                    <td style="color:gainsboro">@hoatDong.Thoigianbatdau</td>
+
+                                }
+                                else
+                                {
+                                    <td>@hoatDong.Thoigianbatdau</td>
+                                }
+                                @if (@hoatDong.Tgktchinhsua != null)
+                                {
+                                    <td style="color:gainsboro">@hoatDong.Thoigiaketthuc</td>
+
+                                }
+                                else
+                                {
+                                    <td>@hoatDong.Thoigiaketthuc</td>
+                                }
+                                <td>@hoatDong.Tgbdchinhsua</td>
+                                <td>@hoatDong.Tgktchinhsua</td>
+                                <td>@hoatDong.DiaDiem</td>
+                                <td>@hoatDong.TenLV</td>
+                                <td>@hoatDong.MuctieuHd</td>
+                                <td>@hoatDong.Sltnvcan</td>
+                                <td>@hoatDong.Trangthai</td>
+                                <td><a href="/Tochuc/Danhsachtinhnguyenvien">Chi tiết</a></td>
+                            </tr>
+                        }
+                    </tbody>
+                }
+            </table>
+        </div>
+
+        <!-- <button class="Huydangky" id="huydangky" name="huydangky">Hủy đăng ký</button>-->
+        <div class="timkiemtenhoatdong">
+            <input type="text" class="search-input" placeholder="Nhập tên hoạt động">
+        </div>
+
+    </div>
+</body>
+</html>
+<style>
+    .container {
+        max-width: 1440px;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative; /* Cần thiết để sử dụng position absolute cho các phần tử con */
+        height: 1500px;
+    }
+
+
+    .retangle1 {
+        position: absolute;
+        top: 160px;
+        left: 0px;
+        height: 71px;
+        width: 1440px;
+        background-color: rgba(118, 234, 150, 0.36);
+    }
+
+    .cbbtinhtrang {
+        position: absolute;
+        left: 76px;
+        top: 177px;
+        font-size: 16px;
+        height: 39px;
+        ;
+        wight: 174px;
+        background-color: rgba(118, 234, 150, 0.85);
+    }
+
+    .cbblinhvuc {
+        position: absolute;
+        left: 286px;
+        top: 177px;
+        font-size: 16px;
+        height: 39px;
+        wight: 174px;
+        background-color: rgba(118, 234, 150, 0.85);
+    }
+
+    .thoigian {
+        position: absolute;
+        left: 476px;
+        top: 177px;
+        font-size: 16px;
+        height: 36px;
+        wight: 174px;
+        background-color: rgba(118, 234, 150, 0.85);
+    }
+
+    .hienthi {
+        position: absolute;
+        left: 1177px;
+        top: 177px;
+        height: 39px;
+        wight: 138px;
+        font-size: 22px;
+        font-weight: bold;
+        background-color: transparent;
+        border: none;
+        outline: none;
+    }
+
+    .timkiemtenhoatdong {
+        position: absolute;
+        left: 790px;
+        top: 178px;
+        width: 389px;
+        height: 47px;
+    }
+
+
+
+    .dshoatdong {
+        position: absolute;
+        left: 96px;
+        top: 273px;
+        width: 1248px;
+        max-height: 700px;
+        overflow-y: scroll;
+        font-size: 16px;
+    }
+
+    .tb {
+        border-collapse: collapse; /* Đảm bảo các ô không được tách biệt */
+    }
+
+    .dshoatdong th, .dshoatdong td {
+        padding: 6px 10px; /* Thêm padding cho các ô */
+        text-align: center; /* Căn giữa văn bản trong ô */
+        border: 1px solid #ddd; /* Đường viền cho các ô */
+        height: 50px; /* Thiết lập chiều cao cho các hàng */
+    }
+
+    .dshoatdong th {
+        background-color: #f2f2f2; /* Màu nền cho hàng tiêu đề */
+    }
+
+    .dshoatdong tr:nth-child(even) {
+        background-color: #f9f9f9; /* Màu nền cho các hàng chẵn */
+    }
+
+    .dshoatdong tr:hover {
+        background-color: #ddd; /* Màu nền khi hover trên hàng */
+    }
+
+    .dshoatdong th, .dshoatdong td {
+        border: 1px solid #ddd; /* Đường viền cho các ô */
+    }
+
+    .lb1 {
+        position: absolute;
+        left: 99px;
+        top: 784px;
+        width: 413px;
+        height: 43px;
+        font-size: 16px;
+    }
+
+    .lb2 {
+        font-size: 40px;
+        position: absolute;
+        left: 550px;
+        top: 1000px;
+    }
+
+    .huy {
+        font-size: 30px;
+        color: red;
+    }
+    /*  .Huydangky {
+            position: absolute;
+            left: 1175px;
+            top: 1100px;
+            width: 170px;
+            height: 50px;
+            font-size: 20px;
+            background-color: gainsboro;
+            border-radius: 5px;
+        }*/
+</style>
+
