@@ -1,85 +1,125 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using PBL3_demo1.Models;
-using PBL3_demo1.Viewmodel;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
+using PBL3_QLHDTN.Models;
+using PBL3_QLHDTN.ViewModel;
+using System;
+using System.Globalization;
+using System.Net;
 
-namespace PBL3_demo1.Controllers
+namespace PBL3_QLHDTN.Controllers
 {
     public class TochucController : Controller
     {
-        public int IDhoatdong;
-        HdtnContext _db = new HdtnContext();
-        public static   int? IDtochuc;
+        QlhdtnContext db = new QlhdtnContext();
+
         public IActionResult Trangchutochuc()
         {
-            listHD = ListDS();
+
             return View();
         }
         public IActionResult TaoHD()
         {
-            return View();
+            var LV = db.Linhvucs
+               .Select(n => n.Linhvuc1).ToList();
+            var ketqua = new LinhvucView
+            {
+                TenLV = LV,
+            };
+            return View(ketqua);
         }
-        [HttpPost]
-        public IActionResult TaoHD(string TenHD, string TGBD, string TGKT, string DiaDiem,
-            string LinhVuc, string ThongDiep, string SL, string action)
+        public int LayIDLV(string tenLV)
         {
 
-            TenHD = Request.Form["TenHD"];
-            TGBD = Request.Form["TGBD"];
-            TGKT = Request.Form["TGKT"];
-            DiaDiem = Request.Form["DiaDiem"];
-            LinhVuc = Request.Form["LinhVuc"];
-            ThongDiep = Request.Form["ThongDiep"];
-
-           IDtochuc = HttpContext.Session.GetInt32("UserID");
-
-            if (string.IsNullOrEmpty(TenHD) || string.IsNullOrEmpty(TGBD) || string.IsNullOrEmpty(TGKT) ||
-                string.IsNullOrEmpty(DiaDiem) || string.IsNullOrEmpty(LinhVuc) ||
-                string.IsNullOrEmpty(ThongDiep)||string.IsNullOrEmpty(SL))
+            int idLinhVuc = -1; // Giả sử mặc định không tìm thấy
+            using (var context = new QlhdtnContext())
             {
-                
+                var linhVuc = context.Linhvucs.FirstOrDefault(lv => lv.Linhvuc1 == tenLV);
+                if (linhVuc != null)
+                {
+                    idLinhVuc = linhVuc.Idlinhvuc;
+                }
+            }
+
+            return idLinhVuc;
+        }
+        [HttpPost]
+        public IActionResult TaoHD(string TenHD, string QuanHuyen, string PhuongXa, string linhvuc, DateOnly TGBD, DateOnly TGKT)
+        {
+            var Lv = db.Linhvucs
+               .Select(n => n.Linhvuc1).ToList();
+            var ketqua = new LinhvucView
+            {
+                TenLV = Lv,
+            };
+            TenHD = Request.Form["TenHD"];
+            string DiaDiem = Request.Form["DiaDiem"] + " Phường " + PhuongXa + " Quận " + QuanHuyen;
+            string LV = linhvuc;
+            string Muctieu = Request.Form["ThongDiep"];
+            string SL = Int32.Parse(Request.Form["SL"]).ToString();
+
+            int? IDTC = HttpContext.Session.GetInt32("UserID");
+
+
+            if (string.IsNullOrEmpty(TenHD) || TGBD == default(DateOnly) || TGKT == default(DateOnly) ||
+                string.IsNullOrEmpty(DiaDiem) || string.IsNullOrEmpty(LV) ||
+                string.IsNullOrEmpty(Muctieu) || string.IsNullOrEmpty(SL))
+            {
                 ViewBag.thongbao = "Vui lòng nhập đầy đủ thông tin.";
-                return View();
+                return View(ketqua);
             }
             else
             {
-                SL = Int32.Parse(Request.Form["SL"]).ToString();
-                var hd = new Hoatdong
+                var hd = new Models.Hoatdong
                 {
-                    Idtochuc = IDtochuc,
-                    Tongsotnvcan =Convert.ToInt32(SL),
+                    Idtochuc = IDTC,
+                    Sltnvcan = Convert.ToInt32(SL),
                     Trangthai = 0,
                 };
-                _db.Hoatdongs.Add(hd);
-                _db.SaveChanges();
-                IDhoatdong = hd.Idhoatdong;
+                db.Hoatdongs.Add(hd);
+                db.SaveChanges();
+                HttpContext.Session.SetInt32("IDhoatdong", hd.Idhoatdong);
                 var motahd = new MotaHd
                 {
                     Idhoatdong = hd.Idhoatdong,
                     Tenhoatdong = TenHD,
-                    Linhvuc = LinhVuc,
-                    Diadiem = DiaDiem,
-                    Muctieuhoatdong = ThongDiep,
-
+                    Linhvuc = LayIDLV(LV),
+                    DiaDiem = DiaDiem,
+                    MuctieuHd = Muctieu,
+                    Thoigianbatdau = TGBD,
+                    Thoigiaketthuc = TGKT,
                 };
-                _db.MotaHds.Add(motahd);
-                return View();
-                ViewBag.thongbao = "Tao hoat dong thanh cong";
-
+                db.MotaHds.Add(motahd);
+                db.SaveChanges();
+                return Redirect("Themban");
             }
         }
-        public IActionResult Themban() { 
-            string tenban= Request.Form["Tenban"];
-            string Sl= Request.Form["SLBan"];
-            string Nhiemvu= Request.Form["Nhiemvu"];
-            string Yeucau=Request.Form["Yeucau"];
-            if(string.IsNullOrEmpty(tenban)|| string.IsNullOrEmpty(Sl))
+        public IActionResult Themban()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult Themban(string TenHD)
+        {
+            int? IDhoatdong = HttpContext.Session.GetInt32("IDhoatdong");
+            string tenban = Request.Form["Tenban"];
+            string Sl = Request.Form["SLBan"];
+            string Nhiemvu = Request.Form["Nhiemvu"];
+            string Yeucau = Request.Form["Yeucau"];
+            if (string.IsNullOrEmpty(tenban) || string.IsNullOrEmpty(Sl))
             {
-                ViewBag.thongbao("Vui lòng nhập tên ban vầ số lượng tình nguyện viên của ban");
-                return Redirect("/Tochuc/TaoHD");
+                ViewBag.thongbao("Vui lòng nhập tên ban và số lượng tình nguyện viên của ban");
+                var ketqua = (from yeucau in db.YeucauTnvs
+                              where yeucau.Idhoatdong == IDhoatdong
+                              select new ViewModel.banHD
+                              {
+                                  Tenban = yeucau.Tenban,
+                                  Sltnvcan = yeucau.Sltnvcan,
+                                  Nhiemvu = yeucau.Nhiemvu,
+                                  Yeucau = yeucau.Yeucau,
+                              }).ToList();
+
+                return View(ketqua);
             }
             else
             {
@@ -90,107 +130,780 @@ namespace PBL3_demo1.Controllers
                     Nhiemvu = Nhiemvu,
                     Yeucau = Yeucau,
                     Sltnvcan = Convert.ToInt32(Sl),
-                    Sltnvddk=0,
+                    Sltnvdk = 0,
                 };
-                _db.YeucauTnvs.Add(yc); 
-                _db.SaveChanges();
-
-            }
-            return Redirect("/Tochuc/TaoHD");
-
-        }
-         public static List<HD> listHD = new List<HD>();
-
-        public static List<HD> ListDS()
-        {
-            HD u = new HD();
-            var hd = new Hoatdong { };
-            if (hd.Idtochuc == IDtochuc)
-            {
-                u.Idtochuc = IDtochuc;
-                u.Idhoatdong = hd.Idhoatdong;
-                var mota = new MotaHd { };
-                if (hd.Idhoatdong == mota.Idhoatdong)
+                var u = db.YeucauTnvs
+                .Where(ycau => ycau.Idhoatdong.Equals(IDhoatdong) && ycau.Tenban.Equals(tenban))
+                .Select(ycau => new { IDhoatdong = IDhoatdong, tenban = tenban })
+                .FirstOrDefault();
+                if (u == null)
                 {
-                    u.Tenhoatdong = mota.Tenhoatdong;
-                    u.Thoigianbatdau = mota.Thoigianbatdau;
-                    u.Thoigianketthuc = mota.Thoigianketthuc;
+                    db.YeucauTnvs.Add(yc);
+                    db.SaveChanges();
+                    ViewBag.thongbao = "Tạo ban thành công";
                 }
+                else
+                {
+                    ViewBag.thongbao = "Ban " + u.tenban + " đã tồn tại";
+                }
+                var ketqua = (from yeucau in db.YeucauTnvs
+                              where yeucau.Idhoatdong == IDhoatdong
+                              select new ViewModel.banHD
+                              {
+                                  Tenban = yeucau.Tenban,
+                                  Sltnvcan = yeucau.Sltnvcan,
+                                  Nhiemvu = yeucau.Nhiemvu,
+                                  Yeucau = yeucau.Yeucau,
+                              }).ToList();
 
-
-            };
-            listHD.Add(u);  
-            return listHD;
+                return View(ketqua);
+            }
         }
+
         public IActionResult DSHD()
         {
-           
-            return View();
+            var linhvuc = db.Linhvucs.ToList();
+            ViewBag.linhvuc = linhvuc;
+
+            int? IDTC = HttpContext.Session.GetInt32("UserID");
+            var ketqua = (from hd in db.Hoatdongs
+                          join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                          join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                          join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                          where hd.Idtochuc == IDTC
+                          select new ViewModel.Hoatdong
+                          {
+                              Idhoatdong = hd.Idhoatdong,
+                              Tenhoatdong = mt.Tenhoatdong,
+                              Thoigianbatdau = mt.Thoigianbatdau,
+                              Thoigiaketthuc = mt.Thoigiaketthuc,
+                              Tgbdchinhsua = mt.Tgbdchinhsua,
+                              Tgktchinhsua=mt.Tgktchinhsua,
+                              DiaDiem=mt.DiaDiem,
+                              TenLV=lv.Linhvuc1,
+                              MuctieuHd=mt.MuctieuHd,
+                              Sltnvcan=hd.Sltnvcan,
+                              Trangthai = tt.Trangthai,
+                          }).ToList();
+
+            return View(ketqua);
+
         }
-        public IActionResult ChitietHD()
+        public int LayIDTT(string tenTT)
         {
-            return View();
+
+            int idTT = -1; // Giả sử mặc định không tìm thấy
+            using (var context = new QlhdtnContext())
+            {
+                var tt = context.TrangthaiHds.FirstOrDefault(lv => lv.Trangthai == tenTT);
+                if (tt != null)
+                {
+                    idTT = tt.Idtrangthai;
+                }
+            }
+
+            return idTT;
         }
         [HttpPost]
-        public IActionResult ChitietHD(string TenHD) {
-            // int hoatdongID = HttpContext.Session.GetInt32("ID_HD");
-            int hoatdongID = 16;
-                var u = _db.MotaHds.Where(model => model.Idhoatdong.Equals(hoatdongID)).Select(model =>
-                    new {
-                        Tenhoatdong = model.Tenhoatdong,
-                        Thoigianbatdau = model.Thoigianbatdau,
-                        Thoigianketthuc = model.Thoigianketthuc,
-                        Diadiem = model.Diadiem,
-                        Linhvuc = model.Linhvuc,
-                        Muctieu = model.Muctieuhoatdong
-                    }).FirstOrDefault();
-                if (u != null)
+        public IActionResult DSHD(string cbbtinhtrang, string cbblinhvuc, string thoigian,string tenhoatdong)
+        {
+            var linhvuc = db.Linhvucs.ToList();
+            ViewBag.linhvuc = linhvuc;
+            tenhoatdong= Request.Form["Tenhoatdong"];
+            int? IDTC = HttpContext.Session.GetInt32("UserID");
+            /*DateOnly thoigianDate;
+            DateOnly.TryParseExact(thoigian, "MM/yyyy", null, System.Globalization.DateTimeStyles.None, out thoigianDate);*/
+            
+            if (cbbtinhtrang == null)
+            {
+                if (cbblinhvuc == null && thoigian == null)
                 {
-                    ViewBag.Tenhoatdong = u.Tenhoatdong.ToString();
-                    ViewBag.Thoigianbatdau = u.Thoigianbatdau.ToString();
-                    ViewBag.Thoigianketthuc = u.Thoigianketthuc.ToString();
-                    ViewBag.Diadiem = u.Diadiem.ToString();
-                    ViewBag.Linhvuc = u.Linhvuc.ToString();
-                    ViewBag.Muctieu = u.Muctieu.ToString();
+                    if (string.IsNullOrEmpty(tenhoatdong) == false)
+                    { 
+                        var ketqua = (from hd in db.Hoatdongs
+                                      join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                      join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                      join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                      where hd.Idtochuc == IDTC && mt.Tenhoatdong == tenhoatdong
+                                      select new ViewModel.Hoatdong
+                                      {
+                                          Idhoatdong = hd.Idhoatdong,
+                                          Tenhoatdong = mt.Tenhoatdong,
+                                          Thoigianbatdau = mt.Thoigianbatdau,
+                                          Thoigiaketthuc = mt.Thoigiaketthuc,
+                                          Tgbdchinhsua = mt.Tgbdchinhsua,
+                                          Tgktchinhsua = mt.Tgktchinhsua,
+                                          DiaDiem = mt.DiaDiem,
+                                          TenLV = lv.Linhvuc1,
+                                          MuctieuHd = mt.MuctieuHd,
+                                          Sltnvcan = hd.Sltnvcan,
+                                          Trangthai = tt.Trangthai,
+                                      }).ToList();
+
+                        return View(ketqua);
+                    }
+                    else
+                    {
+                        var ketqua = (from hd in db.Hoatdongs
+                                      join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                      join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                      join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                      where hd.Idtochuc == IDTC
+                                      select new ViewModel.Hoatdong
+                                      {
+                                          Idhoatdong = hd.Idhoatdong,
+                                          Tenhoatdong = mt.Tenhoatdong,
+                                          Thoigianbatdau = mt.Thoigianbatdau,
+                                          Thoigiaketthuc = mt.Thoigiaketthuc,
+                                          Tgbdchinhsua = mt.Tgbdchinhsua,
+                                          Tgktchinhsua = mt.Tgktchinhsua,
+                                          DiaDiem = mt.DiaDiem,
+                                          TenLV = lv.Linhvuc1,
+                                          MuctieuHd = mt.MuctieuHd,
+                                          Sltnvcan = hd.Sltnvcan,
+                                          Trangthai = tt.Trangthai,
+                                      }).ToList();
+
+                        return View(ketqua);
+                    }
                 }
-                var soluong = _db.Hoatdongs.Where(model => model.Idhoatdong.Equals(hoatdongID)).ToList().Count();
-                ViewBag.Tongsotnvcan = soluong;
-                var cacBan = _db.YeucauTnvs
-                        .Where(model => model.Idhoatdong == hoatdongID)
-                        .Select(model => model.Tenban)
-                        .ToList();
-                ViewBag.ListCacban = cacBan;
+                if (cbblinhvuc != null && thoigian==null)
+                {
+                    if (string.IsNullOrEmpty(tenhoatdong) == false)
+                    {
+                        var ketqua = (from hd in db.Hoatdongs
+                                      join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                      join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                      join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                      where hd.Idtochuc == IDTC && mt.Linhvuc == Convert.ToInt32(cbblinhvuc)
+                                      && mt.Tenhoatdong==tenhoatdong
+                                      select new ViewModel.Hoatdong
+                                      {
+                                          Idhoatdong = hd.Idhoatdong,
+                                          Tenhoatdong = mt.Tenhoatdong,
+                                          Thoigianbatdau = mt.Thoigianbatdau,
+                                          Thoigiaketthuc = mt.Thoigiaketthuc,
+                                          Tgbdchinhsua = mt.Tgbdchinhsua,
+                                          Tgktchinhsua = mt.Tgktchinhsua,
+                                          DiaDiem = mt.DiaDiem,
+                                          TenLV = lv.Linhvuc1,
+                                          MuctieuHd = mt.MuctieuHd,
+                                          Sltnvcan = hd.Sltnvcan,
+                                          Trangthai = tt.Trangthai,
+                                      }).ToList();
 
-                return View();
+                        return View(ketqua);
+                    }
+                    else
+                    {
+                        var ketqua = (from hd in db.Hoatdongs
+                                      join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                      join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                      join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                      where hd.Idtochuc == IDTC && mt.Linhvuc == Convert.ToInt32(cbblinhvuc)
+                                      select new ViewModel.Hoatdong
+                                      {
+                                          Idhoatdong = hd.Idhoatdong,
+                                          Tenhoatdong = mt.Tenhoatdong,
+                                          Thoigianbatdau = mt.Thoigianbatdau,
+                                          Thoigiaketthuc = mt.Thoigiaketthuc,
+                                          Tgbdchinhsua = mt.Tgbdchinhsua,
+                                          Tgktchinhsua = mt.Tgktchinhsua,
+                                          DiaDiem = mt.DiaDiem,
+                                          TenLV = lv.Linhvuc1,
+                                          MuctieuHd = mt.MuctieuHd,
+                                          Sltnvcan = hd.Sltnvcan,
+                                          Trangthai = tt.Trangthai,
+                                      }).ToList();
+
+                        return View(ketqua);
+                    }
+                }
+                if(cbblinhvuc==null && thoigian != null)
+                {
+                    DateTime startday = DateTime.Parse(thoigian);
+                    DateTime endday = startday.AddMonths(1).AddDays(-1);
+                    ViewBag.thongbao = "THD"+tenhoatdong;
+                    if (string.IsNullOrEmpty(tenhoatdong)==true)
+                    {
+                      
+                        var hoatdong = (from hd in db.Hoatdongs
+                                        join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                        join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                        join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                        where hd.Idtochuc == IDTC
+                                        select new ViewModel.Hoatdong
+                                        {
+                                            Idhoatdong = hd.Idhoatdong,
+                                            Tenhoatdong = mt.Tenhoatdong,
+                                            Thoigianbatdau = mt.Thoigianbatdau,
+                                            Thoigiaketthuc = mt.Thoigiaketthuc,
+                                            Tgbdchinhsua = mt.Tgbdchinhsua,
+                                            Tgktchinhsua = mt.Tgktchinhsua,
+                                            DiaDiem = mt.DiaDiem,
+                                            TenLV = lv.Linhvuc1,
+                                            MuctieuHd = mt.MuctieuHd,
+                                            Sltnvcan = hd.Sltnvcan,
+                                            Trangthai = tt.Trangthai,
+                                        }).ToList();
+                        List<ViewModel.Hoatdong> ketqua = new List<ViewModel.Hoatdong>();
+                        foreach (var i in hoatdong)
+                        {
+                            DateOnly? TGBD;
+                            if (i.Tgbdchinhsua != null)
+                            {
+                                TGBD = i.Tgbdchinhsua;
+                            }
+                            else TGBD = i.Thoigianbatdau;
+                            DateOnly? TGKT;
+                            if (i.Tgktchinhsua != null)
+                            {
+                                TGKT = i.Tgktchinhsua;
+                            }
+                            else TGKT = i.Thoigiaketthuc;
+                            DateTime tgbd;
+                            DateTime tgkt;
+                            DateTime.TryParseExact(TGBD.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgbd);
+                            DateTime.TryParseExact(TGKT.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgkt);
+                            int ss1 = startday.CompareTo(tgbd);
+                            int ss2 = endday.CompareTo(tgbd);
+                            int ss3 = startday.CompareTo(tgkt);
+                            int ss4 = endday.CompareTo(tgkt);
+                            if ((ss1 < 0 && ss2 > 0) || (ss3 < 0 && ss4 > 0))
+                            {
+                                ketqua.Add(i);
+                            }
+
+                        }
+
+                        return View(ketqua);
+                    }
+                    else
+                    {
+                        var hoatdong = (from hd in db.Hoatdongs
+                                        join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                        join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                        join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                        where hd.Idtochuc == IDTC && mt.Tenhoatdong==tenhoatdong
+                                        select new ViewModel.Hoatdong
+                                        {
+                                            Idhoatdong = hd.Idhoatdong,
+                                            Tenhoatdong = mt.Tenhoatdong,
+                                            Thoigianbatdau = mt.Thoigianbatdau,
+                                            Thoigiaketthuc = mt.Thoigiaketthuc,
+                                            Tgbdchinhsua = mt.Tgbdchinhsua,
+                                            Tgktchinhsua = mt.Tgktchinhsua,
+                                            DiaDiem = mt.DiaDiem,
+                                            TenLV = lv.Linhvuc1,
+                                            MuctieuHd = mt.MuctieuHd,
+                                            Sltnvcan = hd.Sltnvcan,
+                                            Trangthai = tt.Trangthai,
+                                        }).ToList();
+                        List<ViewModel.Hoatdong> ketqua = new List<ViewModel.Hoatdong>();
+                        foreach (var i in hoatdong)
+                        {
+                            DateOnly? TGBD;
+                            if (i.Tgbdchinhsua != null)
+                            {
+                                TGBD = i.Tgbdchinhsua;
+                            }
+                            else TGBD = i.Thoigianbatdau;
+                            DateOnly? TGKT;
+                            if (i.Tgktchinhsua != null)
+                            {
+                                TGKT = i.Tgktchinhsua;
+                            }
+                            else TGKT = i.Thoigiaketthuc;
+                            DateTime tgbd;
+                            DateTime tgkt;
+                            DateTime.TryParseExact(TGBD.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgbd);
+                            DateTime.TryParseExact(TGKT.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgkt);
+                            int ss1 = startday.CompareTo(tgbd);
+                            int ss2 = endday.CompareTo(tgbd);
+                            int ss3 = startday.CompareTo(tgkt);
+                            int ss4 = endday.CompareTo(tgkt);
+                            if ((ss1 < 0 && ss2 > 0) || (ss3 < 0 && ss4 > 0))
+                            {
+                                ketqua.Add(i);
+                            }
+
+                        }
+
+                        return View(ketqua);
+                    }
+
+                }
+                if(cbblinhvuc != null && thoigian != null)
+                {
+                    DateTime startday = DateTime.Parse(thoigian);
+                    DateTime endday = startday.AddMonths(1).AddDays(-1);
+                    if (string.IsNullOrEmpty(tenhoatdong) == true)
+                    {
+                        var hoatdong = (from hd in db.Hoatdongs
+                                        join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                        join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                        join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                        where hd.Idtochuc == IDTC && mt.Linhvuc == Convert.ToInt32(cbblinhvuc)
+                                        select new ViewModel.Hoatdong
+                                        {
+                                            Idhoatdong = hd.Idhoatdong,
+                                            Tenhoatdong = mt.Tenhoatdong,
+                                            Thoigianbatdau = mt.Thoigianbatdau,
+                                            Thoigiaketthuc = mt.Thoigiaketthuc,
+                                            Tgbdchinhsua = mt.Tgbdchinhsua,
+                                            Tgktchinhsua = mt.Tgktchinhsua,
+                                            DiaDiem = mt.DiaDiem,
+                                            TenLV = lv.Linhvuc1,
+                                            MuctieuHd = mt.MuctieuHd,
+                                            Sltnvcan = hd.Sltnvcan,
+                                            Trangthai = tt.Trangthai,
+                                        }).ToList();
+                        List<ViewModel.Hoatdong> ketqua = new List<ViewModel.Hoatdong>();
+                        foreach (var i in hoatdong)
+                        {
+                            DateOnly? TGBD;
+                            if (i.Tgbdchinhsua != null)
+                            {
+                                TGBD = i.Tgbdchinhsua;
+                            }
+                            else TGBD = i.Thoigianbatdau;
+                            DateOnly? TGKT;
+                            if (i.Tgktchinhsua != null)
+                            {
+                                TGKT = i.Tgktchinhsua;
+                            }
+                            else TGKT = i.Thoigiaketthuc;
+                            DateTime tgbd;
+                            DateTime tgkt;
+                            DateTime.TryParseExact(TGBD.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgbd);
+                            DateTime.TryParseExact(TGKT.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgkt);
+                            int ss1 = startday.CompareTo(tgbd);
+                            int ss2 = endday.CompareTo(tgbd);
+                            int ss3 = startday.CompareTo(tgkt);
+                            int ss4 = endday.CompareTo(tgkt);
+                            if ((ss1 < 0 && ss2 > 0) || (ss3 < 0 && ss4 > 0))
+                            {
+                                ketqua.Add(i);
+                            }
+
+                        }
+
+                        return View(ketqua);
+                    }
+                    else
+                    {
+                        var hoatdong = (from hd in db.Hoatdongs
+                                        join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                        join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                        join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                        where hd.Idtochuc == IDTC && mt.Linhvuc == Convert.ToInt32(cbblinhvuc)
+                                        && mt.Tenhoatdong==tenhoatdong
+                                        select new ViewModel.Hoatdong
+                                        {
+                                            Idhoatdong = hd.Idhoatdong,
+                                            Tenhoatdong = mt.Tenhoatdong,
+                                            Thoigianbatdau = mt.Thoigianbatdau,
+                                            Thoigiaketthuc = mt.Thoigiaketthuc,
+                                            Tgbdchinhsua = mt.Tgbdchinhsua,
+                                            Tgktchinhsua = mt.Tgktchinhsua,
+                                            DiaDiem = mt.DiaDiem,
+                                            TenLV = lv.Linhvuc1,
+                                            MuctieuHd = mt.MuctieuHd,
+                                            Sltnvcan = hd.Sltnvcan,
+                                            Trangthai = tt.Trangthai,
+                                        }).ToList();
+                        List<ViewModel.Hoatdong> ketqua = new List<ViewModel.Hoatdong>();
+                        foreach (var i in hoatdong)
+                        {
+                            DateOnly? TGBD;
+                            if (i.Tgbdchinhsua != null)
+                            {
+                                TGBD = i.Tgbdchinhsua;
+                            }
+                            else TGBD = i.Thoigianbatdau;
+                            DateOnly? TGKT;
+                            if (i.Tgktchinhsua != null)
+                            {
+                                TGKT = i.Tgktchinhsua;
+                            }
+                            else TGKT = i.Thoigiaketthuc;
+                            DateTime tgbd;
+                            DateTime tgkt;
+                            DateTime.TryParseExact(TGBD.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgbd);
+                            DateTime.TryParseExact(TGKT.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgkt);
+                            int ss1 = startday.CompareTo(tgbd);
+                            int ss2 = endday.CompareTo(tgbd);
+                            int ss3 = startday.CompareTo(tgkt);
+                            int ss4 = endday.CompareTo(tgkt);
+                            if ((ss1 < 0 && ss2 > 0) || (ss3 < 0 && ss4 > 0))
+                            {
+                                ketqua.Add(i);
+                            }
+
+                        }
+
+                        return View(ketqua);
+                    }
+                }              
             }
-        
-        public IActionResult DSTNV()
-        {
+            else
+            {
+                if (cbblinhvuc == null && thoigian == null)
+                {
+                    if (string.IsNullOrEmpty(tenhoatdong)==false)
+                    {
+                        var ketqua = (from hd in db.Hoatdongs
+                                      join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                      join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                      join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                      where hd.Idtochuc == IDTC && mt.Tenhoatdong == tenhoatdong
+                                      && hd.Trangthai==LayIDTT(cbbtinhtrang)
+                                      select new ViewModel.Hoatdong
+                                      {
+                                          Idhoatdong = hd.Idhoatdong,
+                                          Tenhoatdong = mt.Tenhoatdong,
+                                          Thoigianbatdau = mt.Thoigianbatdau,
+                                          Thoigiaketthuc = mt.Thoigiaketthuc,
+                                          Tgbdchinhsua = mt.Tgbdchinhsua,
+                                          Tgktchinhsua = mt.Tgktchinhsua,
+                                          DiaDiem = mt.DiaDiem,
+                                          TenLV = lv.Linhvuc1,
+                                          MuctieuHd = mt.MuctieuHd,
+                                          Sltnvcan = hd.Sltnvcan,
+                                          Trangthai = tt.Trangthai,
+                                      }).ToList();
+
+                        return View(ketqua);
+                    }
+                    else
+                    {
+                        ViewBag.thongbao=LayIDTT(cbbtinhtrang);
+                        var ketqua = (from hd in db.Hoatdongs
+                                      join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                      join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                      join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                      where hd.Idtochuc == IDTC
+                                      && hd.Trangthai == LayIDTT(cbbtinhtrang)
+                                      select new ViewModel.Hoatdong
+                                      {
+                                          Idhoatdong = hd.Idhoatdong,
+                                          Tenhoatdong = mt.Tenhoatdong,
+                                          Thoigianbatdau = mt.Thoigianbatdau,
+                                          Thoigiaketthuc = mt.Thoigiaketthuc,
+                                          Tgbdchinhsua = mt.Tgbdchinhsua,
+                                          Tgktchinhsua = mt.Tgktchinhsua,
+                                          DiaDiem = mt.DiaDiem,
+                                          TenLV = lv.Linhvuc1,
+                                          MuctieuHd = mt.MuctieuHd,
+                                          Sltnvcan = hd.Sltnvcan,
+                                          Trangthai = tt.Trangthai,
+                                      }).ToList();
+
+                        return View(ketqua);
+                    }
+                }
+                if (cbblinhvuc != null && thoigian == null)
+                {
+                    if (string.IsNullOrEmpty(tenhoatdong)==false)
+                    {
+                        var ketqua = (from hd in db.Hoatdongs
+                                      join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                      join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                      join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                      where hd.Idtochuc == IDTC && mt.Linhvuc == Convert.ToInt32(cbblinhvuc)
+                                      && mt.Tenhoatdong == tenhoatdong && hd.Trangthai == LayIDTT(cbbtinhtrang)
+                                      select new ViewModel.Hoatdong
+                                      {
+                                          Idhoatdong = hd.Idhoatdong,
+                                          Tenhoatdong = mt.Tenhoatdong,
+                                          Thoigianbatdau = mt.Thoigianbatdau,
+                                          Thoigiaketthuc = mt.Thoigiaketthuc,
+                                          Tgbdchinhsua = mt.Tgbdchinhsua,
+                                          Tgktchinhsua = mt.Tgktchinhsua,
+                                          DiaDiem = mt.DiaDiem,
+                                          TenLV = lv.Linhvuc1,
+                                          MuctieuHd = mt.MuctieuHd,
+                                          Sltnvcan = hd.Sltnvcan,
+                                          Trangthai = tt.Trangthai,
+                                      }).ToList();
+
+                        return View(ketqua);
+                    }
+                    else
+                    {
+                        var ketqua = (from hd in db.Hoatdongs
+                                      join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                      join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                      join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                      where hd.Idtochuc == IDTC && mt.Linhvuc == Convert.ToInt32(cbblinhvuc)
+                                      && hd.Trangthai == LayIDTT(cbbtinhtrang)
+                                      select new ViewModel.Hoatdong
+                                      {
+                                          Idhoatdong = hd.Idhoatdong,
+                                          Tenhoatdong = mt.Tenhoatdong,
+                                          Thoigianbatdau = mt.Thoigianbatdau,
+                                          Thoigiaketthuc = mt.Thoigiaketthuc,
+                                          Tgbdchinhsua = mt.Tgbdchinhsua,
+                                          Tgktchinhsua = mt.Tgktchinhsua,
+                                          DiaDiem = mt.DiaDiem,
+                                          TenLV = lv.Linhvuc1,
+                                          MuctieuHd = mt.MuctieuHd,
+                                          Sltnvcan = hd.Sltnvcan,
+                                          Trangthai = tt.Trangthai,
+                                      }).ToList();
+
+                        return View(ketqua);
+                    }
+                }
+                if (cbblinhvuc == null && thoigian != null)
+                {
+                    DateTime startday = DateTime.Parse(thoigian);
+                    DateTime endday = startday.AddMonths(1).AddDays(-1);
+                    ViewBag.thongbao = "THD" + tenhoatdong;
+                    if (string.IsNullOrEmpty(tenhoatdong) == true)
+                    {
+
+                        var hoatdong = (from hd in db.Hoatdongs
+                                        join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                        join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                        join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                        where hd.Idtochuc == IDTC && hd.Trangthai == LayIDTT(cbbtinhtrang)
+                                        select new ViewModel.Hoatdong
+                                        {
+                                            Idhoatdong = hd.Idhoatdong,
+                                            Tenhoatdong = mt.Tenhoatdong,
+                                            Thoigianbatdau = mt.Thoigianbatdau,
+                                            Thoigiaketthuc = mt.Thoigiaketthuc,
+                                            Tgbdchinhsua = mt.Tgbdchinhsua,
+                                            Tgktchinhsua = mt.Tgktchinhsua,
+                                            DiaDiem = mt.DiaDiem,
+                                            TenLV = lv.Linhvuc1,
+                                            MuctieuHd = mt.MuctieuHd,
+                                            Sltnvcan = hd.Sltnvcan,
+                                            Trangthai = tt.Trangthai,
+                                        }).ToList();
+                        List<ViewModel.Hoatdong> ketqua = new List<ViewModel.Hoatdong>();
+                        foreach (var i in hoatdong)
+                        {
+                            DateOnly? TGBD;
+                            if (i.Tgbdchinhsua != null)
+                            {
+                                TGBD = i.Tgbdchinhsua;
+                            }
+                            else TGBD = i.Thoigianbatdau;
+                            DateOnly? TGKT;
+                            if (i.Tgktchinhsua != null)
+                            {
+                                TGKT = i.Tgktchinhsua;
+                            }
+                            else TGKT = i.Thoigiaketthuc;
+                            DateTime tgbd;
+                            DateTime tgkt;
+                            DateTime.TryParseExact(TGBD.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgbd);
+                            DateTime.TryParseExact(TGKT.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgkt);
+                            int ss1 = startday.CompareTo(tgbd);
+                            int ss2 = endday.CompareTo(tgbd);
+                            int ss3 = startday.CompareTo(tgkt);
+                            int ss4 = endday.CompareTo(tgkt);
+                            if ((ss1 < 0 && ss2 > 0) || (ss3 < 0 && ss4 > 0))
+                            {
+                                ketqua.Add(i);
+                            }
+
+                        }
+
+                        return View(ketqua);
+                    }
+                    else
+                    {
+                        var hoatdong = (from hd in db.Hoatdongs
+                                        join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                        join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                        join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                        where hd.Idtochuc == IDTC && mt.Tenhoatdong == tenhoatdong
+                                        && hd.Trangthai == LayIDTT(cbbtinhtrang)
+                                        select new ViewModel.Hoatdong
+                                        {
+                                            Idhoatdong = hd.Idhoatdong,
+                                            Tenhoatdong = mt.Tenhoatdong,
+                                            Thoigianbatdau = mt.Thoigianbatdau,
+                                            Thoigiaketthuc = mt.Thoigiaketthuc,
+                                            Tgbdchinhsua = mt.Tgbdchinhsua,
+                                            Tgktchinhsua = mt.Tgktchinhsua,
+                                            DiaDiem = mt.DiaDiem,
+                                            TenLV = lv.Linhvuc1,
+                                            MuctieuHd = mt.MuctieuHd,
+                                            Sltnvcan = hd.Sltnvcan,
+                                            Trangthai = tt.Trangthai,
+                                        }).ToList();
+                        List<ViewModel.Hoatdong> ketqua = new List<ViewModel.Hoatdong>();
+                        foreach (var i in hoatdong)
+                        {
+                            DateOnly? TGBD;
+                            if (i.Tgbdchinhsua != null)
+                            {
+                                TGBD = i.Tgbdchinhsua;
+                            }
+                            else TGBD = i.Thoigianbatdau;
+                            DateOnly? TGKT;
+                            if (i.Tgktchinhsua != null)
+                            {
+                                TGKT = i.Tgktchinhsua;
+                            }
+                            else TGKT = i.Thoigiaketthuc;
+                            DateTime tgbd;
+                            DateTime tgkt;
+                            DateTime.TryParseExact(TGBD.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgbd);
+                            DateTime.TryParseExact(TGKT.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgkt);
+                            int ss1 = startday.CompareTo(tgbd);
+                            int ss2 = endday.CompareTo(tgbd);
+                            int ss3 = startday.CompareTo(tgkt);
+                            int ss4 = endday.CompareTo(tgkt);
+                            if ((ss1 < 0 && ss2 > 0) || (ss3 < 0 && ss4 > 0))
+                            {
+                                ketqua.Add(i);
+                            }
+
+                        }
+
+                        return View(ketqua);
+                    }
+
+                }
+                if (cbblinhvuc != null && thoigian != null)
+                {
+                    DateTime startday = DateTime.Parse(thoigian);
+                    DateTime endday = startday.AddMonths(1).AddDays(-1);
+                    if (string.IsNullOrEmpty(tenhoatdong) == true)
+                    {
+                        var hoatdong = (from hd in db.Hoatdongs
+                                        join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                        join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                        join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                        where hd.Idtochuc == IDTC && mt.Linhvuc == Convert.ToInt32(cbblinhvuc)
+                                        && hd.Trangthai == LayIDTT(cbbtinhtrang)
+                                        select new ViewModel.Hoatdong
+                                        {
+                                            Idhoatdong = hd.Idhoatdong,
+                                            Tenhoatdong = mt.Tenhoatdong,
+                                            Thoigianbatdau = mt.Thoigianbatdau,
+                                            Thoigiaketthuc = mt.Thoigiaketthuc,
+                                            Tgbdchinhsua = mt.Tgbdchinhsua,
+                                            Tgktchinhsua = mt.Tgktchinhsua,
+                                            DiaDiem = mt.DiaDiem,
+                                            TenLV = lv.Linhvuc1,
+                                            MuctieuHd = mt.MuctieuHd,
+                                            Sltnvcan = hd.Sltnvcan,
+                                            Trangthai = tt.Trangthai,
+                                        }).ToList();
+                        List<ViewModel.Hoatdong> ketqua = new List<ViewModel.Hoatdong>();
+                        foreach (var i in hoatdong)
+                        {
+                            DateOnly? TGBD;
+                            if (i.Tgbdchinhsua != null)
+                            {
+                                TGBD = i.Tgbdchinhsua;
+                            }
+                            else TGBD = i.Thoigianbatdau;
+                            DateOnly? TGKT;
+                            if (i.Tgktchinhsua != null)
+                            {
+                                TGKT = i.Tgktchinhsua;
+                            }
+                            else TGKT = i.Thoigiaketthuc;
+                            DateTime tgbd;
+                            DateTime tgkt;
+                            DateTime.TryParseExact(TGBD.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgbd);
+                            DateTime.TryParseExact(TGKT.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgkt);
+                            int ss1 = startday.CompareTo(tgbd);
+                            int ss2 = endday.CompareTo(tgbd);
+                            int ss3 = startday.CompareTo(tgkt);
+                            int ss4 = endday.CompareTo(tgkt);
+                            if ((ss1 < 0 && ss2 > 0) || (ss3 < 0 && ss4 > 0))
+                            {
+                                ketqua.Add(i);
+                            }
+
+                        }
+
+                        return View(ketqua);
+                    }
+                    else
+                    {
+                        var hoatdong = (from hd in db.Hoatdongs
+                                        join mt in db.MotaHds on hd.Idhoatdong equals mt.Idhoatdong
+                                        join tt in db.TrangthaiHds on hd.Trangthai equals tt.Idtrangthai
+                                        join lv in db.Linhvucs on mt.Linhvuc equals lv.Idlinhvuc
+                                        where hd.Idtochuc == IDTC && mt.Linhvuc == Convert.ToInt32(cbblinhvuc)
+                                        && mt.Tenhoatdong == tenhoatdong && hd.Trangthai == LayIDTT(cbbtinhtrang)
+                                        select new ViewModel.Hoatdong
+                                        {
+                                            Idhoatdong = hd.Idhoatdong,
+                                            Tenhoatdong = mt.Tenhoatdong,
+                                            Thoigianbatdau = mt.Thoigianbatdau,
+                                            Thoigiaketthuc = mt.Thoigiaketthuc,
+                                            Tgbdchinhsua = mt.Tgbdchinhsua,
+                                            Tgktchinhsua = mt.Tgktchinhsua,
+                                            DiaDiem = mt.DiaDiem,
+                                            TenLV = lv.Linhvuc1,
+                                            MuctieuHd = mt.MuctieuHd,
+                                            Sltnvcan = hd.Sltnvcan,
+                                            Trangthai = tt.Trangthai,
+                                        }).ToList();
+                        List<ViewModel.Hoatdong> ketqua = new List<ViewModel.Hoatdong>();
+                        foreach (var i in hoatdong)
+                        {
+                            DateOnly? TGBD;
+                            if (i.Tgbdchinhsua != null)
+                            {
+                                TGBD = i.Tgbdchinhsua;
+                            }
+                            else TGBD = i.Thoigianbatdau;
+                            DateOnly? TGKT;
+                            if (i.Tgktchinhsua != null)
+                            {
+                                TGKT = i.Tgktchinhsua;
+                            }
+                            else TGKT = i.Thoigiaketthuc;
+                            DateTime tgbd;
+                            DateTime tgkt;
+                            DateTime.TryParseExact(TGBD.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgbd);
+                            DateTime.TryParseExact(TGKT.ToString(), "M/d/yyyy", CultureInfo.InvariantCulture, DateTimeStyles.None, out tgkt);
+                            int ss1 = startday.CompareTo(tgbd);
+                            int ss2 = endday.CompareTo(tgbd);
+                            int ss3 = startday.CompareTo(tgkt);
+                            int ss4 = endday.CompareTo(tgkt);
+                            if ((ss1 < 0 && ss2 > 0) || (ss3 < 0 && ss4 > 0))
+                            {
+                                ketqua.Add(i);
+                            }
+
+                        }
+
+                        return View(ketqua);
+                    }
+                }
+            }
+            
             return View();
+               
         }
-        public IActionResult Thongtintochuc()
+        public static string Gettinhtrang(QuanlyTghd quanlyTghd)
         {
-            int? userID = HttpContext.Session.GetInt32("UserID");
-            var u = _db.Tochucs.Where(model => model.Idtochuc.Equals(userID)).Select(model => new { Ten = model.Ten, Email = model.Email, Sdt = model.Sdt, Diachi = model.Diachi }).FirstOrDefault();
-
-            if (u != null)
+            if (quanlyTghd.Trangthaiduyetdon == true && quanlyTghd.Tinhtranghuy == null && quanlyTghd.Tinhtrangthamgia == null)
             {
-                ViewBag.Ten = u.Ten.ToString();
-                ViewBag.Email = u.Email.ToString();
-                ViewBag.Sdt = u.Sdt.ToString();
-                ViewBag.Diachi = u.Diachi.ToString();
+                return "Đã được duyệt ";
             }
-            var u1 = _db.Motatochucs
-                .Where(model => model.Idtochuc.Equals(userID))
-                .Select(model => new { Gioithieu = model.Gioithieu, Thanhtuu = model.Thanhtuu, slHD = model.Hoatdongs.Count }).FirstOrDefault();
-            if (u1 != null)
-            {
-                ViewBag.Mota = u1.Gioithieu.ToString();
-                ViewBag.Thanhtuu = u1.Thanhtuu.ToString();
-                ViewBag.soluongHD = u1.slHD.ToString();
 
+            if (quanlyTghd.Tinhtranghuy == true && quanlyTghd.Tinhtrangthamgia == null)
+            {
+                return "Đã hủy ";
             }
-            return View();
+            if (quanlyTghd.Trangthaiduyetdon == true && quanlyTghd.Tinhtranghuy == null && quanlyTghd.Tinhtrangthamgia == true)
+            {
+                return "Đã tham gia";
+            }
+            return "Đã đăng ký";
         }
     }
 }

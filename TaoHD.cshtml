@@ -1,7 +1,7 @@
-﻿@{
+﻿﻿@{
     Layout = "~/Views/Shared/_LayoutTochuc.cshtml";
 }
-
+@model PBL3_QLHDTN.ViewModel.LinhvucView;
 <!doctype html>
 <html lang="en">
 <head>
@@ -34,42 +34,56 @@
                 <div class="toho-tng"> TẠO HOẠT ĐỘNG </div>
 
                 <input type="text" class="nhp-tn-hotng" name="TenHD" placeholder="Nhập tên hoạt động"></input>
-                <input class="chn-thi-gian-btu" name="TGBD" placeholder="Chọn thời gian bắt đầu"></input>
-                <input type="text" class="chn-thi-gian-kt-thc" name="TGKT" placeholder="Chọn thời gian kết thúc"> </input>
+                <input type="date" id="TGBD" class="TGBD" name="TGBD" placeholder="Chọn thời gian bắt đầu"></input>
+                <input type="date" id="TGKT"class="TGKT" name="TGKT" placeholder="Chọn thời gian kết thúc"> </input>
+                <div class="Chon">
+                    <select class="QuanHuyen" id="QuanHuyen" name="QuanHuyen" onchange="showPX()">
+                        <option disabled selected hidden>Chọn Quận/Huyện</option>
+                        <option value="Cẩm Lệ">Cẩm Lệ</option>
+                        <option value="Hải Châu">Hải Châu</option>
+                        <option value="Liên Chiểu">Liên Chiểu</option>
+                        <option value="Ngũ Hành Sơn">Ngũ Hành Sơn</option>
+                        <option value="Sơn Trà">Sơn Trà</option>
+                        <option value="Thanh Khê">Thanh Khê</option>
+                        <option value="Hoà Vang">Hoà Vang</option>
+                        <option value="Hoàng Sa">Hoàng Sa</option>
+                    </select>
+
+                    <select class="PhuongXa" id="PhuongXa" name="PhuongXa">
+                        <option disabled selected hidden>Chọn Phường/ Xã</option>
+                    </select>
+                </div>
                 <input type="text" class="aim-tchc-hotng" name="DiaDiem" placeholder="Địa điểm tổ chức hoạt động"></input>
-                <input type="text" class="lnh-vc-mhotngc-tchc" name="LinhVuc" placeholder="Lĩnh vực mà hoạt động được tổ chức"></input>
+                @if (@Model != null)
+                {
+                    <select class="linhvuc" id="linhvuc" name="linhvuc">
+                        <option disabled selected hidden>Chọn lĩnh vực</option>
+                        @foreach (var i in Model.TenLV)
+                        {
+                            <option>@i</option>
+                        }
+                    </select>
+}
                 <input type="text" class="mtmcch-thngip-ca-hotng" name="ThongDiep" placeholder="Mô tả mục đích, thông điệp của hoạt động"></input>
                 <div class="container-12">
                     <div class="slng-tnv-1">
+                        <br />
+                        <br />
                         Số lượng TNV:
                     </div>
                     <input type="number" class="SL-tong" name="SL" placeholder="0"></input>
                 </div>
-                <div class="Text_TYC"> Tạo yêu cầu cho hoạt động </div>
-                <div class="container-10">
-                    <input type="text" class="nhp-tn-ban" name="TenBan" placeholder="Nhập tên Ban"></input>
-                    <div class="slng-tnv"> Số lượng TNV trong Ban:</div>
-                    <input type="number" class="SL-moiBan" name="SLBan" placeholder="0"></input>
-                </div>
-                <div class="container-9">
-                    <input type="text" class="nhp-nhim-vca-ban" name="NhiemVu" placeholder="Nhập nhiệm vụ của Ban "></input>
-                    <input type="text" class="nhp-yu-cu-ca-ban" name="Yeucau" placeholder="Nhập yêu cầu của ban"></input>
-                </div>
                 <button onclick="TaoHDong()" action="TaoHD" class="TAOHD-1">Tạo hoạt động</button>
-        </form>
-                <button onclick="Themban()" action="ThemBan" class="thm-ban">Thêm Ban</button>
+        </form>           
+        <p class="TB">
+            @ViewBag.thongbao
+        </p>
 
-                <p class="TB">
-                    @ViewBag.thongbao
-                </p>
-       
-    </div>
-    </div>
-    </div>
     </div>
 </body>
 </html>
 <style>
+
     .TAOHD {
         background: #FFFFFF;
         display: flex;
@@ -242,7 +256,6 @@
         font-size: 48px;
         color: #000000;
     }
-
     .TAOHD .nhp-tn-hotng {
         width: 700px;
         height: 49px;
@@ -255,7 +268,7 @@
         margin-bottom: 20px;
     }
 
-    .TAOHD .chn-thi-gian-btu {
+    .TAOHD .TGBD {
         width: 700px;
         height: 49px;
         padding: 5px;
@@ -267,7 +280,7 @@
         margin-bottom: 20px;
     }
 
-    .TAOHD .chn-thi-gian-kt-thc {
+    .TAOHD .TGKT{
         width: 700px;
         height: 49px;
         padding: 5px;
@@ -279,6 +292,29 @@
         margin-bottom: 20px;
     }
 
+    .TAOHD .QuanHuyen {
+        width: 350px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    .TAOHD .PhuongXa {
+        width: 350px;
+        height: 49px;
+        padding: 5px;
+        border: 2px solid #0f8730;
+        border-radius: 20px;
+        font-size: 24px;
+        font-family: 'Barlow';
+        text-align: center;
+        margin-bottom: 20px;
+    }
     .TAOHD .aim-tchc-hotng {
         width: 700px;
         height: 49px;
@@ -291,7 +327,7 @@
         margin-bottom: 20px;
     }
 
-    .TAOHD .lnh-vc-mhotngc-tchc {
+    .TAOHD .linhvuc {
         width: 700px;
         height: 49px;
         padding: 5px;
@@ -337,144 +373,6 @@
         box-sizing: border-box;
     }
 
-    .Text_TYC {
-        margin: 0 0 91px 0.9px;
-        font-family: 'Baloo';
-        font-size: 32px;
-        color: #000000;
-    }
-
-    .TAOHD .nhp-tn-ban {
-        width: 300px;
-        height: 49px;
-        padding: 5px;
-        border: 2px solid #0f8730;
-        border-radius: 20px;
-        font-size: 24px;
-        font-family: 'Barlow';
-        text-align: center;
-        margin-bottom: 20px;
-        margin-right: 50px;
-    }
-
-    .TAOHD .SL-moiBan {
-        width: 100px;
-        height: 49px;
-        padding: 5px;
-        border: 2px solid #0f8730;
-        border-radius: 20px;
-        font-size: 24px;
-        font-family: 'Barlow';
-        text-align: center;
-        margin-bottom: 20px;
-        /* margin-top: 30px; */
-    }
-
-    .TAOHD .container {
-        margin: 0 69.3px 5.1px 0;
-        display: inline-block;
-        align-self: center;
-        overflow-wrap: break-word;
-        font-family: 'Barlow';
-        font-weight: 400;
-        font-size: 30px;
-        color: rgba(0, 0, 0, 0.5);
-    }
-
-    .TAOHD .container-1 {
-        border-radius: 20px;
-        border: 1px solid #0F8730;
-        background: #FFFFFF;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        align-items: flex-end;
-        padding: 0 8.7px 2.7px 0;
-        width: 157px;
-        box-sizing: border-box;
-    }
-
-    .TAOHD .container-10 {
-        margin-bottom: 110px;
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        width: 996px;
-        box-sizing: border-box;
-    }
-
-    .TAOHD .nhp-nhim-vca-ban {
-        width: 500px;
-        height: 49px;
-        padding: 5px;
-        border: 2px solid #0f8730;
-        border-radius: 20px;
-        font-size: 24px;
-        font-family: 'Barlow';
-        text-align: center;
-        margin-bottom: 20px;
-        margin-right: 50px;
-    }
-
-    .TAOHD .nhp-yu-cu-ca-ban {
-        width: 500px;
-        height: 49px;
-        padding: 5px;
-        border: 2px solid #0f8730;
-        border-radius: 20px;
-        font-size: 24px;
-        font-family: 'Barlow';
-        text-align: center;
-        margin-bottom: 20px;
-    }
-
-    .TAOHD .container-2 {
-        border-radius: 70px;
-        background: #29B24F;
-        position: relative;
-        margin-left: 54px;
-        display: flex;
-        padding: 10px 0 17px 43.8px;
-        width: 286px;
-        box-sizing: border-box;
-    }
-
-    .TAOHD .container-14 {
-        margin: 0 94px 0 1px;
-        display: flex;
-        flex-direction: row;
-        width: fit-content;
-        box-sizing: border-box;
-    }
-
-    .logo {
-        background: url('../assets/images/image_37.png') 50% / cover no-repeat;
-        width: 105px;
-        height: 99px;
-    }
-
-
-    .TAOHD .nhp-thng-tin-tm-kim {
-        opacity: 0.5;
-        overflow-wrap: break-word;
-        font-family: 'Inter';
-        font-weight: 400;
-        font-size: 30px;
-        color: #000000;
-    }
-
-    .TAOHD .container-TK {
-        border-radius: 20px;
-        border: 1px solid #000000;
-        background: #FFFFFF;
-        position: relative;
-        margin: 6px 30px 4px 0;
-        display: flex;
-        flex-direction: row;
-        padding: 2px 27.3px 11px 15px;
-        box-sizing: border-box;
-    }
-
     .TAOHD .container-12 {
         margin: 0 0 96px 12px;
         display: flex;
@@ -482,49 +380,6 @@
         justify-content: space-between;
         width: 450px;
         box-sizing: border-box;
-    }
-
-    .TAOHD .to-yu-cu-cho-hotng {
-        margin: 0 0 91px 0.9px;
-        display: inline-block;
-        overflow-wrap: break-word;
-        font-family: 'Inder';
-        font-weight: 400;
-        font-size: 32px;
-        color: #000000;
-    }
-
-    .TAOHD .slng-tnv {
-        margin: 19px 0 23px 0;
-        width: 350px;
-        display: inline-block;
-        overflow-wrap: break-word;
-        font-family: 'Barlow';
-        font-weight: 400;
-        font-size: 30px;
-        color: #000000;
-    }
-
-    .TAOHD .container-9 {
-        margin-bottom: 93px;
-        display: flex;
-        flex-direction: row;
-        width: 996px;
-        box-sizing: border-box;
-    }
-
-    .TAOHD .thm-ban {
-        margin: 0 20px 189px 841px;
-        display: inline-block;
-        align-self: flex-end;
-        overflow-wrap: break-word;
-        font-family: 'Baloo', 'Roboto Condensed';
-        font-weight: 400;
-        font-size: 30px;
-        border: #0F8730;
-        border-radius: 20px;
-        color: #000000;
-        margin-bottom: 20px;
     }
 
     .TAOHD .TAOHD-1 {
@@ -539,6 +394,9 @@
         border-radius: 20px;
         color: #000000;
     }
+    .slng-tnv-1{
+        font-size: 22px;
+    }
 </style>
 <script>
     let TaoHD = document.querySelector(".TaoHD-1");
@@ -551,4 +409,106 @@
     Themban.addEventListener("click", () => {
 
     });
+</script>
+<script>
+    function showPX() {
+        var QuanHuyen = document.getElementById("QuanHuyen");
+        var PhuongXa = document.getElementById("PhuongXa");
+
+        // Xóa các tùy chọn hiện có trong select PhuongXa
+        PhuongXa.innerHTML = '';
+
+        // Tùy chỉnh các tùy chọn trong select PhuongXa tùy theo QuanHuyen được chọn
+        switch (QuanHuyen.value) {
+            case "Cẩm Lệ":
+                PhuongXa.options.add(new Option("An Khê", "n Khê"));
+                PhuongXa.options.add(new Option("Hòa Minh", "Hòa Minh"));
+                PhuongXa.options.add(new Option("Hòa Phát", "Hòa Phát"));
+                PhuongXa.options.add(new Option("Hòa Thọ Đông", "Hòa Thọ Đông"));
+                PhuongXa.options.add(new Option("Hòa Thọ Tây", "Hòa Thọ Tây"));
+                PhuongXa.options.add(new Option("Hoà Xá", "Hoà Xá"));
+                PhuongXa.options.add(new Option("Khuê Trung", "Khuê Trung"));
+                PhuongXa.options.add(new Option("Minh Tân", "Minh Tân"));
+                PhuongXa.options.add(new Option("Tam Thuận", "Tam Thuận"));
+                PhuongXa.options.add(new Option("Thanh Khê Đông", "Thanh Khê Đông"));
+                PhuongXa.options.add(new Option("Thanh Khê Tây", "Thanh Khê Tây"));
+                break;
+            case "Hải Châu":
+                PhuongXa.options.add(new Option("Bình Hiên", "Bình Hiên"));
+                PhuongXa.options.add(new Option("Bình Thuận", "Bình Thuận"));
+                PhuongXa.options.add(new Option("Hải Châu I", "Hải Châu 1"));
+                PhuongXa.options.add(new Option("Hải Châu II", "Hải Châu 2"));
+                PhuongXa.options.add(new Option("Hòa Cường Bắc", "Hòa Cường Bắc"));
+                PhuongXa.options.add(new Option("Hòa Cường Nam", "Hòa Cường Nam"));
+                PhuongXa.options.add(new Option("Nam Dương", "Nam Dương"));
+                PhuongXa.options.add(new Option("Phước Ninh", "Phước Ninh"));
+                PhuongXa.options.add(new Option("Thạch Thang", "Thạch Thang"));
+                PhuongXa.options.add(new Option("Thanh Bình", "Thanh Bình"));
+                break;
+            case "Liên Chiểu":
+                PhuongXa.options.add(new Option("Hòa Hiệp Bắc", "Hòa Hiệp Bắc"));
+                PhuongXa.options.add(new Option("Hòa Hiệp Nam", "Hòa Hiệp Nam"));
+                PhuongXa.options.add(new Option("Hòa Khương", "Hòa Khương"));
+                PhuongXa.options.add(new Option("Hòa Minh", "Hòa Minh"));
+                PhuongXa.options.add(new Option("Hòa Ninh", "Hòa Ninh"));
+                PhuongXa.options.add(new Option("Hòa Phong", "Hòa Phong"));
+                PhuongXa.options.add(new Option("Hòa Phú", "Hòa Phú"));
+                PhuongXa.options.add(new Option("Hòa Phước", "Hòa Phước"));
+                PhuongXa.options.add(new Option("Hòa Sơn", "Hòa Sơn"));
+                PhuongXa.options.add(new Option("Hòa Tiến", "Hòa Tiến"));
+                PhuongXa.options.add(new Option("Hòa Xuân", "Hòa Xuân"));
+                break;
+            case "Ngũ Hành Sơn":
+                PhuongXa.options.add(new Option("Hòa Hải", "Hòa Hải"));
+                PhuongXa.options.add(new Option("Hòa Quý", "Hòa Quý"));
+                PhuongXa.options.add(new Option("Khuê Mỹ", "Khuê Mỹ"));
+                PhuongXa.options.add(new Option("Mỹ An", "Mỹ An"));
+                PhuongXa.options.add(new Option("Mỹ Đa", "Mỹ Da"));
+                break;
+            case "Sơn Trà":
+                PhuongXa.options.add(new Option("An Hải Bắc", "An Hải Bắc"));
+                PhuongXa.options.add(new Option("An Hải Đông", "An Hải Đông"));
+                PhuongXa.options.add(new Option("An Hải Tây", "An Hải Tây"));
+                PhuongXa.options.add(new Option("Mân Thái", "Mân Thái"));
+                PhuongXa.options.add(new Option("Nại Hiên Đông", "Nại Hiên Đông"));
+                PhuongXa.options.add(new Option("Phước Mỹ", "Phước Mỹ"));
+                break;
+            case "Thanh Khê":
+                PhuongXa.options.add(new Option("An Khê", "An Khê"));
+                PhuongXa.options.add(new Option("Chính Gián", "Chính Gián"));
+                PhuongXa.options.add(new Option("Hòa Khê", "Hòa Khê"));
+                PhuongXa.options.add(new Option("Tam Thuận", "Tam Thuận"));
+                PhuongXa.options.add(new Option("Tân Chính", "Tân Chính"));
+                PhuongXa.options.add(new Option("Tân Hòa", "Tân Hòa"));
+                PhuongXa.options.add(new Option("Thạc Gián", "Thạc Gián"));
+                PhuongXa.options.add(new Option("Thanh Khê Đông", "Thanh Khê Đông"));
+                PhuongXa.options.add(new Option("Thanh Khê Tây", "Thanh Khê Tây"));
+                break;
+            case "Hoà Vang":
+                PhuongXa.options.add(new Option("Hòa Bắc", "Hòa Bắc"));
+                PhuongXa.options.add(new Option("Hòa Châu", "Hòa Châu"));
+                PhuongXa.options.add(new Option("Hòa Khánh Bắc", "Hòa Khánh Bắc"));
+                PhuongXa.options.add(new Option("Hòa Khánh Nam", "Hòa Khánh Nam"));
+                PhuongXa.options.add(new Option("Hòa Phong", "Hòa Phong"));
+                PhuongXa.options.add(new Option("Hòa Phú", "Hòa Phú"));
+                PhuongXa.options.add(new Option("Hòa Quế", "Hòa Quế"));
+                PhuongXa.options.add(new Option("Hòa Sơn", "Hòa Sơn"));
+                PhuongXa.options.add(new Option("Hòa Tiến", "Hòa Tiến"));
+                PhuongXa.options.add(new Option("Hòa Xuân", "Hòa Xuân"));
+                PhuongXa.options.add(new Option("Hòa Xương", "Hòa Xương"));
+                PhuongXa.options.add(new Option("Hòa Đông", "Hòa Đông"));
+                PhuongXa.options.add(new Option("Hòa Đức", "Hòa Đức"));
+                PhuongXa.options.add(new Option("Hòa Động", "Hòa Động"));
+                PhuongXa.options.add(new Option("Hòa Quang", "Hòa Quang"));
+                PhuongXa.options.add(new Option("Hòa Thọ Đông", "Hòa Thọ Đông"));
+                PhuongXa.options.add(new Option("Hòa Thọ Tây", "Hòa Thọ Tây"));
+                break;
+            case "Hoàng Sa":
+                PhuongXa.options.add(new Option("Hoàng Sa", "Hoàng Sa"));
+                break;
+            default:
+                PhuongXa.options.add(new Option("Chưa có tùy chọn phường/xã", ""));
+                break;
+        }
+    }
 </script>
